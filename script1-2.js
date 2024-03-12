@@ -1056,9 +1056,11 @@ if (typeof GAME === 'undefined') { } else {
                     this.resetAFO();
                 });
                 $("body").on("click", "#changeProfilePrev", () => {
+                    console.log("KWS: clicked previous character button");
                     this.goToPreviousChar();
                 });
                 $("body").on("click", "#changeProfileNext", () => {
+                    console.log("KWS: clicked next character button");
                     this.goToNextChar();
                 });
                 $("body").on("click", `button[data-page="stelep"].cps`, () => {
@@ -1367,8 +1369,10 @@ if (typeof GAME === 'undefined') { } else {
                         } else if (event.key === "=") {
                             this.createAlternativePilot();
                         } else if (event.key === ",") {
+                            console.log("KWS: clicked comma on keyboard for next character");
                             this.goToPreviousChar();
                         } else if (event.key === ".") {
+                            console.log("KWS: clicked dot on keyboard for next character");
                             this.goToNextChar();
                         } else if (event.key === "9" && JQS.qcc.is(":visible")) { }
                     }
@@ -1731,11 +1735,13 @@ if (typeof GAME === 'undefined') { } else {
                 });
             }
             goToNextChar() {
+                console.log("KWS: switching to next character");
                 this.resetAFO();
                 var charId = this.charactersManager.getNextCharId();
                 GAME.emitOrder({ a: 2, char_id: charId });
             }
             goToPreviousChar() {
+                console.log("KWS: switching to previous character");
                 this.resetAFO();
                 var charId = this.charactersManager.getPreviousCharId();
                 GAME.emitOrder({ a: 2, char_id: charId });
@@ -1743,6 +1749,7 @@ if (typeof GAME === 'undefined') { } else {
             adjustCurrentCharacterId() {
                 var thisCharId = GAME.char_id;
                 if (thisCharId != this.charactersManager.currentCharacterId) {
+                    console.log("KWS: saving current characterID");
                     this.charactersManager.setCurrentCharacterId(thisCharId);
                 }
             }
@@ -2165,7 +2172,7 @@ if (typeof GAME === 'undefined') { } else {
         let roll2 = false;
         let roll1 = false;
         let roll3 = false;
-        let version = '3.4.1';
+        let version = '3.4.2';
     }
     )
 }
