@@ -34,7 +34,7 @@ function checkRefresh() {
     }
 }
 
-function toggleScript() {
+	function toggleScript() {
     isRunning = !isRunning;
 
     if (isRunning) {
