@@ -1,13 +1,13 @@
-let lastTimestamkody = Date.now();
+let lastTimestampKody = Date.now();
 let clickLinkKody = true;
 let isRunningKody = false;
 let refreshIntervalKody;
 
 function checkRefreshKody() {
-    const currentTimestamKody = Date.now();
+    const currentTimestampKody = Date.now();
 
-    if (currentTimestamKody - lastTimestamkody > 15000 && isRunningKody) {
-        lastTimestamkody = currentTimestamKody;
+    if (currentTimestampKody - lastTimestampKody > 15000 && isRunningKody) {
+        lastTimestampKody = currentTimestampKody;
 
         if (clickLinkKody) {
             const linkElementKody = document.querySelector('.qlink.load_afo');
@@ -58,23 +58,23 @@ function updateButtonTextKody() {
 
 function checkIfRefreshedKody() {
     if (isRunningKody) {
-        const currentTimestamKody = Date.now();
-        if (currentTimestamKody - lastTimestamkody > 1000) {
-            lastTimestamkody = currentTimestamKody;
+        const currentTimestampKody = Date.now();
+        if (currentTimestampKody - lastTimestampKody > 1000) {
+            lastTimestampKody = currentTimestampKody;
         }
     }
 }
 
 window.addEventListener('beforeunload', () => {
-    lastTimestamkody = Date.now();
+    lastTimestampKody = Date.now();
 });
 
-const runningStateFromStorage = window.localStorage.getItem('isRunningKody');
-if (runningStateFromStorage === 'true') {
+const runningStateFromStorageKody = window.localStorage.getItem('isRunningKody');
+if (runningStateFromStorageKody === 'true') {
     toggleScriptKody();
 }
 
-function createcontrolButtonKody() {
+function createControlButtonKody() {
     const controlButtonKody = document.createElement('button');
     controlButtonKody.id = 'buttonKody';
     controlButtonKody.textContent = isRunningKody ? 'R-Kody Off' : 'R-Kody On';
@@ -88,5 +88,5 @@ function createcontrolButtonKody() {
     });
     document.body.appendChild(controlButtonKody);
 }
-setTimeout(createcontrolButtonKody, 2000);
+setTimeout(createControlButtonKody, 2000);
 
