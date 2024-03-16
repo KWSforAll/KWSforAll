@@ -46,10 +46,10 @@ function toggleScriptKody() {
         clearInterval(refreshIntervalKody);
     }
 
-    updateButtonText();
+    updateButtonTextKody();
 }
 
-function updateButtonText() {
+function updateButtonTextKody() {
     const controlButtonKody = document.getElementById('buttonKody');
     if (controlButtonKody) {
         controlButtonKody.textContent = isRunningKody ? 'R-Kody Off' : 'R-Kody On';
