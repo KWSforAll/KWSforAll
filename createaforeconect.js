@@ -4,7 +4,7 @@ let clickLink = true;
 let isRunning = false;
 let refreshInterval;
 
-function checkRefresh() {
+function checkRefreshc() {
     const currentTimestamp = Date.now();
 
     if (currentTimestamp - lastTimestamp > 15000 && isRunning) {
@@ -40,17 +40,17 @@ function checkRefresh() {
     if (isRunning) {
         localStorage.setItem('isRunning', 'true');
         refreshInterval = setInterval(() => {
-            checkRefresh();
+            checkRefreshc();
         }, 1000);
     } else {
         localStorage.setItem('isRunning', 'false');
         clearInterval(refreshInterval);
     }
 
-    updateButtonText();
+    updateButtonTextcode();
 }
 
-function updateButtonText() {
+function updateButtonTextcode() {
     const controlButton = document.getElementById('toggleScriptButton');
     if (controlButton) {
  	controlButton.textContent = isRunning ? 'R-Kody Off' : 'R-Kody On';
