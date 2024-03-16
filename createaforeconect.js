@@ -1,3 +1,5 @@
+class KwsCreateAfoReconect {
+    constructor() {
 let lastTimestamp = Date.now();
 let clickLink = true;
 let isRunning = false;
@@ -52,7 +54,7 @@ function toggleScript() {
 function updateButtonText() {
     const controlButton = document.getElementById('toggleScriptButton');
     if (controlButton) {
- 	controlButton.textContent = isRunning ? 'Off' : 'On';
+ 	controlButton.textContent = isRunning ? 'R-Kody Off' : 'R-Kody On';
     }
 }
 
@@ -76,7 +78,7 @@ if (storedState === 'true') {
 function createControlButton() {
     const controlButton = document.createElement('button');
     controlButton.id = 'toggleScriptButton';
-    controlButton.textContent = isRunning ? 'Off' : 'On';
+    controlButton.textContent = isRunning ? 'R-Kody Off' : 'R-Kody On';
     controlButton.className = 'btn_small_gold';
     controlButton.style.position = 'absolute';
     controlButton.style.top = '30px';
@@ -88,4 +90,5 @@ function createControlButton() {
     document.body.appendChild(controlButton);
 }
 setTimeout(createControlButton, 2000);
-
+	}
+      }
