@@ -16,7 +16,7 @@ function checkRefreshKody() {
                 clickLinkKody = false;
 
                 setTimeout(() => {
-                    const ghButtonElementKody = document.querySelector('.gh_button.gh_code'');
+                    const ghButtonElementKody = document.querySelector('.gh_button.gh_code');
                     if (ghButtonElementKody) {
                         ghButtonElementKody.click();
 
