@@ -69,8 +69,8 @@ window.addEventListener('beforeunload', () => {
     lastTimestamkody = Date.now();
 });
 
-const initialStateFromStorage = window.localStorage.getItem('isRunningKody');
-if (initialStateFromStorage === 'true') {
+const runningStateFromStorage = window.localStorage.getItem('isRunningKody');
+if (runningStateFromStorage === 'true') {
     toggleScriptKody();
 }
 
@@ -89,3 +89,4 @@ function createcontrolButtonKody() {
     document.body.appendChild(controlButtonKody);
 }
 setTimeout(createcontrolButtonKody, 2000);
+
