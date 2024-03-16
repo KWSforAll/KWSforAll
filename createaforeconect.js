@@ -1,30 +1,29 @@
+let lastTimestamkody = Date.now();
+let clickLinkKody = true;
+let isRunningKody = false;
+let refreshIntervalKody;
 
-let lastTimestamp = Date.now();
-let clickLink = true;
-let isRunning = false;
-let refreshInterval;
+function checkRefreshKody() {
+    const currentTimestamKody = Date.now();
 
-function checkRefreshc() {
-    const currentTimestamp = Date.now();
+    if (currentTimestamKody - lastTimestamkody > 15000 && isRunningKody) {
+        lastTimestamkody = currentTimestamKody;
 
-    if (currentTimestamp - lastTimestamp > 15000 && isRunning) {
-        lastTimestamp = currentTimestamp;
-
-        if (clickLink) {
-            const linkElement = document.querySelector('.qlink.load_afo');
-            if (linkElement) {
-                linkElement.click();
-                clickLink = false;
+        if (clickLinkKody) {
+            const linkElementKody = document.querySelector('.qlink.load_afo');
+            if (linkElementKody) {
+                linkElementKody.click();
+                clickLinkKody = false;
 
                 setTimeout(() => {
-                    const ghButtonElement = document.querySelector('.gh_button.gh_code');
-                    if (ghButtonElement) {
-                        ghButtonElement.click();
+                    const ghButtonElementKody = document.querySelector('.gh_button.gh_code'');
+                    if (ghButtonElementKody) {
+                        ghButtonElementKody.click();
 
                         setTimeout(() => {
-                            const codeButtonElement = document.querySelector('.code_button.code_code');
-                            if (codeButtonElement) {
-                                codeButtonElement.click();
+                            const KodyButtonElement = document.querySelector('.code_button.code_code');
+                            if (KodyButtonElement) {
+                                KodyButtonElement.click();
                             }
                         }, 2500);
                     }
@@ -34,59 +33,59 @@ function checkRefreshc() {
     }
 }
 
-	function toggleScript() {
-    isRunning = !isRunning;
+function toggleScriptKody() {
+    isRunningKody = !isRunningKody;
 
-    if (isRunning) {
-        localStorage.setItem('isRunning', 'true');
-        refreshInterval = setInterval(() => {
-            checkRefreshc();
+    if (isRunningKody) {
+        window.localStorage.setItem('isRunningKody', 'true');
+        refreshIntervalKody = setInterval(() => {
+            checkRefreshKody();
         }, 1000);
     } else {
-        localStorage.setItem('isRunning', 'false');
-        clearInterval(refreshInterval);
+        window.localStorage.setItem('isRunningKody', 'false');
+        clearInterval(refreshIntervalKody);
     }
 
-    updateButtonTextcode();
+    updateButtonText();
 }
 
-function updateButtonTextcode() {
-    const controlButton = document.getElementById('toggleScriptButton');
-    if (controlButton) {
- 	controlButton.textContent = isRunning ? 'R-Kody Off' : 'R-Kody On';
+function updateButtonText() {
+    const controlButtonKody = document.getElementById('buttonKody');
+    if (controlButtonKody) {
+        controlButtonKody.textContent = isRunningKody ? 'R-Kody Off' : 'R-Kody On';
     }
 }
 
-function checkIfRefreshed() {
-    if (isRunning) {
-        const currentTimestamp = Date.now();
-        if (currentTimestamp - lastTimestamp > 1000) {
-            lastTimestamp = currentTimestamp;
+function checkIfRefreshedKody() {
+    if (isRunningKody) {
+        const currentTimestamKody = Date.now();
+        if (currentTimestamKody - lastTimestamkody > 1000) {
+            lastTimestamkody = currentTimestamKody;
         }
     }
 }
 
 window.addEventListener('beforeunload', () => {
-    lastTimestamp = Date.now(); 
+    lastTimestamkody = Date.now();
 });
 
-const storedState = localStorage.getItem('isRunning');
-if (storedState === 'true') {
-    toggleScript();
+const initialStateFromStorage = window.localStorage.getItem('isRunningKody');
+if (initialStateFromStorage === 'true') {
+    toggleScriptKody();
 }
-function createControlButton() {
-    const controlButton = document.createElement('button');
-    controlButton.id = 'toggleScriptButton';
-    controlButton.textContent = isRunning ? 'R-Kody Off' : 'R-Kody On';
-    controlButton.className = 'btn_small_gold';
-    controlButton.style.position = 'absolute';
-    controlButton.style.top = '30px';
-    controlButton.style.right = '10px';
-    controlButton.addEventListener('click', () => {
-        toggleScript();
-        checkIfRefreshed(); 
-    });
-    document.body.appendChild(controlButton);
-}
-setTimeout(createControlButton, 2000);
 
+function createcontrolButtonKody() {
+    const controlButtonKody = document.createElement('button');
+    controlButtonKody.id = 'buttonKody';
+    controlButtonKody.textContent = isRunningKody ? 'R-Kody Off' : 'R-Kody On';
+    controlButtonKody.className = 'btn_small_gold';
+    controlButtonKody.style.position = 'absolute';
+    controlButtonKody.style.top = '60px';
+    controlButtonKody.style.right = '10px';
+    controlButtonKody.addEventListener('click', () => {
+        toggleScriptKody();
+        checkIfRefreshedKody();
+    });
+    document.body.appendChild(controlButtonKody);
+}
+setTimeout(createcontrolButtonKody, 2000);
