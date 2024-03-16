@@ -80,7 +80,7 @@ function createcontrolButtonKody() {
     controlButtonKody.textContent = isRunningKody ? 'R-Kody Off' : 'R-Kody On';
     controlButtonKody.className = 'btn_small_gold';
     controlButtonKody.style.position = 'absolute';
-    controlButtonKody.style.top = '60px';
+    controlButtonKody.style.top = '30px';
     controlButtonKody.style.right = '10px';
     controlButtonKody.addEventListener('click', () => {
         toggleScriptKody();
