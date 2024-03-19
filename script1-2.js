@@ -696,7 +696,8 @@ if (typeof GAME === 'undefined') { } else {
                 let innerHTML = ` <span class='kws_top_bar_section sk_info' style='cursor:pointer;'>SK: <span style="color:${sk_status == "AKTYWNE" ? "lime" : "white"};">${sk_status}</span></span> <span class='kws_top_bar_section train_upgr_info' style='cursor:pointer;'>KODY: <span style="color:${train_upgr == "AKTYWNE" ? "lime" : "white"};">${train_upgr}</span></span><span class='kws_top_bar_section lvl' style='cursor:pointer;'>LVL: <span>${lvlh}/H</span></span><span class='kws_top_bar_section pvp' style='cursor:pointer;'>PVP: <span>${pvp_count}</span></span><span class='kws_top_bar_section arena' style='cursor:pointer;'>ARENA: <span>${arena_count}</span></span> ${is_trader.getDay() == 6 ? trader : ''} [${soulCards_one}| ${soulCards_two}| ${soulCards_three}| ${soulCards_four}| ${soulCards_five}] <span class='kws_top_bar_section version' style='cursor:pointer;'>Wersja: <span>${version}</span></span> `;
                 $(".kws_top_bar").html(innerHTML);
                 this.adjustCurrentCharacterId();
-                // this.checkTournamentsSigning();
+                 this.checkTournamentsSigning();
+                 this.checkTournamentsSigning1();
             }
             collectActivities() {
                 let received = $("#act_prizes").find("div.act_prize.disabled").length;
@@ -1474,6 +1475,25 @@ if (typeof GAME === 'undefined') { } else {
                     }
                 }
             }
+            checkTournamentsSigning1() {
+                var currentServerTime = new Date(GAME.getTime()*1000);
+                var currentServerHour = currentServerTime.getHours();
+                var currentServerMinute = currentServerTime.getMinutes();
+                if(currentServerHour > 21 && currentServerHour < 18) {
+                    this.tourSigned = false;
+                    this.firstTournamentPageLoaded = false;
+                } else {
+                    if (!this.firstTournamentPageLoaded && currentServerMinute > 10) {
+                        GAME.emitOrder({ a: 57, type: 0, type2: 0, page: 2 });
+                        this.firstTournamentPageLoaded = true;
+                    }
+                    if (this.firstTournamentPageLoaded && !this.tourSigned) {
+                        setTimeout(() => {
+                            this.handleTournamentsSign();
+                        }, 00);
+                    }
+                }
+            }            
             handleTournamentsSign() {
                 if(this.tourSigned) { return }
                 var currentServerTime = new Date(GAME.getTime()*1000);
