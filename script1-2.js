@@ -1490,7 +1490,7 @@ if (typeof GAME === 'undefined') { } else {
                     if (this.firstTournamentPageLoaded && !this.tourSigned) {
                         setTimeout(() => {
                             this.handleTournamentsSign();
-                        }, 00);
+                        }, 1000);
                     }
                 }
             }            
