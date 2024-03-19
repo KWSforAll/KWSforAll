@@ -214,10 +214,14 @@ function performListActions() {
                 if (lpvmUButton) {
                     lpvmUButton.click();
                     setTimeout(() => {
-                        const lpvmLpvmButton = document.querySelector('.lpvm_button.lpvm_lpvm');
-                        if (lpvmLpvmButton) {
-                            lpvmLpvmButton.click();
-                        }
+                        // Execute GAME.page_switch('game_map');
+                        GAME.page_switch('game_map');
+                        setTimeout(() => {
+                            const lpvmLpvmButton = document.querySelector('.lpvm_button.lpvm_lpvm');
+                            if (lpvmLpvmButton) {
+                                lpvmLpvmButton.click();
+                            }
+                        }, 2000);
                     }, 2000);
                 }
             }, 2000);
@@ -225,16 +229,21 @@ function performListActions() {
     }
 }
 
+
 function performOtherActions() {
     const ghResButton = document.querySelector('.gh_button.gh_res');
     if (ghResButton) {
         setTimeout(() => {
             ghResButton.click();
             setTimeout(() => {
-                const resButton = document.querySelector('.res_button.res_res');
-                if (resButton) {
-                    resButton.click();
-                }
+                // Execute GAME.page_switch('game_map');
+                GAME.page_switch('game_map');
+                setTimeout(() => {
+                    const resButton = document.querySelector('.res_button.res_res');
+                    if (resButton) {
+                        resButton.click();
+                    }
+                }, 2000);
             }, 2000);
         }, 2000);
     }
