@@ -27,6 +27,7 @@ function checkRefresh() {
                     case 'R - PVM':
                         // PVM related actions
                         performPvmActions();
+                        saveSelectedSpawners();
                         break;
                     case 'R - Listy':
                         // List related actions
@@ -52,7 +53,7 @@ function toggleScript() {
         refreshInterval = setInterval(() => {
             checkRefresh();
         }, 1000);
-        saveSelectedSpawners();
+
     } else {
         window.localStorage.setItem('isRunning', 'false');
         clearInterval(refreshInterval);
