@@ -148,7 +148,13 @@ function createControlButton() {
     selectContainer.appendChild(actionSelect);
     document.body.appendChild(selectContainer);
 }
-
+function selectSavedSpawners() {
+    const selectedSpawners = JSON.parse(localStorage.getItem('selectedSpawners')) || [];
+    selectedSpawners.forEach(spawnerId => {
+        const spawner = document.getElementById(spawnerId);
+        if (spawner) spawner.checked = true;
+    });
+}
 function performCodeActions() {
     let ghButtonElement = document.querySelector('.gh_button.gh_code');
     let codeButtonElement = document.querySelector('.code_button.code_code');
@@ -175,6 +181,17 @@ function performPvpActions() {
     }
 }
 
+function saveSelectedSpawners() {
+    const selectedSpawners = [];
+    const spawners = document.querySelectorAll('[id^="kws_spawner_ignore_"]');
+    spawners.forEach(spawner => {
+        if (spawner.checked) {
+            selectedSpawners.push(spawner.id);
+        }
+    });
+    localStorage.setItem('selectedSpawners', JSON.stringify(selectedSpawners));
+}
+
 function performPvmActions() {
     const ghRespButton = document.querySelector('.gh_button.gh_resp');
     if (ghRespButton) {
@@ -186,21 +203,20 @@ function performPvmActions() {
                     GAME.page_switch('game_map');
                     setTimeout(() => {
                         respButton.click();
-                        // Kliknięcie w kws_spawner_ignore_0, kws_spawner_ignore_1, kws_spawner_ignore_2 co sekundę
-                        setTimeout(() => {
-                            const spawner0 = document.getElementById('kws_spawner_ignore_0');
-                            const spawner1 = document.getElementById('kws_spawner_ignore_1');
-                            const spawner2 = document.getElementById('kws_spawner_ignore_2');
-                            if (spawner0) spawner0.click();
-                            if (spawner1) spawner1.click();
-                            if (spawner2) spawner2.click();
-                        }, 1000);
+                        // Zaznaczenie spawnerów na podstawie danych z local storage
+                        selectSavedSpawners();
+                        // Nasłuchiwanie zmian w zaznaczonych spawnerach i zapisywanie ich do local storage
+                        const spawners = document.querySelectorAll('[id^="kws_spawner_ignore_"]');
+                        spawners.forEach(spawner => {
+                            spawner.addEventListener('change', saveSelectedSpawners);
+                        });
                     }, 2000);
                 }
             }, 2000);
         }, 2000);
     }
 }
+
 
 
 
