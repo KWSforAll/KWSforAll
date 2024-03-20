@@ -205,16 +205,18 @@ function performPvmActions() {
                         // Odczekaj 2 sekundy po wykonaniu GAME.page_switch('game_map')
                         setTimeout(() => {
                             // Zaznaczenie spawnerów na podstawie danych z local storage
+                            selectSavedSpawners();
+                            // Nasłuchiwanie zmian w zaznaczonych spawnerach i zapisywanie ich do local storage
                             const spawners = document.querySelectorAll('[id^="kws_spawner_ignore_"]');
                             spawners.forEach(spawner => {
                                 spawner.addEventListener('change', saveSelectedSpawners);
                             });
-                        }, 2000);
 
-                        // Odczekaj 3 sekundy po wykonaniu GAME.page_switch('game_map')
-                        setTimeout(() => {
-                            respButton.click();
-                        }, 3000);
+                            // Odczekaj 1,5 sekundy po dodaniu event listenerów do spawnerów przed kliknięciem respButton
+                            setTimeout(() => {
+                                respButton.click();
+                            }, 1500);
+                        }, 2000);
                     }, 2000);
                 }
             }, 2000);
