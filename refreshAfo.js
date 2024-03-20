@@ -52,6 +52,7 @@ function toggleScript() {
         refreshInterval = setInterval(() => {
             checkRefresh();
         }, 1000);
+        saveSelectedSpawners();
     } else {
         window.localStorage.setItem('isRunning', 'false');
         clearInterval(refreshInterval);
