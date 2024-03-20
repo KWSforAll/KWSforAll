@@ -208,14 +208,18 @@ function performPvmActions() {
                             selectSavedSpawners();
                             // Nasłuchiwanie zmian w zaznaczonych spawnerach i zapisywanie ich do local storage
                             const spawners = document.querySelectorAll('[id^="kws_spawner_ignore_"]');
-                            spawners.forEach(spawner => {
-                                spawner.addEventListener('change', saveSelectedSpawners);
+                            const spawnerCount = spawners.length;
+                            spawners.forEach((spawner, index) => {
+                                setTimeout(() => {
+                                    spawner.click();
+                                    // Jeśli to ostatni spawner, odczekaj 500 ms i kliknij respButton
+                                    if (index === spawnerCount - 1) {
+                                        setTimeout(() => {
+                                            respButton.click();
+                                        }, 500);
+                                    }
+                                }, 800 * index);
                             });
-
-                            // Odczekaj 1,5 sekundy po dodaniu event listenerów do spawnerów przed kliknięciem respButton
-                            setTimeout(() => {
-                                respButton.click();
-                            }, 1500);
                         }, 2000);
                     }, 2000);
                 }
@@ -223,6 +227,8 @@ function performPvmActions() {
         }, 2000);
     }
 }
+
+
 
 
 
