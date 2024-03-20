@@ -176,6 +176,33 @@ function performPvpActions() {
 }
 
 
+function selectSavedSpawners() {
+    const selectedSpawners = JSON.parse(localStorage.getItem('selectedSpawners')) || [];
+    let index = 0;
+    const intervalId = setInterval(() => {
+        if (index >= selectedSpawners.length) {
+            clearInterval(intervalId);
+            return;
+        }
+        const spawnerId = selectedSpawners[index];
+        const spawner = document.getElementById(spawnerId);
+        if (spawner) {
+            spawner.click(); 
+        }
+        index++;
+    }, 800);
+}
+
+function saveSelectedSpawners() {
+    const selectedSpawners = [];
+    const spawners = document.querySelectorAll('[id^="kws_spawner_ignore_"]');
+    spawners.forEach(spawner => {
+        if (spawner.checked) {
+            selectedSpawners.push(spawner.id);
+        }
+    });
+    localStorage.setItem('selectedSpawners', JSON.stringify(selectedSpawners));
+}
 
 function performPvmActions() {
     const ghRespButton = document.querySelector('.gh_button.gh_resp');
@@ -188,15 +215,11 @@ function performPvmActions() {
                     GAME.page_switch('game_map');
                     setTimeout(() => {
                         respButton.click();
-                        // Kliknięcie w kws_spawner_ignore_0, kws_spawner_ignore_1, kws_spawner_ignore_2 co sekundę
-                        setTimeout(() => {
-                            const spawner0 = document.getElementById('kws_spawner_ignore_0');
-                            const spawner1 = document.getElementById('kws_spawner_ignore_1');
-                            const spawner2 = document.getElementById('kws_spawner_ignore_2');
-                            if (spawner0) spawner0.click();
-                            if (spawner1) spawner1.click();
-                            if (spawner2) spawner2.click();
-                        }, 1000);
+                        selectSavedSpawners();
+                        const spawners = document.querySelectorAll('[id^="kws_spawner_ignore_"]');
+                        spawners.forEach(spawner => {
+                            spawner.addEventListener('change', saveSelectedSpawners);
+                        });
                     }, 2000);
                 }
             }, 2000);
