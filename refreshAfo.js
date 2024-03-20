@@ -27,7 +27,6 @@ function checkRefresh() {
                     case 'R - PVM':
                         // PVM related actions
                         performPvmActions();
-                        saveSelectedSpawners();
                         break;
                     case 'R - Listy':
                         // List related actions
