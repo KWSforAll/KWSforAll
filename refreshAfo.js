@@ -64,7 +64,7 @@ function toggleScript() {
 function updateButtonText() {
     const controlButton = document.getElementById('toggleButton');
     if (controlButton) {
-        controlButton.textContent = isRunning ? 'Refres Afo Stop' : 'Refres Afo Start';
+        controlButton.textContent = isRunning ? 'Refresh Afo Stop' : 'Refresh Afo Start';
     }
 }
 
