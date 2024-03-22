@@ -40,7 +40,7 @@ if (typeof GAME === 'undefined') { } else {
                 this.addToCSS(`.kom{background:url(/gfx/layout/tloPilot.png); background-size:cover; border-image:url(/gfx/layout/mapborder.png) 7 8 7 7 fill; border-style:solid; border-width:7px 8px 7px 7px; box-shadow:none;} .kom .close_kom b{background:url(/gfx/layout/tloPilot.png);} .exchange_win{max-height:500; height:auto;}`);
                 this.addToCSS(`#emp_list .petopt_btns .newBtn{margin:0px 3px 3px 0px;} .newBtn.do_all_instances{color:#e5d029;}`);
                 this.addToCSS(`#quick_bar{z-index:4;} .qlink.kws_active_icon{animation-name:kws_active_icon;animation-duration:1s;animation-iteration-count:infinite;}@keyframes kws_active_icon { 0% { filter: hue-rotate(168deg); } 50% { filter:hue-rotate(40deg); } 100% { filter: hue-rotate(168deg); } } .sideIcons{ width:29px; height:29px; left:-37px; background-size:contain; } .autoExpeCodes{background:#12121294; border:1px solid rgb(87, 87, 114); border-radius:5px 0px 0px 5px; position:absolute; top:-100px; left:-97px; padding:5px; display:none; color:#ffe500c7; user-select:none;} .manage_autoExpeditions:hover + .autoExpeCodes, .autoExpeCodes:hover{ display:flex; } .autoExpeCodes .newCheckbox{margin: 0 auto; display: block;} `);
-                this.addToCSS(`#secondary_char_stats .instance{margin-top:10px; cursor:pointer;} #secondary_char_stats .activities{margin-top:-5px; cursor:pointer;} #secondary_char_stats ul {margin-top:-18px; margin-left:-18px;} .ico.a11{background:url("https://raw.githubusercontent.com/KWSforAll/KWSforAll/main/instances.png"); background-repeat: no-repeat; background-size: inherit; background-position: center;} .ico.a12{background-image: url(https://raw.githubusercontent.com/KWSforAll/KWSforAll/main/activity.png); background-repeat: no-repeat; background-size: inherit; background-position: center;}`);
+                this.addToCSS(`#secondary_char_stats .instance{margin-top:10px; cursor:pointer; width:100px;} #secondary_char_stats .activities{margin-top:-5px; cursor:pointer; width:100px;} #secondary_char_stats ul {margin-top:-18px; margin-left:-18px;} .ico.a11{background:url("https://raw.githubusercontent.com/KWSforAll/KWSforAll/main/instances.png"); background-repeat: no-repeat; background-size: inherit; background-position: center;} .ico.a12{background-image: url(https://raw.githubusercontent.com/KWSforAll/KWSforAll/main/activity.png); background-repeat: no-repeat; background-size: inherit; background-position: center;}`);
                 this.addToCSS(`.ssj_uio{background:url("https://i.imgur.com/EcfEUcG.png");}`);
                 this.addToCSS(`#quick_allTransformations { position:absolute; top:33px; z-index:1; background:rgb(0 0 0 / 59%); display:none; flex-direction: column-reverse; padding:5px 5px 0px 5px; border-radius:5px; box-shadow:0px 0px 5px 0px rgb(32 96 185);} .show_qat:hover + #quick_allTransformations, #quick_allTransformations:hover { display:flex; } #quick_allTransformations .option { display:block; margin:0px 0px 5px 0px; }`);
                 this.addToCSS(`#player_list_con .glory_rank.war{animation:none !important;background-color:rgb(22 83 106);box-shadow:0px 0px 7px 0px rgb(0 253 255);} .player_clan.enemy img{animation:none !important;box-shadow:0px 0px 10px 1px rgb(0 253 255);}`);
@@ -49,7 +49,7 @@ if (typeof GAME === 'undefined') { } else {
                 this.addToCSS(`.qtrack { width: 410px; font-size: 12px; } .qtrack strong { font-size: 12px; } #drag_con.scroll .qtrack{width:383px;} #quest_track_con #drag_tracker{user-select:none;} #quest_track_con .sep2{height:14px;} #quest_track_con .sep3{height:14px;}`);
 		this.addToCSS(`#war_container { position: absolute; left: 5px; top: 650px; }`);
 		this.addToCSS(`#map_pilot { width: 512px; }`);		
-		this.addToCSS(`#minimap_con { pointer-events: none; }`);		
+		this.addToCSS(`#minimap_con { pointer-events: none; }`);
                 this.addToCSS(`.option.ls.spawner{ position:absolute; top:60px; right:40px; background-size: 100% 100%; border: solid #6f6f6f 1px; }`);
                 this.addToCSS(`#kws_minimap_settings{ margin:10px 0px 0px 0px; border-top:solid white 1px; padding-top:10px; } #field_sett #field_options{ height:407px; } #minimap_con{ ${this.minimap.side == 1 ? `left: -4px; right: unset;` : this.minimap.side == 2 ? `left: -210px; right: unset;` : ""} opacity: ${this.minimap.opacity / 100} } #minimap_range{ width:150px; display:inline-block; vertical-align:middle;} .smin_butt{background: #31313a69 !important; border: solid #ffffff4d 1px !important; width:auto !important; height:32px !important; line-height: 30px; display: inline-block; text-align: center; font-family: 'Play', sans-serif; font-size: 13px; font-weight: Bold; color: #fff; text-decoration: none; text-transform: uppercase; border: none; padding: 0 10px; border-radius: 5px; cursor: pointer; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; margin-top:2px; float:none !important;} .smin_input{background: #040e13; height: 31px; border: solid #ffffff4d 1px !important; display: inline-block; text-align:center; font-size: 13px; color: #305779; font-family: 'Play', sans-serif; vertical-align: middle;border-radius: 5px;}`);
                 this.addToCSS(`#kws_locInfo{background:url("/gfx/layout/tloPilot.png");position: absolute;top: 220px;z-index: 2;width: 204px;padding: 5px;border-radius: 5px;border-image: url(/gfx/layout/mapborder.png) 7 8 7 7 fill;border-style: solid;border-width: 7px 8px 7px 7px; display:${this.minimap.loc_info == 0 ? `none` : `block`}} #kws_locInfo .sekcja{position:absolute;top:-20px;left:0px;background:url("https://i.imgur.com/Mi3kUpg.png");background-size:100% 100%;width:190px;}`);
@@ -61,9 +61,17 @@ if (typeof GAME === 'undefined') { } else {
                 $("#map_canvas_container").append(`<div id="kws_spawn"> <div class="sekcja"><img src="/gfx/layout/war.png" class="spawn_switch">USTAWIENIA SPAWNU</div><div id="kws_spawn2" style="">${this.spawnList()}</div>`);
                 this.addToCSS(`.spawn_switch{cursor:pointer;}`);
                 this.addToCSS(`.quest_roll1{position:absolute; width:50px; height:50px; background:url('/gfx/layout/dice.png') 0 0; top:-25px; left:25px; cursor:pointer; filter:drop-shadow(0px 0px 10px lime)} .quest_roll2{position:absolute; width:50px; height:50px; background:url('/gfx/layout/dice.png') 0 0; top:-25px; left:75px; cursor:pointer; filter:drop-shadow(0px 0px 10px #00fdff)} .quest_roll3{position:absolute; width:50px; height:50px; background:url('/gfx/layout/dice.png') 0 0; top:-25px; left:125px; cursor:pointer; filter:drop-shadow(0px 0px 10px #ff0000)} .quest_roll:hover{background:url('/gfx/layout/dice.png') 0 -45px;} .quest_roll1:hover{background:url('/gfx/layout/dice.png') 0 -45px;} .quest_roll2:hover{background:url('/gfx/layout/dice.png') 0 -45px;} .quest_roll3:hover{background:url('/gfx/layout/dice.png') 0 -45px;}`);
-               this.addToCSS(`#lastmap_bar { top: 115px !important; }`);
-                this.addToCSS(`button#changeProfileNext { position: absolute; top: 85px; right: 16px; background: url('https://upload.algade.pl/mini_button.png') no-repeat left top; width: 52px; }`);
-                this.addToCSS(`button#changeProfilePrev { position: absolute; top: 85px; right: 75px; background: url('https://upload.algade.pl/mini_button.png') no-repeat left top; width: 52px; }`);                
+                this.addToCSS(`#lastmap_bar { top: 115px !important; }`);
+                this.addToCSS(`button#changeProfileNext { position: absolute; top: 85px; right: 16px; background: linear-gradient(0deg, rgba(252,238,54,1) 0%, rgba(247,121,12,1) 100%); border: 2px solid #973804; border-radius: 5px; width: 52px; }`);
+                this.addToCSS(`button#changeProfileNext:hover {
+                    background: linear-gradient(0deg, rgba(247,121,12,1) 0%, rgba(252,238,54,1) 100%);
+                    border: 0px solid #973804;
+                }`);
+                this.addToCSS(`button#changeProfilePrev { position: absolute; top: 85px; right: 75px; background: linear-gradient(0deg, rgba(252,238,54,1) 0%, rgba(247,121,12,1) 100%); border: 2px solid #973804; border-radius: 5px; width: 52px; }`);
+                this.addToCSS(`button#changeProfilePrev:hover {
+                    background: linear-gradient(0deg, rgba(247,121,12,1) 0%, rgba(252,238,54,1) 100%);
+                    border: 0px solid #973804;
+                }`);
                 $("#top_bar").append(`<div class="kws_top_bar"></div>`);
                 $("#bless_type_2").click();
                 $(`.channel_opts .option.chat_icon.load`).addClass('better_chat_loading').removeAttr('id').removeAttr('data-option');
@@ -696,8 +704,7 @@ if (typeof GAME === 'undefined') { } else {
                 let innerHTML = ` <span class='kws_top_bar_section sk_info' style='cursor:pointer;'>SK: <span style="color:${sk_status == "AKTYWNE" ? "lime" : "white"};">${sk_status}</span></span> <span class='kws_top_bar_section train_upgr_info' style='cursor:pointer;'>KODY: <span style="color:${train_upgr == "AKTYWNE" ? "lime" : "white"};">${train_upgr}</span></span><span class='kws_top_bar_section lvl' style='cursor:pointer;'>LVL: <span>${lvlh}/H</span></span><span class='kws_top_bar_section pvp' style='cursor:pointer;'>PVP: <span>${pvp_count}</span></span><span class='kws_top_bar_section arena' style='cursor:pointer;'>ARENA: <span>${arena_count}</span></span> ${is_trader.getDay() == 6 ? trader : ''} [${soulCards_one}| ${soulCards_two}| ${soulCards_three}| ${soulCards_four}| ${soulCards_five}] <span class='kws_top_bar_section version' style='cursor:pointer;'>Wersja: <span>${version}</span></span> `;
                 $(".kws_top_bar").html(innerHTML);
                 this.adjustCurrentCharacterId();
-                 this.checkTournamentsSigning();
-                 this.checkTournamentsSigning1();
+                // this.checkTournamentsSigning();
             }
             collectActivities() {
                 let received = $("#act_prizes").find("div.act_prize.disabled").length;
@@ -1052,9 +1059,11 @@ if (typeof GAME === 'undefined') { } else {
                     this.resetAFO();
                 });
                 $("body").on("click", "#changeProfilePrev", () => {
+                    console.log("KWS: clicked previous character button");
                     this.goToPreviousChar();
                 });
                 $("body").on("click", "#changeProfileNext", () => {
+                    console.log("KWS: clicked next character button");
                     this.goToNextChar();
                 });
                 $("body").on("click", `button[data-page="stelep"].cps`, () => {
@@ -1363,8 +1372,10 @@ if (typeof GAME === 'undefined') { } else {
                         } else if (event.key === "=") {
                             this.createAlternativePilot();
                         } else if (event.key === ",") {
+                            console.log("KWS: clicked comma on keyboard for next character");
                             this.goToPreviousChar();
                         } else if (event.key === ".") {
+                            console.log("KWS: clicked dot on keyboard for next character");
                             this.goToNextChar();
                         } else if (event.key === "9" && JQS.qcc.is(":visible")) { }
                     }
@@ -1475,25 +1486,6 @@ if (typeof GAME === 'undefined') { } else {
                     }
                 }
             }
-            checkTournamentsSigning1() {
-                var currentServerTime = new Date(GAME.getTime()*1000);
-                var currentServerHour = currentServerTime.getHours();
-                var currentServerMinute = currentServerTime.getMinutes();
-                if(currentServerHour > 21 && currentServerHour < 18) {
-                    this.tourSigned = false;
-                    this.firstTournamentPageLoaded = false;
-                } else {
-                    if (!this.firstTournamentPageLoaded && currentServerMinute > 10) {
-                        GAME.emitOrder({ a: 57, type: 0, type2: 0, page: 2 });
-                        this.firstTournamentPageLoaded = true;
-                    }
-                    if (this.firstTournamentPageLoaded && !this.tourSigned) {
-                        setTimeout(() => {
-                            this.handleTournamentsSign();
-                        }, 1000);
-                    }
-                }
-            }            
             handleTournamentsSign() {
                 if(this.tourSigned) { return }
                 var currentServerTime = new Date(GAME.getTime()*1000);
@@ -1738,19 +1730,21 @@ if (typeof GAME === 'undefined') { } else {
                         }, i * 130);
                     }
                 });
-              $('#klawiszb5').click(() => {
-        	this.pvpKill();
+                $('#klawiszb5').click(() => {
+                    this.pvpKill();
                 });
                 $('#klawiszn').click(() => {
-		this.useCompressor();
+                    this.useCompressor()
                 });
             }
             goToNextChar() {
+                console.log("KWS: switching to next character");
                 this.resetAFO();
                 var charId = this.charactersManager.getNextCharId();
                 GAME.emitOrder({ a: 2, char_id: charId });
             }
             goToPreviousChar() {
+                console.log("KWS: switching to previous character");
                 this.resetAFO();
                 var charId = this.charactersManager.getPreviousCharId();
                 GAME.emitOrder({ a: 2, char_id: charId });
@@ -1758,6 +1752,7 @@ if (typeof GAME === 'undefined') { } else {
             adjustCurrentCharacterId() {
                 var thisCharId = GAME.char_id;
                 if (thisCharId != this.charactersManager.currentCharacterId) {
+                    console.log("KWS: saving current characterID");
                     this.charactersManager.setCurrentCharacterId(thisCharId);
                 }
             }
@@ -2180,7 +2175,7 @@ if (typeof GAME === 'undefined') { } else {
         let roll2 = false;
         let roll1 = false;
         let roll3 = false;
-        let version = '3.4.1';
+        let version = '3.4.2';
     }
     )
 }
