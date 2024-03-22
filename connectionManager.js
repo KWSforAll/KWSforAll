@@ -2,7 +2,7 @@ class KwsConnectionManager {
     constructor() {
         this.isRunning = false;
         console.log("KWS: new connection monitor created");
-        this.runConnectionMonitor();
+        this.handleLoginProcess();
     }
     setReconnectionCookie(reset = false) {
         const d = new Date();
@@ -41,13 +41,10 @@ class KwsConnectionManager {
         setTimeout(this.redirectToMain, 200);
       }
 
-      login() {
-        var disconnectedCharacterId = this.getReconnectionCookie();
-        if (disconnectedCharacterId != '') {
-            console.log("KWS: reconnecting to disconnected charID = %s", disconnectedCharacterId);
-            GAME.emitOrder({ a: 2, char_id: disconnectedCharacterId });
-            this.setReconnectionCookie(true);
-        }
+      login(disconnectedCharacterId) {
+        console.log("KWS: reconnecting to disconnected charID = %s", disconnectedCharacterId);
+        GAME.emitOrder({ a: 2, char_id: disconnectedCharacterId });
+        this.setReconnectionCookie(true);
       }
 
       clickFirstLogin() {
@@ -61,30 +58,29 @@ class KwsConnectionManager {
         $("#cg_login_button2").eq(0).click();
       }
 
-      runConnectionMonitor() {
+      handleDisconnect() {
+        this.isRunning = true;
+        this.setReconnectionCookie();
+        this.logout();
+        this.isRunning = false;
+      }
+
+      handleLoginProcess() {
         this.isRunning = true;
         console.log("KWS: connection monitor check...");
-        if($("#kom_con").find('button[data-option="logout"]').length > 0) {
-            console.log("KWS: disconnect detected!");
-            this.setReconnectionCookie();
-            this.logout();
-            this.isRunning = false;
-            return;
+        var disconnectedCharacterId = this.getReconnectionCookie();
+        if (disconnectedCharacterId != '') {
+          console.log("KWS: attempt to login...");
+          var allCharacters = [...$("li[data-option=select_char]")];
+          if (allCharacters.length != 0) {
+            this.login(disconnectedCharacterId);
+          } else if ($("#server_choose").is(":visible")) {
+            this.clickSecondLogin();
+          } else {
+            this.clickFirstLogin();
+          }
         } else {
-            var disconnectedCharacterId = this.getReconnectionCookie();
-            if (disconnectedCharacterId != '') {
-                console.log("KWS: attempt to login...");
-                var allCharacters = [...$("li[data-option=select_char]")];
-                if (allCharacters.length != 0) {
-                    this.login();
-                } else if ($("#server_choose").is(":visible")) {
-                    this.clickSecondLogin();
-                } else {
-                    this.clickFirstLogin();
-                }
-            } else {
-                console.log("KWS: no login needed...");
-            }
+          console.log("KWS: no login needed...");
         }
         this.isRunning = false;
       }
@@ -99,17 +95,43 @@ if (kwsConnectionMonitorVerifier) {
 
 function verifyConnectionManager() {
     if(typeof kwsConnectionMonitor === 'undefined') {
-        console.log("KWS: no connection monitor - create new");
-        kwsConnectionMonitor = new KwsConnectionManager();
+      console.log("KWS: no connection monitor - create new");
+      kwsConnectionMonitor = new KwsConnectionManager();
     } else {
-        console.log("KWS: connection monitor detected");
+      console.log("KWS: connection monitor detected");
+      var disconnectedCharacterId = kwsConnectionMonitor.getReconnectionCookie();
+      if (disconnectedCharacterId != '') {
         if (kwsConnectionMonitor.isRunning) {
-            console.log("KWS: connection monitor running, all good!");
+          console.log("KWS: connection monitor is running something, please wait!");
         } else {
-            console.log("KWS: connection monitor not running, trying to manually run it");
-            kwsConnectionMonitor.runConnectionMonitor();
+          console.log("KWS: connection monitor not running, trying to manually run it");
+          kwsConnectionMonitor.handleLoginProcess();
         }
+      } else {
+        console.log("KWS: no need for connection manager, all good!");
+      }
     }
 }
 
-var kwsConnectionMonitorVerifier = setInterval(verifyConnectionManager, 2500);
+var kwsConnectionMonitorVerifier = setInterval(verifyConnectionManager, 5000);
+
+if (typeof GAME != 'undefined') {
+  GAME.dcHandler = function(){
+    if(GAME.is_disconnected > 0)
+    {
+      console.log("dcHandler",GAME.is_disconnected);
+      GAME.is_disconnected--;
+      if(GAME.is_disconnected <=0)
+      {
+        GAME.load_stop();
+        kwsConnectionMonitor.handleDisconnect();
+        if(GAME.pid>0){
+          GAME.pid=0;
+          GAME.komunikat(LNG.error2+'<br /><button class="option newBtn" data-option="logout">'+LNG.lab135+'</button>');
+          $('#game_win').hide();
+          option_bind();
+        }
+      }
+    }
+  }
+}
