@@ -168,13 +168,17 @@ function performPvpActions() {
     let codeButtonElement = document.querySelector('.pvp_button.pvp_pvp');
     if (ghButtonElement && codeButtonElement) {
         setTimeout(() => {
-            ghButtonElement.click();
+            GAME.page_switch('game_map');
             setTimeout(() => {
-                codeButtonElement.click();
-            }, 2000);
+                ghButtonElement.click(); 
+                setTimeout(() => {
+                    codeButtonElement.click();
+                }, 2000);
+            }, 1000);
         }, 2000);
     }
 }
+
 
 
 function selectSavedSpawners() {
