@@ -1844,7 +1844,7 @@ if (typeof GAME === 'undefined') { } else {
                 var localStorageFavTps = window.localStorage.getItem(kwsv3.#kwsFavTpsLocalStorageKey);
 
                 //Check if there's an item in local storage
-                if (typeof localStorageFavTps == 'undefined') {
+                if (localStorageFavTps == null) {
                     //If no item, return call from item initialization -> #1
                     return kwsv3.initializeFavTps(false);
                 }
