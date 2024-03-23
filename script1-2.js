@@ -27,10 +27,9 @@ if (typeof GAME === 'undefined') { } else {
             };
             static #kwsFavTpsLocalStorageKey = "KwsFavTps";
             #kwsFavTps = new Object();
+            #kwsFavTpsSetup = false;
             constructor(charactersManager) {
                 this.charactersManager = charactersManager;
-                this.kwsFavTps = kwsv3.getFavTps(true);
-                this.setupFavTps();
                 this.isLogged((data) => {
                     Object.defineProperty(GAME, 'pid', {
                         writable: false
@@ -100,6 +99,9 @@ if (typeof GAME === 'undefined') { } else {
                 setInterval(() => {
                     if ('char_data' in GAME) {
                         this.updateTopBar();
+                        if (!this.#kwsFavTpsSetup) {
+                            this.setupFavTps();
+                        }
                     }
                 }, 1000);
                 this.setWebsiteBackground();
@@ -1783,7 +1785,11 @@ if (typeof GAME === 'undefined') { } else {
                 }
             }
             setupFavTps() {
+                this.#kwsFavTps = kwsv3.getFavTps(true);
 
+                
+
+                this.#kwsFavTpsSetup = true;
             }
 
             static getFavTps(forCurrent = true) {
