@@ -17,8 +17,20 @@ if (typeof GAME === 'undefined') { } else {
             }
         }
         class kwsv3 {
+            static #defaultNewFavTps = {
+                favTp1Name: "Ulub 1",
+                favTp2Name: "Ulub 2",
+                favTp3Name: "Ulub 3",
+                favTp1Locs: "",
+                favTp2Locs: "",
+                favTp3Locs: ""
+            };
+            static #kwsFavTpsLocalStorageKey = "KwsFavTps";
+            #kwsFavTps = new Object();
+
             constructor(charactersManager) {
                 this.charactersManager = charactersManager;
+                this.kwsFavTps = this.getFavTps();
                 this.isLogged((data) => {
                     Object.defineProperty(GAME, 'pid', {
                         writable: false
@@ -1770,6 +1782,84 @@ if (typeof GAME === 'undefined') { } else {
                     $(".manage_autoExpeditions").click();
                 }
             }
+
+            static getFavTps(forCurrent = true) {
+                //Get global structure from local storage
+                var globalFavTps = kwsv3.getLocalStorageFavTps();
+                if (forCurrent) {
+                    //Return structure for this char_id
+                    return globalFavTps[GAME.char_id];
+                } else {
+                    //Return global structure
+                    return globalFavTps;
+                }
+            }
+
+            static setFavTps(updateWith) {
+                //Get global structure
+                var globalFavTps = kwsv3.getFavTps(false);
+
+                //Override structure for this char_id in global structure
+                globalFavTps[GAME.char_id] = globalFavTps;
+
+                //Save updated global structure
+                kwsv3.setLocalStorageFavTps(globalFavTps);
+            }
+
+            //Initialize favTps structure
+            static initializeFavTps(withGlobal) {
+                //If no current global structure extists, create new
+                if (withGlobal == false) {
+                    //Create new structure { GAME.char_id: {defaultObject} }
+                    var newGlobalFavTps = new Object();
+                    newGlobalFavTps[GAME.char_id] = kwsv3.#defaultNewFavTps;
+
+                    //Save global structure and return it #1
+                    kwsv3.setLocalStorageFavTps(newGlobalFavTps);
+                    return newGlobalFavTps;
+                } else {
+                    //Use existing global structure
+                    var globalFavTps = withGlobal;
+
+                    //Add default structure for this char_id to existing global structure
+                    globalFavTps[GAME.char_id] = kwsv3.#defaultNewFavTps;
+
+                    //Save updated global structure and return it #2
+                    kwsv3.setLocalStorageFavTps(globalFavTps);
+                    return globalFavTps;
+                }
+            }
+
+            static getLocalStorageFavTps() {
+                //Get item from local storage
+                var localStorageFavTps = window.localStorage.getItem(kwsv3.#kwsFavTpsLocalStorageKey);
+
+                //Check if there's an item in local storage
+                if (typeof localStorageFavTps == 'undefined') {
+                    //If no item, return call from item initialization -> #1
+                    return kwsv3.initializeFavTps(false);
+                }
+
+                //If there's an item, parse it
+                var parsedLocalStorageFavTps = JSON.parse(localStorageFavTps);
+
+                //Check if there's a structure for this char_id within global one
+                if (typeof parsedLocalStorageFavTps[GAME.char_id] == 'undefined') {
+                    //If no structure for this char_id, initialize it, update global and return -> #2
+                    return kwsv3.initializeFavTps(parsedLocalStorageFavTps);
+                }
+
+                //If there's existing global with this char_id structure, return it
+                return parsedLocalStorageFavTps;
+            }
+
+            static setLocalStorageFavTps(favTps) {
+                //Serialize global structure
+                let serializedFavTps = JSON.stringify(favTps);
+
+                //Save serialized global structure to local storage
+                window.localStorage.setItem(kwsv3.#kwsFavTpsLocalStorageKey, serializedFavTps);
+            }
         }
         const kws = new kwsv3(kwsLocalCharacters);
         GAME.komunikat2 = function (kom) {
@@ -2172,7 +2262,7 @@ if (typeof GAME === 'undefined') { } else {
         let roll2 = false;
         let roll1 = false;
         let roll3 = false;
-        let version = '3.4.2';
+        let version = '3.4.1';
     }
     )
 }
