@@ -14,21 +14,21 @@ var i = 0;
 var d = 0;
 var w = 0;
 
-const $css = "#glebia_helper {min-width:100px; padding:5px; border:solid gray 1px; background:rgba(0, 0, 0, 0.5); color:gold; position: fixed; top: 40px; right: 5px; z-index:5;}#glebia_helper .gwi_button {cursor:pointer;text-align:center;}";
-const $html = "<div class='gwi_button gwi_pvp'>GŁĘBIA <b class='gwi_status red'>Off</b></div>";
+const $css = "#glebia_helper {min-width:100px; padding:5px; border:solid gray 1px; background:rgba(22, 22, 93, 0.81); color:gold; position: fixed; top: 40px; right: 5px; z-index:5;}#glebia_helper .glebia_button {cursor:pointer;text-align:center; border-bottom:solid gray 1px;}";
+const $html = "<div class='glebia_button glebia_pvp'>GŁĘBIA <b class='glebia_status red'>Off</b></div>";
 $('body').append("<div id='glebia_helper'>" + $html + "</div>").append("<style>" + $css + "</style>");
 
-$('#glebia_helper gwi_pvp').click(() => {
-    if (stop) {
-        $('#glebia_helper gwi_pvp')
-        $("gwi_pvp .gwi_status").removeClass("red").addClass("green").html("On");
-        stop = false
-        start()
-    } else {
-        $('#glebia_helper gwi_pvp')
-        $("gwi_pvp .gwi_status").removeClass("green").addClass("red").html("Off");
-        stop = true
-    }
+$('#glebia_helper .glebia_pvp').click(() => {
+	if (stop) {
+		$('#glebia_helper .glebia_pvp')
+		$(".glebia_pvp .glebia_status").removeClass("red").addClass("green").html("On");
+		stop = false
+		start()
+	} else {
+		$('#glebia_helper .glebia_pvp')
+		$(".glebia_pvp .glebia_status").removeClass("green").addClass("red").html("Off");
+		stop = true
+	}
 });
 
 function start() {
