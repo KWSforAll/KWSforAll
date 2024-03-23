@@ -1853,7 +1853,7 @@ if (typeof GAME === 'undefined') { } else {
                 var parsedLocalStorageFavTps = JSON.parse(localStorageFavTps);
 
                 //Check if there's a structure for this char_id within global one
-                if (typeof parsedLocalStorageFavTps[GAME.char_id] == 'undefined') {
+                if (GAME.char_id in parsedLocalStorageFavTps) {
                     //If no structure for this char_id, initialize it, update global and return -> #2
                     return kwsv3.initializeFavTps(parsedLocalStorageFavTps);
                 }
