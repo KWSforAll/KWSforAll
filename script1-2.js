@@ -1071,7 +1071,7 @@ if (typeof GAME === 'undefined') { } else {
                     this.resetAFO();
                 });
                 $("body").on("click", `[data-option="use_teleport"]`, () => {
-                    setTimeout(this.reloadTeleports(), 1000);
+                    setTimeout(this.reloadTeleports(), 3000);
                 });
                 $("body").on("click", "#changeProfilePrev", () => {
                     console.log("KWS: clicked previous character button");
