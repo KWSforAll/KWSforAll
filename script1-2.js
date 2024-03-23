@@ -27,10 +27,10 @@ if (typeof GAME === 'undefined') { } else {
             };
             static #kwsFavTpsLocalStorageKey = "KwsFavTps";
             #kwsFavTps = new Object();
-
             constructor(charactersManager) {
                 this.charactersManager = charactersManager;
-                this.kwsFavTps = this.getFavTps();
+                this.kwsFavTps = kwsv3.getFavTps(true);
+                this.setupFavTps();
                 this.isLogged((data) => {
                     Object.defineProperty(GAME, 'pid', {
                         writable: false
@@ -1781,6 +1781,9 @@ if (typeof GAME === 'undefined') { } else {
                 if ($(".manage_autoExpeditions").eq(0).hasClass("kws_active_icon")) {
                     $(".manage_autoExpeditions").click();
                 }
+            }
+            setupFavTps() {
+
             }
 
             static getFavTps(forCurrent = true) {
