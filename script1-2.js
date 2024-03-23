@@ -98,6 +98,7 @@ if (typeof GAME === 'undefined') { } else {
                 this.auto_arena = false;
                 setInterval(() => {
                     if ('char_data' in GAME) {
+                        GAME.prepareMap();
                         this.updateTopBar();
                         if (!this.#kwsFavTpsSetup) {
                             this.setupFavTps();
@@ -1793,17 +1794,6 @@ if (typeof GAME === 'undefined') { } else {
                 $("#page_game_teleport > div.content > div > label").after(`<div class="ulubione"> Ulubione: <button id="save_tp1" class="btn_small_gold">${this.#kwsFavTps.favTp1Name}</button> <button id="save_tp2" class="btn_small_gold">${this.#kwsFavTps.favTp2Name}</button> <button id="save_tp3" class="btn_small_gold">${this.#kwsFavTps.favTp3Name}</button> </div>`);
                 this.addToCSS(`.ulubione { display: inline-block; } button#save_tp1 { filter: hue-rotate(240deg); } button#save_tp2 { filter: hue-rotate(180deg); } button#save_tp3 { filter: hue-rotate(120deg); }`);
 
-                let tpTableRows = [...$("#tp_list")[0].rows];
-                var tpFavButtons = [];
-                tpTableRows.forEach((element, index, array) => {
-                    tpFavButtons.push(element.getElementsByClassName('option fav')[0]);
-                });
-
-                tpFavButtons.forEach((tpFavButton, index, array) => {
-                    var dataLoc = tpFavButton.getAttribute('data-loc');
-                    tpFavButton.before(`<div id="ulubione"> <button class="option fav" id="star_tp1" data-option="set_kws_fav_loc_1" data-loc=${dataLoc}></button> <button class="option fav" id="star_tp2" data-option="set_kws_fav_loc_2" data-loc=${dataLoc}></button> <button class="option fav" id="star_tp3" data-option="set_kws_fav_loc_3" data-loc=${dataLoc}></button> </div>`);
-                });
-
                 this.addToCSS(`div#ulubione { width: 90px; display: inline-block; float: left; } button#star_tp1 { filter: hue-rotate(240deg); float: none; } button#star_tp2 { filter: hue-rotate(180deg); float: none; } button#star_tp3 { filter: hue-rotate(120deg); float: none; }`);
                 
                 //.getAttribute('data-loc');
@@ -1811,9 +1801,6 @@ if (typeof GAME === 'undefined') { } else {
                 this.#kwsFavTpsSetup = true;
             }
             reloadTeleports() {
-                $("#page_game_teleport > div.content > div > label").after(`<div class="ulubione"> Ulubione: <button id="save_tp1" class="btn_small_gold">${this.#kwsFavTps.favTp1Name}</button> <button id="save_tp2" class="btn_small_gold">${this.#kwsFavTps.favTp2Name}</button> <button id="save_tp3" class="btn_small_gold">${this.#kwsFavTps.favTp3Name}</button> </div>`);
-                this.addToCSS(`.ulubione { display: inline-block; } button#save_tp1 { filter: hue-rotate(240deg); } button#save_tp2 { filter: hue-rotate(180deg); } button#save_tp3 { filter: hue-rotate(120deg); }`);
-
                 let tpTableRows = [...$("#tp_list")[0].rows];
                 var tpFavButtons = [];
                 tpTableRows.forEach((element, index, array) => {
@@ -1824,8 +1811,6 @@ if (typeof GAME === 'undefined') { } else {
                     var dataLoc = tpFavButton.getAttribute('data-loc');
                     tpFavButton.before(`<div id="ulubione"> <button class="option fav" id="star_tp1" data-option="set_kws_fav_loc_1" data-loc=${dataLoc}></button> <button class="option fav" id="star_tp2" data-option="set_kws_fav_loc_2" data-loc=${dataLoc}></button> <button class="option fav" id="star_tp3" data-option="set_kws_fav_loc_3" data-loc=${dataLoc}></button> </div>`);
                 });
-
-                this.addToCSS(`div#ulubione { width: 90px; display: inline-block; float: left; } button#star_tp1 { filter: hue-rotate(240deg); float: none; } button#star_tp2 { filter: hue-rotate(180deg); float: none; } button#star_tp3 { filter: hue-rotate(120deg); float: none; }`);
             }
 
             static getFavTps(forCurrent = true) {
