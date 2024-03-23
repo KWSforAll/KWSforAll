@@ -1796,6 +1796,7 @@ if (typeof GAME === 'undefined') { } else {
 
                 this.addToCSS(`div#ulubione { width: 90px; display: inline-block; float: left; } button#star_tp1 { filter: hue-rotate(240deg); float: none; } button#star_tp2 { filter: hue-rotate(180deg); float: none; } button#star_tp3 { filter: hue-rotate(120deg); float: none; }`);
                 
+                this.reloadTeleports();
                 //.getAttribute('data-loc');
 
                 this.#kwsFavTpsSetup = true;
@@ -1809,7 +1810,7 @@ if (typeof GAME === 'undefined') { } else {
 
                 tpFavButtons.forEach((tpFavButton, index, array) => {
                     var dataLoc = tpFavButton.getAttribute('data-loc');
-                    tpFavButton.before(`<div id="ulubione"> <button class="option fav" id="star_tp1" data-option="set_kws_fav_loc_1" data-loc=${dataLoc}></button> <button class="option fav" id="star_tp2" data-option="set_kws_fav_loc_2" data-loc=${dataLoc}></button> <button class="option fav" id="star_tp3" data-option="set_kws_fav_loc_3" data-loc=${dataLoc}></button> </div>`);
+                    tpFavButton.before(`<div id="ulubione"> <button class="option fav" id="star_tp1" data-option="set_kws_fav_loc_1" data-loc="${dataLoc}"></button> <button class="option fav" id="star_tp2" data-option="set_kws_fav_loc_2" data-loc="${dataLoc}"></button> <button class="option fav" id="star_tp3" data-option="set_kws_fav_loc_3" data-loc="${dataLoc}"></button> </div>`);
                 });
             }
 
