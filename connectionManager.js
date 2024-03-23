@@ -37,14 +37,15 @@ class KwsConnectionManager {
 
       logout() {
         console.log("KWS: logout after disconnect");
-        GAME.emitOrder({a:1});
-        setTimeout(this.redirectToMain, 200);
+        setTimeout(GAME.emitOrder({a:1}), 1000);
+        setTimeout(this.redirectToMain, 2000);
       }
 
       login(disconnectedCharacterId) {
         console.log("KWS: reconnecting to disconnected charID = %s", disconnectedCharacterId);
         GAME.emitOrder({ a: 2, char_id: disconnectedCharacterId });
         this.setReconnectionCookie(true);
+        this.isRunning = false;
       }
 
       clickFirstLogin() {
@@ -56,13 +57,13 @@ class KwsConnectionManager {
       clickSecondLogin() {
         console.log("KWS: attempt to login second step...");
         $("#cg_login_button2").eq(0).click();
+        this.isRunning = false;
       }
 
       handleDisconnect() {
         this.isRunning = true;
         this.setReconnectionCookie();
         this.logout();
-        this.isRunning = false;
       }
 
       handleLoginProcess() {
@@ -81,8 +82,8 @@ class KwsConnectionManager {
           }
         } else {
           console.log("KWS: no login needed...");
+          this.isRunning = false;
         }
-        this.isRunning = false;
       }
 }
 
