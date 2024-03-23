@@ -29,6 +29,7 @@ if (typeof GAME === 'undefined') { } else {
             #kwsFavTps = new Object();
             #kwsFavTpsSetup = false;
             constructor(charactersManager) {
+                this.tpListHTML = '';
                 this.charactersManager = charactersManager;
                 this.isLogged((data) => {
                     Object.defineProperty(GAME, 'pid', {
@@ -677,6 +678,10 @@ if (typeof GAME === 'undefined') { } else {
                 }, 100);
             }
             updateTopBar() {
+                if (this.tpListHTML != '') {
+                    $('#tp_list').html(this.tpListHTML);
+                    this.tpListHTML = '';
+                }
                 let sk_status;
                 let instances = [];
                 let currentLevel = GAME.char_data.level;
@@ -1794,7 +1799,7 @@ if (typeof GAME === 'undefined') { } else {
                 $("#page_game_teleport > div.content > div > label").after(`<div class="ulubione"> Ulubione: <button id="save_tp1" class="btn_small_gold">${this.#kwsFavTps.favTp1Name}</button> <button id="save_tp2" class="btn_small_gold">${this.#kwsFavTps.favTp2Name}</button> <button id="save_tp3" class="btn_small_gold">${this.#kwsFavTps.favTp3Name}</button> </div>`);
                 this.addToCSS(`.ulubione { display: inline-block; } button#save_tp1 { filter: hue-rotate(240deg); } button#save_tp2 { filter: hue-rotate(180deg); } button#save_tp3 { filter: hue-rotate(120deg); }`);
 
-                this.addToCSS(`div#ulubione { width: 90px; display: inline-block; float: left; } button#star_tp1 { filter: hue-rotate(240deg); float: none; } button#star_tp2 { filter: hue-rotate(180deg); float: none; } button#star_tp3 { filter: hue-rotate(120deg); float: none; }`);
+                this.addToCSS(`div#ulubione { width: 98px; display: inline-block; float: left; } button#star_tp1 { filter: hue-rotate(240deg); float: none; } button#star_tp2 { filter: hue-rotate(180deg); float: none; } button#star_tp3 { filter: hue-rotate(120deg); float: none; }`);
                 
                 this.reloadTeleports();
                 //.getAttribute('data-loc');
@@ -1816,7 +1821,7 @@ if (typeof GAME === 'undefined') { } else {
                     var dataLoc = tpFavButtons.eq(i).attr('data-loc'); 
                     tpFavButtons.eq(i).before((`<div id="ulubione"> <button class="option fav" id="star_tp1" data-option="set_kws_fav_loc_1" data-loc=""></button> <button class="option fav" id="star_tp2" data-option="set_kws_fav_loc_2" data-loc=""></button> <button class="option fav" id="star_tp3" data-option="set_kws_fav_loc_3" data-loc=""></button> </div>`));   
                 }
-
+                this.tpListHTML = $('#tp_list').html();
                 // tpFavButtons.forEach((tpFavButton, index, array) => {
                 //     var dataLoc = tpFavButton.getAttribute('data-loc');
                 //     tpFavButton.before(`<div id="ulubione"> <button class="option fav" id="star_tp1" data-option="set_kws_fav_loc_1" data-loc="${dataLoc}"></button> <button class="option fav" id="star_tp2" data-option="set_kws_fav_loc_2" data-loc="${dataLoc}"></button> <button class="option fav" id="star_tp3" data-option="set_kws_fav_loc_3" data-loc="${dataLoc}"></button> </div>`);
