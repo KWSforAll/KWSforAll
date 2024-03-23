@@ -1,48 +1,44 @@
-var caseNumber = 0;
-var wait = 5;
-var czekajpvp = 200;
-var licznik = 0;
-var stop = true;
-var dogory = false;
-var loc;
+var glebia_helper_caseNumber = 0;
+var glebia_helper_wait = 5;
+var glebia_helper_glebia_helper_waitpvp = 200;
+var glebia_helper_licznik = 0;
+var glebia_helper_STOP = true;
+var glebia_helper_dogory = false;
+var glebia_helper_loc;
 
-var move1 = false;
-var move2 = false;
-var move3 = false;
-
-var i = 0;
-var d = 0;
-var w = 0;
+var glebia_helper_move1 = false;
+var glebia_helper_move2 = false;
+var glebia_helper_move3 = false;
 
 const $css = "#glebia_helper {min-width:100px; padding:5px; border:solid gray 1px; background:rgba(22, 22, 93, 0.81); color:gold; position: fixed; top: 40px; right: 5px; z-index:5;}#glebia_helper .glebia_button {cursor:pointer;text-align:center; border-bottom:solid gray 1px;}";
 const $html = "<div class='glebia_button glebia_pvp'>GŁĘBIA <b class='glebia_status red'>Off</b></div>";
 $('body').append("<div id='glebia_helper'>" + $html + "</div>").append("<style>" + $css + "</style>");
 
 $('#glebia_helper .glebia_pvp').click(() => {
-	if (stop) {
+	if (glebia_helper_STOP) {
 		$('#glebia_helper .glebia_pvp')
 		$(".glebia_pvp .glebia_status").removeClass("red").addClass("green").html("On");
-		stop = false
+		glebia_helper_STOP = false
 		start()
 	} else {
 		$('#glebia_helper .glebia_pvp')
 		$(".glebia_pvp .glebia_status").removeClass("green").addClass("red").html("Off");
-		stop = true
+		glebia_helper_STOP = true
 	}
 });
 
 function start() {
-    if (stop === false) {
-        if (!GAME.is_loading && !stop) {
+    if (glebia_helper_STOP === false) {
+        if (!GAME.is_loading && !glebia_helper_STOP) {
             if (!GAME.is_loading) {
-                if (!GAME.is_loading && !stop) {
+                if (!GAME.is_loading && !glebia_helper_STOP) {
                     action();
                 }
             } else {
-                window.setTimeout(start, wait);
+                window.setTimeout(start, glebia_helper_wait);
             }
         } else {
-            window.setTimeout(start, wait);
+            window.setTimeout(start, glebia_helper_wait);
         }
     }
 
@@ -53,12 +49,12 @@ function start() {
             check_players,
             check_players2,
             kill_players,
-            check_location,
+            check_glebia_helper_location,
             go
         ];
 
-        functions[caseNumber]();
-        caseNumber = (caseNumber + 1) % functions.length;
+        functions[glebia_helper_caseNumber]();
+        glebia_helper_caseNumber = (glebia_helper_caseNumber + 1) % functions.length;
     }
 }
 
@@ -66,67 +62,67 @@ function go() {
     var x = GAME.char_data.x;
     var y = GAME.char_data.y;
 
-    if (x == 11 && y == 11 && dogory && loc == 1) {
+    if (x == 11 && y == 11 && glebia_helper_dogory && glebia_helper_loc == 1) {
         cofanie2();
-    } else if (x == 15 && y == 15 && move3 && loc == 2) {
+    } else if (x == 15 && y == 15 && glebia_helper_move3 && glebia_helper_loc == 2) {
         cofanie();
-    } else if (x == 2 && y == 11 && loc == 1 && move1) {
+    } else if (x == 2 && y == 11 && glebia_helper_loc == 1 && glebia_helper_move1) {
         przejdz();
         window.setTimeout(move(7), 1000);
-    } else if (x == 1 && y == 1 && loc == 2 && move3) {
+    } else if (x == 1 && y == 1 && glebia_helper_loc == 2 && glebia_helper_move3) {
         przejdz();
         window.setTimeout(move(7), 1000);
-    } else if (x == 7 && y == 7 && loc == 2 && move2 || x == 9 && y == 7 && loc == 2 && move2) {
+    } else if (x == 7 && y == 7 && glebia_helper_loc == 2 && glebia_helper_move2 || x == 9 && y == 7 && glebia_helper_loc == 2 && glebia_helper_move2) {
         move(3);
 
-    } else if (x == 8 && y == 8 && loc == 2 && move2 || x == 10 && y == 8 && loc == 2 && move2) {
+    } else if (x == 8 && y == 8 && glebia_helper_loc == 2 && glebia_helper_move2 || x == 10 && y == 8 && glebia_helper_loc == 2 && glebia_helper_move2) {
         move(5);
-    } else if (x == 10 && y == 11 && loc == 1) {
-        dogory = true;
+    } else if (x == 10 && y == 11 && glebia_helper_loc == 1) {
+        glebia_helper_dogory = true;
         move(7);
-    } else if (x == 10 && y == 2 && loc == 1) {
-        dogory = false;
+    } else if (x == 10 && y == 2 && glebia_helper_loc == 1) {
+        glebia_helper_dogory = false;
         move(8);
-    } else if (x == 5 && y == 10 && loc == 1) {
-        move1 = true;
+    } else if (x == 5 && y == 10 && glebia_helper_loc == 1) {
+        glebia_helper_move1 = true;
         move(8);
-    } else if (x == 10 && y == 10 && loc == 1) {
-        move1 = true;
+    } else if (x == 10 && y == 10 && glebia_helper_loc == 1) {
+        glebia_helper_move1 = true;
         move(8);
-    } else if (x == 3 && y == 1 && loc == 2) {
-        move1 = false;
+    } else if (x == 3 && y == 1 && glebia_helper_loc == 2) {
+        glebia_helper_move1 = false;
         move(7);
-    } else if (x == 3 && y == 10 && loc == 1) {
+    } else if (x == 3 && y == 10 && glebia_helper_loc == 1) {
         move(4);
-    } else if (x == 2 && y == 8 && loc == 1) {
+    } else if (x == 2 && y == 8 && glebia_helper_loc == 1) {
         move(3)
-    } else if (x == 11 && y == 11 && loc == 1 || x == 15 && y == 15 && loc == 2) {
+    } else if (x == 11 && y == 11 && glebia_helper_loc == 1 || x == 15 && y == 15 && glebia_helper_loc == 2) {
         move(2);
-    } else if (x == 5 && y == 7 && loc == 2) {
-        move2 = true;
+    } else if (x == 5 && y == 7 && glebia_helper_loc == 2) {
+        glebia_helper_move2 = true;
         move(7);
-    } else if (x == 13 && y == 7 && loc == 2) {
-        move2 = false;
+    } else if (x == 13 && y == 7 && glebia_helper_loc == 2) {
+        glebia_helper_move2 = false;
         move(7);
-    } else if (x == 12 && y == 15 && loc == 2) {
-        move3 = true;
+    } else if (x == 12 && y == 15 && glebia_helper_loc == 2) {
+        glebia_helper_move3 = true;
         move(7);
-    } else if (x == 5 && y == 11 && loc == 1) {
-        move3 = false;
+    } else if (x == 5 && y == 11 && glebia_helper_loc == 1) {
+        glebia_helper_move3 = false;
         move(7);
-    } else if (x == 10 && y == 15 && loc == 2) {
-        move3 = true;
+    } else if (x == 10 && y == 15 && glebia_helper_loc == 2) {
+        glebia_helper_move3 = true;
         move(7);
-    } else if (x == 7 && y == 11 && loc == 1) {
-        move3 = false;
+    } else if (x == 7 && y == 11 && glebia_helper_loc == 1) {
+        glebia_helper_move3 = false;
         move(7);
-    } else if (x == 7 && y == 7 && loc == 2) {
+    } else if (x == 7 && y == 7 && glebia_helper_loc == 2) {
         move(1);
-    } else if (x < 11 && y % 2 !== 0 && loc == 1 || x < 15 && y % 2 !== 0 && loc == 2) {
+    } else if (x < 11 && y % 2 !== 0 && glebia_helper_loc == 1 || x < 15 && y % 2 !== 0 && glebia_helper_loc == 2) {
         move(7);
-    } else if (x > 2 && y % 2 == 0 && loc == 1 || x > 1 && y % 2 == 0 && loc == 2) {
+    } else if (x > 2 && y % 2 == 0 && glebia_helper_loc == 1 || x > 1 && y % 2 == 0 && glebia_helper_loc == 2) {
         move(8);
-    } else if (x == 11 && loc == 1 || x == 2 && loc == 1 || x == 3 && y == 9 && loc == 1 || x == 1 && loc == 2 || x == 15 && loc == 2 || x == 7 && y == 7 && loc == 2) {
+    } else if (x == 11 && glebia_helper_loc == 1 || x == 2 && glebia_helper_loc == 1 || x == 3 && y == 9 && glebia_helper_loc == 1 || x == 1 && glebia_helper_loc == 2 || x == 15 && glebia_helper_loc == 2 || x == 7 && y == 7 && glebia_helper_loc == 2) {
         move(1);
 
     }
@@ -135,7 +131,7 @@ function go() {
 function cofanie() {
     y = GAME.char_data.y
     if (y <= 1) {
-        window.setTimeout(start, wait);
+        window.setTimeout(start, glebia_helper_wait);
     } else {
         GAME.emitOrder({
             a: 4,
@@ -149,14 +145,14 @@ function cofanie() {
 function cofanie2() {
     y = GAME.char_data.y
     if (y <= 2) {
-        window.setTimeout(start, wait);
+        window.setTimeout(start, glebia_helper_wait);
     } else {
         GAME.emitOrder({
             a: 4,
             dir: 2,
             vo: GAME.map_options.vo
         });
-        move1 = true;
+        glebia_helper_move1 = true;
         window.setTimeout(cofanie2, 50);
     }
 }
@@ -170,18 +166,18 @@ function move(direction) {
             dir: direction,
             vo: GAME.map_options.vo
         });
-        window.setTimeout(start, wait);
+        window.setTimeout(start, glebia_helper_wait);
     }
 }
 
 function check_position_x() {
     x = GAME.char_data.x
-    window.setTimeout(start, wait);
+    window.setTimeout(start, glebia_helper_wait);
 }
 
 function check_position_y() {
     y = GAME.char_data.y
-    window.setTimeout(start, wait);
+    window.setTimeout(start, glebia_helper_wait);
 }
 
 function check_players() {
@@ -194,13 +190,13 @@ function check_players() {
             if (parseInt(tabb[1]) <= 1 && y == 2) {
                 window.setTimeout(check_players, 1500);
             } else {
-                window.setTimeout(start, wait);
+                window.setTimeout(start, glebia_helper_wait);
             }
         } else {
-            window.setTimeout(start, wait);
+            window.setTimeout(start, glebia_helper_wait);
         }
     } else {
-        window.setTimeout(start, wait);
+        window.setTimeout(start, glebia_helper_wait);
     }
 
 }
@@ -211,10 +207,10 @@ function check_players2() {
         if (parseInt(tabb[2]) <= 30 && parseInt(tabb[1]) <= 0) {
             window.setTimeout(check_players2, 1500);
         } else {
-            window.setTimeout(start, czekajpvp)
+            window.setTimeout(start, glebia_helper_glebia_helper_waitpvp)
         }
     } else {
-        window.setTimeout(start, czekajpvp)
+        window.setTimeout(start, glebia_helper_glebia_helper_waitpvp)
     }
 }
 
@@ -222,29 +218,29 @@ function kill_players() {
     if ($("#player_list_con").find("[data-option=load_more_players]").length == 1) {
         $("#player_list_con").find("[data-option=load_more_players]").click();
         window.setTimeout(kill_players, 150);
-    } else if (licznik < document.getElementById("player_list_con").childElementCount) {
-        if (document.getElementById("player_list_con").children[licznik].children[1].children[0].attributes[1].value === "gpvp_attack" || document.getElementById("player_list_con").children[licznik].children[1].children[1].attributes[1].value === "gpvp_attack") {
+    } else if (glebia_helper_licznik < document.getElementById("player_list_con").childElementCount) {
+        if (document.getElementById("player_list_con").children[glebia_helper_licznik].children[1].children[0].attributes[1].value === "gpvp_attack" || document.getElementById("player_list_con").children[glebia_helper_licznik].children[1].children[1].attributes[1].value === "gpvp_attack") {
             GAME.emitOrder({
                 a: 24,
                 type: 1,
-                char_id: document.getElementById("player_list_con").children[licznik].children[0].children[1].attributes[2].value,
+                char_id: document.getElementById("player_list_con").children[glebia_helper_licznik].children[0].children[1].attributes[2].value,
                 quick: 1
             });
-            licznik++;
-            window.setTimeout(kill_players, czekajpvp);
+            glebia_helper_licznik++;
+            window.setTimeout(kill_players, glebia_helper_glebia_helper_waitpvp);
         } else {
             GAME.emitOrder({
                 a: 24,
-                char_id: document.getElementById("player_list_con").children[licznik].children[1].children[1].attributes[2].value,
+                char_id: document.getElementById("player_list_con").children[glebia_helper_licznik].children[1].children[1].attributes[2].value,
                 quick: 1
             });
-            licznik++;
-            window.setTimeout(kill_players, czekajpvp);
+            glebia_helper_licznik++;
+            window.setTimeout(kill_players, glebia_helper_glebia_helper_waitpvp);
 
         }
     } else {
-        window.setTimeout(start, wait);
-        licznik = 0;
+        window.setTimeout(start, glebia_helper_wait);
+        glebia_helper_licznik = 0;
         kom_clear();
     }
 }
@@ -254,20 +250,20 @@ function przejdz() {
         a: 6,
         tpid: 0
     });
-    window.setTimeout(stop, 1000);
-    move3 = false;
-    move1 = false;
+    window.setTimeout(glebia_helper_STOP, 1000);
+    glebia_helper_move3 = false;
+    glebia_helper_move1 = false;
 }
 
-function check_location() {
-    const locationMap = {
+function check_glebia_helper_location() {
+    const glebia_helper_locationMap = {
         "Głębia": 1,
         "Głębia Rajskiej Sali": 2
     };
 
-    const locationName = GAME.current_loc.name
-    loc = locationMap[locationName] || 7;
-    window.setTimeout(start, wait);
+    const glebia_helper_locationName = GAME.current_loc.name
+    glebia_helper_loc = glebia_helper_locationMap[glebia_helper_locationName] || 7;
+    window.setTimeout(start, glebia_helper_wait);
 }
 
 start();
