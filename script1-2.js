@@ -17,19 +17,7 @@ if (typeof GAME === 'undefined') { } else {
             }
         }
         class kwsv3 {
-            static #defaultNewFavTps = {
-                favTp1Name: "Ulub 1",
-                favTp2Name: "Ulub 2",
-                favTp3Name: "Ulub 3",
-                favTp1Locs: "",
-                favTp2Locs: "",
-                favTp3Locs: ""
-            };
-            static #kwsFavTpsLocalStorageKey = "KwsFavTps";
-            #kwsFavTps = new Object();
-            #kwsFavTpsSetup = false;
             constructor(charactersManager) {
-                this.tpListHTML = '';
                 this.charactersManager = charactersManager;
                 this.isLogged((data) => {
                     Object.defineProperty(GAME, 'pid', {
@@ -102,11 +90,7 @@ if (typeof GAME === 'undefined') { } else {
                 this.auto_arena = false;
                 setInterval(() => {
                     if ('char_data' in GAME) {
-                        GAME.prepareMap();
                         this.updateTopBar();
-                        if (!this.#kwsFavTpsSetup) {
-                            this.setupFavTps();
-                        }
                     }
                 }, 1000);
                 this.setWebsiteBackground();
@@ -681,10 +665,6 @@ if (typeof GAME === 'undefined') { } else {
                 }, 100);
             }
             updateTopBar() {
-                if (this.tpListHTML != '') {
-                    $('#tp_list').html(this.tpListHTML);
-                    this.tpListHTML = '';
-                }
                 let sk_status;
                 let instances = [];
                 let currentLevel = GAME.char_data.level;
@@ -724,7 +704,8 @@ if (typeof GAME === 'undefined') { } else {
                 let innerHTML = ` <span class='kws_top_bar_section sk_info' style='cursor:pointer;'>SK: <span style="color:${sk_status == "AKTYWNE" ? "lime" : "white"};">${sk_status}</span></span> <span class='kws_top_bar_section train_upgr_info' style='cursor:pointer;'>KODY: <span style="color:${train_upgr == "AKTYWNE" ? "lime" : "white"};">${train_upgr}</span></span><span class='kws_top_bar_section lvl' style='cursor:pointer;'>LVL: <span>${lvlh}/H</span></span><span class='kws_top_bar_section pvp' style='cursor:pointer;'>PVP: <span>${pvp_count}</span></span><span class='kws_top_bar_section arena' style='cursor:pointer;'>ARENA: <span>${arena_count}</span></span> ${is_trader.getDay() == 6 ? trader : ''} [${soulCards_one}| ${soulCards_two}| ${soulCards_three}| ${soulCards_four}| ${soulCards_five}] <span class='kws_top_bar_section version' style='cursor:pointer;'>Wersja: <span>${version}</span></span> `;
                 $(".kws_top_bar").html(innerHTML);
                 this.adjustCurrentCharacterId();
-                // this.checkTournamentsSigning();
+                this.checkTournamentsSigning();
+ 		               
             }
             collectActivities() {
                 let received = $("#act_prizes").find("div.act_prize.disabled").length;
@@ -1077,9 +1058,6 @@ if (typeof GAME === 'undefined') { } else {
                 });
                 $("body").on("click", "#changeProfile", () => {
                     this.resetAFO();
-                });
-                $("body").on("click", `[data-option="use_teleport"]`, () => {
-                    setTimeout(this.reloadTeleports(), 3000);
                 });
                 $("body").on("click", "#changeProfilePrev", () => {
                     console.log("KWS: clicked previous character button");
@@ -1796,120 +1774,6 @@ if (typeof GAME === 'undefined') { } else {
                     $(".manage_autoExpeditions").click();
                 }
             }
-            setupFavTps() {
-                this.#kwsFavTps = kwsv3.getFavTps(true);
-
-                $("#page_game_teleport > div.content > div > label").after(`<div class="ulubione"> Ulubione: <button id="save_tp1" class="btn_small_gold">${this.#kwsFavTps.favTp1Name}</button> <button id="save_tp2" class="btn_small_gold">${this.#kwsFavTps.favTp2Name}</button> <button id="save_tp3" class="btn_small_gold">${this.#kwsFavTps.favTp3Name}</button> </div>`);
-                this.addToCSS(`.ulubione { display: inline-block; } button#save_tp1 { filter: hue-rotate(240deg); } button#save_tp2 { filter: hue-rotate(180deg); } button#save_tp3 { filter: hue-rotate(120deg); }`);
-
-                this.addToCSS(`div#ulubione { width: 98px; display: inline-block; float: left; } button#star_tp1 { filter: hue-rotate(240deg); float: none; } button#star_tp2 { filter: hue-rotate(180deg); float: none; } button#star_tp3 { filter: hue-rotate(120deg); float: none; }`);
-                
-                this.reloadTeleports();
-                //.getAttribute('data-loc');
-
-                this.#kwsFavTpsSetup = true;
-            }
-            reloadTeleports() {
-                let tpTable = $("#tp_list");
-                let tpTableRows = tpTable[0].rows;
-                // let tpTableRows = [...$("#tp_list")[0].rows];
-                let tpTableRowsLength = tpTableRows.length;
-                // var tpFavButtons = [...$("#tp_list").find(`.option [data-option="set_fav_loc"]`)];
-                let tpFavButtons = $("#tp_list").find(`.option [data-option="set_fav_loc"]`);
-                let tpFavButtonsLength = tpFavButtons.length;
-                // tpTableRows.forEach((element, index, array) => {
-                //     tpFavButtons.push(element.getElementsByClassName('option fav')[0]);
-                // });
-                for(var i = 0; i < tpFavButtonsLength; i++) {    
-                    var dataLoc = tpFavButtons.eq(i).attr('data-loc'); 
-                    tpFavButtons.eq(i).before((`<div id="ulubione"> <button class="option fav" id="star_tp1" data-option="set_kws_fav_loc_1" data-loc=""></button> <button class="option fav" id="star_tp2" data-option="set_kws_fav_loc_2" data-loc=""></button> <button class="option fav" id="star_tp3" data-option="set_kws_fav_loc_3" data-loc=""></button> </div>`));   
-                }
-                this.tpListHTML = $('#tp_list').html();
-                option_bind();
-			    tooltip_bind();
-                // tpFavButtons.forEach((tpFavButton, index, array) => {
-                //     var dataLoc = tpFavButton.getAttribute('data-loc');
-                //     tpFavButton.before(`<div id="ulubione"> <button class="option fav" id="star_tp1" data-option="set_kws_fav_loc_1" data-loc="${dataLoc}"></button> <button class="option fav" id="star_tp2" data-option="set_kws_fav_loc_2" data-loc="${dataLoc}"></button> <button class="option fav" id="star_tp3" data-option="set_kws_fav_loc_3" data-loc="${dataLoc}"></button> </div>`);
-                // });
-            }
-
-            static getFavTps(forCurrent = true) {
-                //Get global structure from local storage
-                var globalFavTps = kwsv3.getLocalStorageFavTps();
-                if (forCurrent) {
-                    //Return structure for this char_id
-                    return globalFavTps[GAME.char_id];
-                } else {
-                    //Return global structure
-                    return globalFavTps;
-                }
-            }
-
-            static setFavTps(updateWith) {
-                //Get global structure
-                var globalFavTps = kwsv3.getFavTps(false);
-
-                //Override structure for this char_id in global structure
-                globalFavTps[GAME.char_id] = globalFavTps;
-
-                //Save updated global structure
-                kwsv3.setLocalStorageFavTps(globalFavTps);
-            }
-
-            //Initialize favTps structure
-            static initializeFavTps(withGlobal) {
-                //If no current global structure extists, create new
-                if (withGlobal == false) {
-                    //Create new structure { GAME.char_id: {defaultObject} }
-                    var newGlobalFavTps = new Object();
-                    newGlobalFavTps[GAME.char_id] = kwsv3.#defaultNewFavTps;
-
-                    //Save global structure and return it #1
-                    kwsv3.setLocalStorageFavTps(newGlobalFavTps);
-                    return newGlobalFavTps;
-                } else {
-                    //Use existing global structure
-                    var globalFavTps = withGlobal;
-
-                    //Add default structure for this char_id to existing global structure
-                    globalFavTps[GAME.char_id] = kwsv3.#defaultNewFavTps;
-
-                    //Save updated global structure and return it #2
-                    kwsv3.setLocalStorageFavTps(globalFavTps);
-                    return globalFavTps;
-                }
-            }
-
-            static getLocalStorageFavTps() {
-                //Get item from local storage
-                var localStorageFavTps = window.localStorage.getItem(kwsv3.#kwsFavTpsLocalStorageKey);
-
-                //Check if there's an item in local storage
-                if (localStorageFavTps == null) {
-                    //If no item, return call from item initialization -> #1
-                    return kwsv3.initializeFavTps(false);
-                }
-
-                //If there's an item, parse it
-                var parsedLocalStorageFavTps = JSON.parse(localStorageFavTps);
-
-                //Check if there's a structure for this char_id within global one
-                if (GAME.char_id in parsedLocalStorageFavTps) {
-                    //If no structure for this char_id, initialize it, update global and return -> #2
-                    return kwsv3.initializeFavTps(parsedLocalStorageFavTps);
-                }
-
-                //If there's existing global with this char_id structure, return it
-                return parsedLocalStorageFavTps;
-            }
-
-            static setLocalStorageFavTps(favTps) {
-                //Serialize global structure
-                let serializedFavTps = JSON.stringify(favTps);
-
-                //Save serialized global structure to local storage
-                window.localStorage.setItem(kwsv3.#kwsFavTpsLocalStorageKey, serializedFavTps);
-            }
         }
         const kws = new kwsv3(kwsLocalCharacters);
         GAME.komunikat2 = function (kom) {
@@ -2312,7 +2176,7 @@ if (typeof GAME === 'undefined') { } else {
         let roll2 = false;
         let roll1 = false;
         let roll3 = false;
-        let version = '3.4.1';
+        let version = '3.4.2';
     }
     )
 }
