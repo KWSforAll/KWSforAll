@@ -1802,16 +1802,25 @@ if (typeof GAME === 'undefined') { } else {
                 this.#kwsFavTpsSetup = true;
             }
             reloadTeleports() {
-                let tpTableRows = [...$("#tp_list")[0].rows];
-                var tpFavButtons = [];
-                tpTableRows.forEach((element, index, array) => {
-                    tpFavButtons.push(element.getElementsByClassName('option fav')[0]);
-                });
+                let tpTable = $("#tp_list");
+                let tpTableRows = tpTable[0].rows;
+                // let tpTableRows = [...$("#tp_list")[0].rows];
+                let tpTableRowsLength = tpTableRows.length;
+                // var tpFavButtons = [...$("#tp_list").find(`.option [data-option="set_fav_loc"]`)];
+                let tpFavButtons = $("#tp_list").find(`.option [data-option="set_fav_loc"]`);
+                let tpFavButtonsLength = tpFavButtons.length;
+                // tpTableRows.forEach((element, index, array) => {
+                //     tpFavButtons.push(element.getElementsByClassName('option fav')[0]);
+                // });
+                for(var i = 0; i < tpFavButtonsLength; i++) {    
+                    var dataLoc = tpFavButtons.eq(i).attr('data-loc'); 
+                    tpFavButtons.eq(i).before((`<div id="ulubione"> <button class="option fav" id="star_tp1" data-option="set_kws_fav_loc_1" data-loc=""></button> <button class="option fav" id="star_tp2" data-option="set_kws_fav_loc_2" data-loc=""></button> <button class="option fav" id="star_tp3" data-option="set_kws_fav_loc_3" data-loc=""></button> </div>`));   
+                }
 
-                tpFavButtons.forEach((tpFavButton, index, array) => {
-                    var dataLoc = tpFavButton.getAttribute('data-loc');
-                    tpFavButton.before(`<div id="ulubione"> <button class="option fav" id="star_tp1" data-option="set_kws_fav_loc_1" data-loc="${dataLoc}"></button> <button class="option fav" id="star_tp2" data-option="set_kws_fav_loc_2" data-loc="${dataLoc}"></button> <button class="option fav" id="star_tp3" data-option="set_kws_fav_loc_3" data-loc="${dataLoc}"></button> </div>`);
-                });
+                // tpFavButtons.forEach((tpFavButton, index, array) => {
+                //     var dataLoc = tpFavButton.getAttribute('data-loc');
+                //     tpFavButton.before(`<div id="ulubione"> <button class="option fav" id="star_tp1" data-option="set_kws_fav_loc_1" data-loc="${dataLoc}"></button> <button class="option fav" id="star_tp2" data-option="set_kws_fav_loc_2" data-loc="${dataLoc}"></button> <button class="option fav" id="star_tp3" data-option="set_kws_fav_loc_3" data-loc="${dataLoc}"></button> </div>`);
+                // });
             }
 
             static getFavTps(forCurrent = true) {
