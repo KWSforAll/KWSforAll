@@ -1822,6 +1822,8 @@ if (typeof GAME === 'undefined') { } else {
                     tpFavButtons.eq(i).before((`<div id="ulubione"> <button class="option fav" id="star_tp1" data-option="set_kws_fav_loc_1" data-loc=""></button> <button class="option fav" id="star_tp2" data-option="set_kws_fav_loc_2" data-loc=""></button> <button class="option fav" id="star_tp3" data-option="set_kws_fav_loc_3" data-loc=""></button> </div>`));   
                 }
                 this.tpListHTML = $('#tp_list').html();
+                option_bind();
+			    tooltip_bind();
                 // tpFavButtons.forEach((tpFavButton, index, array) => {
                 //     var dataLoc = tpFavButton.getAttribute('data-loc');
                 //     tpFavButton.before(`<div id="ulubione"> <button class="option fav" id="star_tp1" data-option="set_kws_fav_loc_1" data-loc="${dataLoc}"></button> <button class="option fav" id="star_tp2" data-option="set_kws_fav_loc_2" data-loc="${dataLoc}"></button> <button class="option fav" id="star_tp3" data-option="set_kws_fav_loc_3" data-loc="${dataLoc}"></button> </div>`);
