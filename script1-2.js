@@ -1787,7 +1787,8 @@ if (typeof GAME === 'undefined') { } else {
             setupFavTps() {
                 this.#kwsFavTps = kwsv3.getFavTps(true);
 
-                
+                $("#page_game_teleport > div.content > div > label").after(`<div class="ulubione"> Ulubione: <button id="save_tp1" class="btn_small_gold">${this.#kwsFavTps.favTp1Name}</button> <button id="save_tp2" class="btn_small_gold">${this.#kwsFavTps.favTp2Name}</button> <button id="save_tp3" class="btn_small_gold">${this.#kwsFavTps.favTp3Name}</button> </div>`);
+                this.addToCSS(`.ulubione { display: inline-block; } button#save_tp1 { filter: hue-rotate(240deg); } button#save_tp2 { filter: hue-rotate(180deg); } button#save_tp3 { filter: hue-rotate(120deg); }`);
 
                 this.#kwsFavTpsSetup = true;
             }
