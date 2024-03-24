@@ -679,7 +679,7 @@ if (typeof GAME === 'undefined') { } else {
             }
             updateTopBar() {
                 if (this.tpListHTML != '') {
-                    $('#tp_list').html(this.tpListHTML);
+                    // $('#tp_list').html(this.tpListHTML);
                     this.tpListHTML = '';
                 }
                 let sk_status;
@@ -1822,7 +1822,7 @@ if (typeof GAME === 'undefined') { } else {
                     var dataLoc = tpFavButtons.eq(i).attr('data-loc');
                     tpFavButtons.eq(i).before(`<div id="ulubione"> <button class="option fav" id="star_tp1" data-option="set_kws_fav_loc_1" data-loc=""></button> <button class="option fav" id="star_tp2" data-option="set_kws_fav_loc_2" data-loc=""></button> <button class="option fav" id="star_tp3" data-option="set_kws_fav_loc_3" data-loc=""></button> </div>`);
                 }
-                this.tpListHTML = $('#tp_list').html();
+                //this.tpListHTML = $('#tp_list').html();
                 option_bind();
 			    tooltip_bind();
                 // tpFavButtons.forEach((tpFavButton, index, array) => {
