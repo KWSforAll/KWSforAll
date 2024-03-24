@@ -1820,8 +1820,7 @@ if (typeof GAME === 'undefined') { } else {
                 let tpFavButtonsLength = tpFavButtons.length;
                 for(var i = 0; i < tpFavButtonsLength; i++) {    
                     var dataLoc = tpFavButtons.eq(i).attr('data-loc');
-                    tpFavButtons.eq(i).before((`<div id="ulubione"> <button class="option fav" id="star_tp1" data-option="set_kws_fav_loc_1" data-loc=""></button> <button class="option fav" id="star_tp2" data-option="set_kws_fav_loc_2" data-loc=""></button> <button class="option fav" id="star_tp3" data-option="set_kws_fav_loc_3" data-loc=""></button> </div>`));
-                }
+                    tpFavButtons.eq(i).before(`<div id="ulubione"> <button class="option fav" id="star_tp1" data-option="set_kws_fav_loc_1" data-loc=""></button> <button class="option fav" id="star_tp2" data-option="set_kws_fav_loc_2" data-loc=""></button> <button class="option fav" id="star_tp3" data-option="set_kws_fav_loc_3" data-loc=""></button> </div>`);
                 }
                 this.tpListHTML = $('#tp_list').html();
                 option_bind();
