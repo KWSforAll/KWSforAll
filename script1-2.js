@@ -1582,8 +1582,10 @@ if (typeof GAME === 'undefined') { } else {
                 }
 
                 if (kwsLocInfo) {
-                    kwsLocInfo.style.left = '-235px';
-                    kwsLocInfo.style.top = '860px';
+                   // kwsLocInfo.style.left = '-235px';
+                   // kwsLocInfo.style.top = '860px';
+		  kwsLocInfo.style.left = '-35px';
+		  kwsLocInfo.style.top = '1030px';                   
                 }
 
                 $('.clearfix').append('<div id="map_canvas_container" style="position:absolute; top:731px; left:59px; "></div>');
@@ -1632,13 +1634,84 @@ if (typeof GAME === 'undefined') { } else {
                 $('.clearfix').append('<div id="map_canvas_container" style="position:absolute; top:731px; left:59px; "></div>');
                 $('#map_canvas_container').append("<div style='position:absolute; top:730px; left:310px; z-index:999;'><button id='klawiszb5' style='width:60px; height: 60px; border-radius: 5px; border: 2px solid white; padding: 5px; background-color: black; color: white; cursor: pointer; font-size: 16px;'>B</button></div>");
                 $('#map_canvas_container').append("<div style='position:absolute; top:730px; left:436px; z-index:999;'><button id='klawiszn' style='width: 60px; height: 60px; border-radius: 5px; border: 2px solid white; padding: 5px; background-color: black; color: white; cursor: pointer; font-size: 16px;'>N</button></div>");
-
+	$('.clearfix').append('<div id="map_canvas_container" style="position:absolute; top:731px; left:59px; "></div>');
+	$('#map_canvas_container').append("<div style='position:absolute; top:851px; left:89px; z-index:999;'><button id='klawisz1' style='width: 50px; height: 50px; border-radius: 5px; border: 2px solid white; padding: 5px; background-color: black; color: white; cursor: pointer; font-size: 20px;'>1</button></div>");	
+	$('.clearfix').append('<div id="map_canvas_container" style="position:absolute; top:731px; left:59px; "></div>');
+	$('#map_canvas_container').append("<div style='position:absolute; top:851px; left:149px; z-index:999;'><button id='klawisz2' style='width: 50px; height: 50px; border-radius: 5px; border: 2px solid white; padding: 5px; background-color: black; color: white; cursor: pointer; font-size: 20px;'>2</button></div>");
+	$('.clearfix').append('<div id="map_canvas_container" style="position:absolute; top:731px; left:59px; "></div>');
+	$('#map_canvas_container').append("<div style='position:absolute; top:851px; left:209px; z-index:999;'><button id='klawisz3' style='width: 50px; height: 50px; border-radius: 5px; border: 2px solid white; padding: 5px; background-color: black; color: white; cursor: pointer; font-size: 20px;'>3</button></div>");	
+	$('.clearfix').append('<div id="map_canvas_container" style="position:absolute; top:731px; left:59px; "></div>');
+	$('#map_canvas_container').append("<div style='position:absolute; top:911px; left:89px; z-index:999;'><button id='klawisz4' style='width: 50px; height: 50px; border-radius: 5px; border: 2px solid white; padding: 5px; background-color: black; color: white; cursor: pointer; font-size: 20px;'>4</button></div>");
+	$('.clearfix').append('<div id="map_canvas_container" style="position:absolute; top:731px; left:59px; "></div>');
+	$('#map_canvas_container').append("<div style='position:absolute; top:911px; left:149px; z-index:999;'><button id='klawisz5' style='width: 50px; height: 50px; border-radius: 5px; border: 2px solid white; padding: 5px; background-color: black; color: white; cursor: pointer; font-size: 20px;'>5</button></div>");	
+	$('.clearfix').append('<div id="map_canvas_container" style="position:absolute; top:731px; left:59px; "></div>');
+	$('#map_canvas_container').append("<div style='position:absolute; top:911px; left:209px; z-index:999;'><button id='klawisz6' style='width: 50px; height: 50px; border-radius: 5px; border: 2px solid white; padding: 5px; background-color: black; color: white; cursor: pointer; font-size: 20px;'>6</button></div>");	
+	$('.clearfix').append('<div id="map_canvas_container" style="position:absolute; top:731px; left:59px; "></div>');
+	$('#map_canvas_container').append("<div style='position:absolute; top:971px; left:89px; z-index:999;'><button id='klawisz7' style='width: 50px; height: 50px; border-radius: 5px; border: 2px solid white; padding: 5px; background-color: black; color: white; cursor: pointer; font-size: 20px;'>7</button></div>");	
+	$('.clearfix').append('<div id="map_canvas_container" style="position:absolute; top:731px; left:59px; "></div>');
+	$('#map_canvas_container').append("<div style='position:absolute; top:971px; left:149px; z-index:999;'><button id='klawisz8' style='width: 50px; height: 50px; border-radius: 5px; border: 2px solid white; padding: 5px; background-color: black; color: white; cursor: pointer; font-size: 20px;'>8</button></div>");
+	$('.clearfix').append('<div id="map_canvas_container" style="position:absolute; top:731px; left:59px; "></div>');
+	$('#map_canvas_container').append("<div style='position:absolute; top:971px; left:209px; z-index:999;'><button id='klawisz9' style='width: 50px; height: 50px; border-radius: 5px; border: 2px solid white; padding: 5px; background-color: black; color: white; cursor: pointer; font-size: 20px;'>9</button></div>");
+								
                 this.bindAlternativePilotButtons();
             }
             bindAlternativePilotButtons() {
                 $('#klawiszw').click(() => {
                     GAME.map_move(2) // klawisz 'w'
                 });
+ 		  $('#klawisz1').click(() => {
+		  var keyEvent = jQuery.Event('keydown');
+		  keyEvent.which = 49;  // Kod klawisza '1'
+		  $(document).trigger(keyEvent);
+		});	
+
+		  $('#klawisz2').click(() => {
+		  var keyEvent = jQuery.Event('keydown');
+		  keyEvent.which = 50;  // Kod klawisza '2'
+		  $(document).trigger(keyEvent);
+		});		
+
+		  $('#klawisz3').click(() => {
+		  var keyEvent = jQuery.Event('keydown');
+		  keyEvent.which = 51;  // Kod klawisza '3'
+		  $(document).trigger(keyEvent);
+		});	
+
+		  $('#klawisz3').click(() => {
+		  var keyEvent = jQuery.Event('keydown');
+		  keyEvent.which = 52;  // Kod klawisza '4'
+		  $(document).trigger(keyEvent);
+		});		
+		
+		  $('#klawisz5').click(() => {
+		  var keyEvent = jQuery.Event('keydown');
+		  keyEvent.which = 53;  // Kod klawisza '5'
+		  $(document).trigger(keyEvent);
+		});	
+
+		  $('#klawisz6').click(() => {
+		  var keyEvent = jQuery.Event('keydown');
+		  keyEvent.which = 54;  // Kod klawisza '6'
+		  $(document).trigger(keyEvent);
+		});		
+
+		  $('#klawisz7').click(() => {
+		  var keyEvent = jQuery.Event('keydown');
+		  keyEvent.which = 55;  // Kod klawisza '7'
+		  $(document).trigger(keyEvent);
+		});		
+	
+		  $('#klawisz8').click(() => {
+		  var keyEvent = jQuery.Event('keydown');
+		  keyEvent.which = 56;  // Kod klawisza '8'
+		  $(document).trigger(keyEvent);
+		});		
+					
+		  $('#klawisz9').click(() => {
+		  var keyEvent = jQuery.Event('keydown');
+		  keyEvent.which = 57;  // Kod klawisza '9'
+		  $(document).trigger(keyEvent);
+		});	               
                 $('#klawiszq').click(() => {
                     GAME.map_move(6) //klawisz 'q'
                 });
