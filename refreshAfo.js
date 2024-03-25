@@ -228,10 +228,10 @@ function performPvmActions() {
                         spawners.forEach(spawner => {
                             spawner.addEventListener('change', saveSelectedSpawners);
                         });
-                    }, 2000);
+                    }, 2500);
                 }
-            }, 2000);
-        }, 2000);
+            }, 2500);
+        }, 2500);
     }
 }
 function autoexpeditions() {
