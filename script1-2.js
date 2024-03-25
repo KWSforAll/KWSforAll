@@ -1677,7 +1677,7 @@ if (typeof GAME === 'undefined') { } else {
 		  $(document).trigger(keyEvent);
 		});	
 
-		  $('#klawisz3').click(() => {
+		  $('#klawisz4').click(() => {
 		  var keyEvent = jQuery.Event('keydown');
 		  keyEvent.which = 52;  // Kod klawisza '4'
 		  $(document).trigger(keyEvent);
