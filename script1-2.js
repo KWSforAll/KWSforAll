@@ -1664,54 +1664,73 @@ if (typeof GAME === 'undefined') { } else {
 		  keyEvent.which = 49;  // Kod klawisza '1'
 		  $(document).trigger(keyEvent);
 		});	
+		$('#klawisz2').click(() => {
+		    GAME.socket.emit('ga', {
+			a: 15,
+			type: 13
+		    });
+		});
 
-		  $('#klawisz2').click(() => {
-		  var keyEvent = jQuery.Event('keydown');
-		  keyEvent.which = 50;  // Kod klawisza '2'
-		  $(document).trigger(keyEvent);
-		});		
+		$('#klawisz3').click(() => {
+		    GAME.socket.emit('ga', {
+			a: 39,
+			type: 32
+		    });
+		});
 
-		  $('#klawisz3').click(() => {
-		  var keyEvent = jQuery.Event('keydown');
-		  keyEvent.which = 51;  // Kod klawisza '3'
-		  $(document).trigger(keyEvent);
-		});	
+		$('#klawisz4').click(() => {
+		    this.bless();
+		});
 
-		  $('#klawisz4').click(() => {
-		  var keyEvent = jQuery.Event('keydown');
-		  keyEvent.which = 52;  // Kod klawisza '4'
-		  $(document).trigger(keyEvent);
-		});		
-		
-		  $('#klawisz5').click(() => {
-		  var keyEvent = jQuery.Event('keydown');
-		  keyEvent.which = 53;  // Kod klawisza '5'
-		  $(document).trigger(keyEvent);
-		});	
+		$('#klawisz5').click(() => {
+		    setTimeout(() => {
+			GAME.socket.emit('ga', {
+			    a: 54,
+			    type: 0
+			});
+		    }, 300);
+		    setTimeout(() => {
+			this.vip();
+		    }, 600);
+		    GAME.socket.emit('ga', {
+			a: 15,
+			type: 7
+		    });
+		});
 
-		  $('#klawisz6').click(() => {
-		  var keyEvent = jQuery.Event('keydown');
-		  keyEvent.which = 54;  // Kod klawisza '6'
-		  $(document).trigger(keyEvent);
-		});		
+		$('#klawisz6').click(() => {
+		    GAME.socket.emit('ga', {
+			a: 39,
+			type: 46,
+			rent: 3
+		    });
+		});
 
-		  $('#klawisz7').click(() => {
-		  var keyEvent = jQuery.Event('keydown');
-		  keyEvent.which = 55;  // Kod klawisza '7'
-		  $(document).trigger(keyEvent);
-		});		
-	
-		  $('#klawisz8').click(() => {
-		  var keyEvent = jQuery.Event('keydown');
-		  keyEvent.which = 56;  // Kod klawisza '8'
-		  $(document).trigger(keyEvent);
-		});		
-					
-		  $('#klawisz9').click(() => {
-		  var keyEvent = jQuery.Event('keydown');
-		  keyEvent.which = 57;  // Kod klawisza '9'
-		  $(document).trigger(keyEvent);
-		});	               
+		$('#klawisz7').click(() => {
+		    GAME.socket.emit('ga', {
+			a: 10,
+			type: 2,
+			ct: 0
+		    });
+		});
+
+		$('#klawisz8').click(() => {
+		    let set = $("#ekw_sets").find(".option.ek_sets_all" + ":not(.current)").attr("data-set");
+		    if (set != undefined) {
+			GAME.socket.emit('ga', {
+			    a: 64,
+			    type: 2,
+			    set: set
+			});
+		    }
+		});
+
+		$('#klawisz9').click(() => {
+		    var keyEvent = jQuery.Event('keydown');
+		    keyEvent.which = 57;  // Kod klawisza '9'
+		    $(document).trigger(keyEvent);
+		});
+            
                 $('#klawiszq').click(() => {
                     GAME.map_move(6) //klawisz 'q'
                 });
