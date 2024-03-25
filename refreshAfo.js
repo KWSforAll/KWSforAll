@@ -218,7 +218,7 @@ function performPvmActions() {
         setTimeout(() => {
             ghRespButton.click();
             setTimeout(() => {
-                const respButton = document.querySelector('.resp_button.resp_respautoexpeditions');
+                const respButton = document.querySelector('.resp_button.resp_resp');
                 if (respButton) {
                     GAME.page_switch('game_map');
                     setTimeout(() => {
