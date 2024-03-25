@@ -16,23 +16,26 @@ function checkRefresh() {
             setTimeout(() => {
                 const selectedOption = document.getElementById('actionSelect').value;
                 switch (selectedOption) {
-                    case 'R - Kody':
+                    case 'Kody':
                         // Code related actions
                         performCodeActions();
                         break;
-                    case 'R - PVP':
+                    case 'PVP':
                         // PVP related actions
                         performPvpActions();
                         break;
-                    case 'R - PVM':
+                    case 'PVM':
                         // PVM related actions
                         performPvmActions();
                         break;
-                    case 'R - Listy':
+                    case 'Listy':
                         // List related actions
                         performListActions();
                         break;
-                    case 'R - Zbierajka':
+                    case 'Wyprawy':
+                        autoexpeditions();
+                        break;                                     
+                    case 'Zbierajka':
                         // Other related actions
                         performOtherActions();
                         break;
@@ -133,7 +136,7 @@ function createControlButton() {
         window.localStorage.setItem('selectedOption', selectedOption.value);
     });
 
-    const options = ['R - Kody', 'R - PVP', 'R - PVM', 'R - Listy', 'R - Zbierajka'];
+    const options = ['Kody', 'PVP', 'PVM', 'Listy', 'Wyprawy', 'Zbierajka'];
     options.forEach(option => {
         const optionElement = document.createElement('option');
         optionElement.value = option;
@@ -215,7 +218,7 @@ function performPvmActions() {
         setTimeout(() => {
             ghRespButton.click();
             setTimeout(() => {
-                const respButton = document.querySelector('.resp_button.resp_resp');
+                const respButton = document.querySelector('.resp_button.resp_respautoexpeditions');
                 if (respButton) {
                     GAME.page_switch('game_map');
                     setTimeout(() => {
@@ -231,12 +234,14 @@ function performPvmActions() {
         }, 2000);
     }
 }
-
-
-
-
-
-
+function autoexpeditions() {
+  setTimeout(function() {
+    var button = document.querySelector('.qlink.sideIcons.manage_autoExpeditions');
+    if (button) {
+      button.click();
+    }
+  }, 10000);
+}
 
 function performListActions() {
     const ghLpvmButton = document.querySelector('.gh_button.gh_lpvm');
