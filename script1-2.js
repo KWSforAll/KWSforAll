@@ -1652,10 +1652,33 @@ if (typeof GAME === 'undefined') { } else {
 	$('#map_canvas_container').append("<div style='position:absolute; top:971px; left:149px; z-index:999;'><button id='klawisz8' style='width: 50px; height: 50px; border-radius: 5px; border: 2px solid white; padding: 5px; background-color: black; color: white; cursor: pointer; font-size: 20px;'>8</button></div>");
 	$('.clearfix').append('<div id="map_canvas_container" style="position:absolute; top:731px; left:59px; "></div>');
 	$('#map_canvas_container').append("<div style='position:absolute; top:971px; left:209px; z-index:999;'><button id='klawisz9' style='width: 50px; height: 50px; border-radius: 5px; border: 2px solid white; padding: 5px; background-color: black; color: white; cursor: pointer; font-size: 20px;'>9</button></div>");
-								
+	$('.clearfix').append('<div id="map_canvas_container" style="position:absolute; top:731px; left:59px; "></div>');
+	$('#map_canvas_container').append("<div style='position:absolute; top:1031px; left:89px; z-index:999;'><button id='klawiszspacja' style='width: 150px; height: 50px; border-radius: 5px; border: 2px solid white; padding: 5px; background-color: black; color: white; cursor: pointer; font-size: 20px;'>----------------</button></div>");									
                 this.bindAlternativePilotButtons();
             }
             bindAlternativePilotButtons() {
+		$('#klawiszspacja').click(() => {
+		    const originalCreateAlternativePilot = createAlternativePilot;
+		    function createAlternativePilot() {
+		    }
+		    delete window.createAlternativePilot;
+		    $('#klawiszw, #klawiszy, #klawisz1, #klawisz2, #klawisz3, #klawisz4, #klawisz5, #klawisz6, #klawisz7, #klawisz8, #klawisz9, #klawiszq, #klawisze, #klawiszs, #klawisza, #klawiszd, #klawiszx, #klawiszz, #klawiszc, #klawiszr, #klawiszy, #klawiszv, #klawiszqx3, #klawiszwx3, #klawiszex3, #klawiszax3, #klawiszsx3, #klawiszdx3, #klawiszzx3, #klawiszcx3, #klawiszvx3, #klawiszb5, #klawiszspacja, #klawiszn').remove();
+		    var kwsHidePilotElement = document.getElementById('kws_hidePilot');
+		    var mapPilotElement = document.getElementById('map_pilot');
+		    if (kwsHidePilotElement) {
+			kwsHidePilotElement.value = '0';
+			var changeEvent = new Event('change');
+			kwsHidePilotElement.dispatchEvent(changeEvent);
+			if (kwsHidePilotElement.value === '0' && mapPilotElement) {
+			    mapPilotElement.style.display = 'block';
+			}
+			var clickEvent = new MouseEvent('click', { bubbles: true, cancelable: true, button: 0 });
+			kwsHidePilotElement.dispatchEvent(clickEvent);
+		    } else {
+			console.error('Element o ID "kws_hidePilot" nie został znaleziony.');
+		    }
+		    createAlternativePilot = originalCreateAlternativePilot;
+		});            
                 $('#klawiszw').click(() => {
                     GAME.map_move(2) // klawisz 'w'
                 });
