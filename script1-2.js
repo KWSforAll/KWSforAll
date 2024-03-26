@@ -499,7 +499,7 @@ if (typeof GAME === 'undefined') { } else {
                 this.manageMinimapSettings("load");
                 this.manageMapSize("load");
                 this.managePilot();
-		$("#field_sett #field_options").append(`<br style='clear:both;'><div id="kws_minimap_settings"> <b class='orange'>Ukryj pilota kontroli postaci: </b><div class="select_input"><select id="kws_hidePilot"><option value="1" ${this.hidePilot == 1 ? "selected" : ""}>tak</option><option value="0" ${this.hidePilot == 0 ? "selected" : ""}>Nie</option></select></div> <b class='orange'>Minimapa wyświetlana ze strony: </b><div class="select_input"><select id="minimap_side"><option value="0" ${this.minimap.side == 0 ? "selected" : ""}>Prawej</option><option value="1" ${this.minimap.side == 1 ? "selected" : ""}>Lewej</option><option value="2" ${this.minimap.side == 2 ? "selected" : ""}>L - Poza</option><option value="3" ${this.minimap.side == 3 ? "selected" : ""}>Domyślnie</option></select></div> <b class='orange'>Przeźroczystość minimapy: </b><input id="minimap_range" type="range" value="${this.minimap.opacity}" min="10" max="100" step="1"> <b class='orange'>Dodatkowe informacje o lokacji: </b><div class="select_input"><select id="kws_sh_locInfo"><option value="1" ${this.minimap.loc_info == 1 ? "selected" : ""}>Pokaż</option><option value="0" ${this.minimap.loc_info == 0 ? "selected" : ""}>Ukryj</option></select></div> <b class='orange'>Rozmiar mapy: </b>X: <input name="kws_map_width" class="smin_input" style="width:30px;" type="text" value="${this.mapsize.x}" placeholder="13"> Y: <input name="kws_map_height" class="smin_input" style="width:30px;" type="text" value="${this.mapsize.y}" placeholder="13"><button class="smin_butt kws_mapsize_change" style="margin-left:5px;">Zmień</button><button class="smin_butt kws_mapsize_reset" style="margin-left:5px;">Reset</button> </div>`);
+                $("#field_sett #field_options").append(`<br style='clear:both;'><div id="kws_minimap_settings"> <b class='orange'>Ukryj pilota kontroli postaci: </b><div class="select_input"><select id="kws_hidePilot"><option value="1" ${this.hidePilot == 1 ? "selected" : ""}>tak</option><option value="0" ${this.hidePilot == 0 ? "selected" : ""}>Nie</option></select></div> <b class='orange'>Minimapa wyświetlana ze strony: </b><div class="select_input"><select id="minimap_side"><option value="0" ${this.minimap.side == 0 ? "selected" : ""}>Prawej</option><option value="1" ${this.minimap.side == 1 ? "selected" : ""}>Lewej</option><option value="2" ${this.minimap.side == 2 ? "selected" : ""}>L - Poza</option></select></div> <b class='orange'>Przeźroczystość minimapy: </b><input id="minimap_range" type="range" value="${this.minimap.opacity}" min="10" max="100" step="1"> <b class='orange'>Dodatkowe informacje o lokacji: </b><div class="select_input"><select id="kws_sh_locInfo"><option value="1" ${this.minimap.loc_info == 1 ? "selected" : ""}>Pokaż</option><option value="0" ${this.minimap.loc_info == 0 ? "selected" : ""}>Ukryj</option></select></div> <b class='orange'>Rozmiar mapy: </b>X: <input name="kws_map_width" class="smin_input" style="width:30px;" type="text" value="${this.mapsize.x}" placeholder="13"> Y: <input name="kws_map_height" class="smin_input" style="width:30px;" type="text" value="${this.mapsize.y}" placeholder="13"><button class="smin_butt kws_mapsize_change" style="margin-left:5px;">Zmień</button><button class="smin_butt kws_mapsize_reset" style="margin-left:5px;">Reset</button> </div>`);
             }
             manageMinimapSettings(act) {
                 if (act == "load") {
@@ -1233,33 +1233,27 @@ if (typeof GAME === 'undefined') { } else {
                         page2: GAME.ekw_page2
                     });
                 });
-		$("body").on("change", "#minimap_side", (el) => {
-		    let value = parseInt($(el.target).val());
-		    if (value == 0) {
-			$("#minimap_con").css({
-			    "right": "-5px",
-			    "left": "unset"
-			});
-		    } else if (value == 1) {
-			$("#minimap_con").css({
-			    "left": "-4px",
-			    "right": "unset"
-			});
-		    } else if (value == 2) {
-			$("#minimap_con").css({
-			    "left": "-210px",
-			    "right": "unset"
-			});
-		    } else if (value == 3) {
-			$("#minimap_con").css({
-			    "right": "-5px",
-			    "left": "unset",
-			    "top": "unset"
-			});
-		    }
-		    this.minimap.side = value;
-		    this.manageMinimapSettings("save");
-		});			
+                $("body").on("change", "#minimap_side", (el) => {
+                    let value = parseInt($(el.target).val());
+                    if (value == 0) {
+                        $("#minimap_con").css({
+                            "right": "-5px",
+                            "left": "unset"
+                        });
+                    } else if (value == 1) {
+                        $("#minimap_con").css({
+                            "left": "-4px",
+                            "right": "unset"
+                        });
+                    } else if (value == 2) {
+                        $("#minimap_con").css({
+                            "left": "-210px",
+                            "right": "unset"
+                        });
+                    }
+                    this.minimap.side = value;
+                    this.manageMinimapSettings("save");
+                });
                 $("#minimap_range").on("input", (el) => {
                     let value = parseInt($(el.target).val());
                     $("#minimap_con").css({
