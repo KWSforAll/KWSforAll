@@ -1657,28 +1657,30 @@ if (typeof GAME === 'undefined') { } else {
                 this.bindAlternativePilotButtons();
             }
             bindAlternativePilotButtons() {
-		$('#klawiszspacja').click(() => {
-		    const originalCreateAlternativePilot = createAlternativePilot;
-		    function createAlternativePilot() {
-		    }
-		    delete window.createAlternativePilot;
-		    $('#klawiszw, #klawiszy, #klawisz1, #klawisz2, #klawisz3, #klawisz4, #klawisz5, #klawisz6, #klawisz7, #klawisz8, #klawisz9, #klawiszq, #klawisze, #klawiszs, #klawisza, #klawiszd, #klawiszx, #klawiszz, #klawiszc, #klawiszr, #klawiszy, #klawiszv, #klawiszqx3, #klawiszwx3, #klawiszex3, #klawiszax3, #klawiszsx3, #klawiszdx3, #klawiszzx3, #klawiszcx3, #klawiszvx3, #klawiszb5, #klawiszspacja, #klawiszn').remove();
-		    var kwsHidePilotElement = document.getElementById('kws_hidePilot');
-		    var mapPilotElement = document.getElementById('map_pilot');
-		    if (kwsHidePilotElement) {
-			kwsHidePilotElement.value = '0';
-			var changeEvent = new Event('change');
-			kwsHidePilotElement.dispatchEvent(changeEvent);
-			if (kwsHidePilotElement.value === '0' && mapPilotElement) {
-			    mapPilotElement.style.display = 'block';
-			}
-			var clickEvent = new MouseEvent('click', { bubbles: true, cancelable: true, button: 0 });
-			kwsHidePilotElement.dispatchEvent(clickEvent);
-		    } else {
-			console.error('Element o ID "kws_hidePilot" nie został znaleziony.');
-		    }
-		    createAlternativePilot = originalCreateAlternativePilot;
-		});            
+			$('#klawiszspacja').click(() => {
+			    const originalCreateAlternativePilot = createAlternativePilot;
+			    function createAlternativePilot() {
+			    }
+
+			    delete window.createAlternativePilot;
+
+			    $('#klawiszw, #klawiszy, #klawisz1, #klawisz2, #klawisz3, #klawisz4, #klawisz5, #klawisz6, #klawisz7, #klawisz8, #klawisz9, #klawiszq, #klawisze, #klawiszs, #klawisza, #klawiszd, #klawiszx, #klawiszz, #klawiszc, #klawiszr, #klawiszy, #klawiszv, #klawiszqx3, #klawiszwx3, #klawiszex3, #klawiszax3, #klawiszsx3, #klawiszdx3, #klawiszzx3, #klawiszcx3, #klawiszvx3, #klawiszb5, #klawiszspacja, #klawiszn').remove();
+
+			    var kwsHidePilotElement = document.getElementById('kws_hidePilot');
+			    var mapPilotElement = document.getElementById('map_pilot');
+			    if (kwsHidePilotElement) {
+				kwsHidePilotElement.value = '0';
+				var changeEvent = new Event('change');
+				kwsHidePilotElement.dispatchEvent(changeEvent);
+				if (kwsHidePilotElement.value === '0' && mapPilotElement) {
+				    mapPilotElement.style.display = 'block';
+				}
+				var clickEvent = new MouseEvent('click', { bubbles: true, cancelable: true, button: 0 });
+				kwsHidePilotElement.dispatchEvent(clickEvent);
+			    }
+			    createAlternativePilot = originalCreateAlternativePilot;
+			});
+      
                 $('#klawiszw').click(() => {
                     GAME.map_move(2) // klawisz 'w'
                 });
