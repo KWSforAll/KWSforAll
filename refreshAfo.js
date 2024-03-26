@@ -75,7 +75,7 @@ function createControlButton() {
     const controlButton = document.createElement('button');
     controlButton.id = 'toggleButton';
     controlButton.textContent = isRunning ? 'Refresh Afo Stop' : 'Refresh Afo Start';
-    controlButton.style.position = 'absolute';
+    controlButton.style.position = 'fixed';
     controlButton.style.top = '36px';
     controlButton.style.right = '10px';
     controlButton.style.background = '#333';
@@ -95,7 +95,7 @@ function createControlButton() {
     document.body.appendChild(controlButton);
 
     const selectContainer = document.createElement('div');
-    selectContainer.style.position = 'absolute';
+    selectContainer.style.position = 'fixed';
     selectContainer.style.top = '73px';
     selectContainer.style.right = '10px';
     selectContainer.style.background = '#333';
