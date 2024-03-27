@@ -272,13 +272,21 @@ function performListActions() {
     }
 }
 function arenaAndAbyss() {
-    setTimeout(function() {
-        document.querySelector('.qlink.sideIcons.manage_auto_arena.kws_active_icon').click();
-        setTimeout(function() {
-            document.querySelector('.qlink.sideIcons.manage_auto_abyss.kws_active_icon').click();
-        }, 10000);
-    }, 11500);
+  setTimeout(function() {
+    var button = document.querySelector('.qlink.sideIcons.manage_auto_arena.kws_active_icon');
+    if (button) {
+      button.click();
+    }
+  }, 10000);
+
+  setTimeout(function() {
+    var abyssButton = document.querySelector('.qlink.sideIcons.manage_auto_abyss.kws_active_icon');
+    if (abyssButton) {
+      abyssButton.click();
+    }
+  }, 11000);
 }
+
 
 
 
