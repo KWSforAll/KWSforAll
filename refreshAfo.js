@@ -39,6 +39,10 @@ function checkRefresh() {
                         // Other related actions
                         performOtherActions();
                         break;
+                    case 'ArenaVsOtchłań':
+                        // Other related actions
+                        arenaAndAbyss();
+                        break;						
                     default:
                         break;
                 }
@@ -136,7 +140,7 @@ function createControlButton() {
         window.localStorage.setItem('selectedOption', selectedOption.value);
     });
 
-    const options = ['Kody', 'PVP', 'PVM', 'Listy', 'Wyprawy', 'Zbierajka'];
+    const options = ['Kody', 'PVP', 'PVM', 'Listy', 'Wyprawy', 'Zbierajka', 'ArenaVsOtchłań'];
     options.forEach(option => {
         const optionElement = document.createElement('option');
         optionElement.value = option;
@@ -267,6 +271,15 @@ function performListActions() {
         }, 2000);
     }
 }
+function arenaAndAbyss() {
+    setTimeout(function() {
+        document.querySelector('.qlink.sideIcons.manage_auto_arena.kws_active_icon').click();
+        setTimeout(function() {
+            document.querySelector('.qlink.sideIcons.manage_auto_abyss.kws_active_icon').click();
+        }, 1000);
+    }, 1200);
+}
+
 
 
 function performOtherActions() {
