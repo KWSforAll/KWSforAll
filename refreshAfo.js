@@ -273,18 +273,18 @@ function performListActions() {
 }
 function arenaAndAbyss() {
   setTimeout(function() {
-    var button = document.querySelector('.qlink.sideIcons.manage_auto_arena.kws_active_icon');
+    var button = document.querySelector('.qlink.manage_auto_arena');
     if (button) {
       button.click();
     }
-  }, 10000);
+  }, 1500);
 
   setTimeout(function() {
-    var abyssButton = document.querySelector('.qlink.sideIcons.manage_auto_abyss.kws_active_icon');
+    var abyssButton = document.querySelector('.qlink.manage_auto_abyss');
     if (abyssButton) {
       abyssButton.click();
     }
-  }, 11000);
+  }, 2200);
 }
 
 
