@@ -276,8 +276,8 @@ function arenaAndAbyss() {
         document.querySelector('.qlink.sideIcons.manage_auto_arena.kws_active_icon').click();
         setTimeout(function() {
             document.querySelector('.qlink.sideIcons.manage_auto_abyss.kws_active_icon').click();
-        }, 1000);
-    }, 1200);
+        }, 10000);
+    }, 11500);
 }
 
 
