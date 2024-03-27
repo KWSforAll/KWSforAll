@@ -13,40 +13,39 @@ function checkRefresh() {
             linkElement.click();
             isRunning = false;
 
-            setTimeout(() => {
-                const selectedOption = document.getElementById('actionSelect').value;
-                switch (selectedOption) {
-                    case 'Kody':
-                        // Code related actions
-                        performCodeActions();
-                        break;
-                    case 'PVP':
-                        // PVP related actions
-                        performPvpActions();
-                        break;
-                    case 'PVM':
-                        // PVM related actions
-                        performPvmActions();
-                        break;
-                    case 'Listy':
-                        // List related actions
-                        performListActions();
-                        break;
-                    case 'Wyprawy':
-                        autoexpeditions();
-                        break;                                     
-                    case 'Zbierajka':
-                        // Other related actions
-                        performOtherActions();
-                        break;
-                    case 'ArenaVsOtchłań':
-                        // Other related actions
-                        arenaAndAbyss();
-                        break;						
-                    default:
-                        break;
-                }
-            }, 2000);
+			setTimeout(() => {
+				const selectedOption = document.getElementById('actionSelect').value;
+				switch (selectedOption) {
+					case 'Kody':
+						// Code related actions
+						performCodeActions();
+						break;
+					case 'PVP':
+						// PVP related actions
+						performPvpActions()
+							.then(() => {
+								return arenaAndAbyss();
+							});
+						break;
+					case 'PVM':
+						// PVM related actions
+						performPvmActions();
+						break;
+					case 'Listy':
+						// List related actions
+						performListActions();
+						break;
+					case 'Wyprawy':
+						autoexpeditions();
+						break;                                     
+					case 'Zbierajka':
+						// Other related actions
+						performOtherActions();
+						break;			
+					default:
+						break;
+				}
+			}, 2000);
         }
     }
 }
@@ -140,7 +139,7 @@ function createControlButton() {
         window.localStorage.setItem('selectedOption', selectedOption.value);
     });
 
-    const options = ['Kody', 'PVP', 'PVM', 'Listy', 'Wyprawy', 'Zbierajka', 'ArenaVsOtchłań'];
+    const options = ['Kody', 'PVP', 'PVM', 'Listy', 'Wyprawy', 'Zbierajka'];
     options.forEach(option => {
         const optionElement = document.createElement('option');
         optionElement.value = option;
@@ -171,19 +170,46 @@ function performCodeActions() {
 }
 
 function performPvpActions() {
-    let ghButtonElement = document.querySelector('.gh_button.gh_pvp');
-    let codeButtonElement = document.querySelector('.pvp_button.pvp_pvp');
-    if (ghButtonElement && codeButtonElement) {
-        setTimeout(() => {
-            GAME.page_switch('game_map');
+    return new Promise((resolve, reject) => {
+        let ghButtonElement = document.querySelector('.gh_button.gh_pvp');
+        let codeButtonElement = document.querySelector('.pvp_button.pvp_pvp');
+        if (ghButtonElement && codeButtonElement) {
             setTimeout(() => {
-                ghButtonElement.click(); 
+                GAME.page_switch('game_map');
                 setTimeout(() => {
-                    codeButtonElement.click();
-                }, 2000);
-            }, 1000);
-        }, 2000);
-    }
+                    ghButtonElement.click(); 
+                    setTimeout(() => {
+                        codeButtonElement.click();
+                        resolve();
+                    }, 2000);
+                }, 1000);
+            }, 2000);
+        } else {
+            reject(new Error('One or both buttons not found'));
+        }
+    });
+}
+
+function arenaAndAbyss() {
+    return new Promise((resolve, reject) => {
+        setTimeout(function() {
+            var button = document.querySelector('.qlink.manage_auto_arena');
+            if (button) {
+                button.click();
+                setTimeout(function() {
+                    var abyssButton = document.querySelector('.qlink.manage_auto_abyss');
+                    if (abyssButton) {
+                        abyssButton.click();
+                        resolve(); 
+                    } else {
+                        reject(new Error('Abyss button not found'));
+                    }
+                }, 700);
+            } else {
+                reject(new Error('Arena button not found'));
+            }
+        }, 1500);
+    });
 }
 
 
@@ -271,21 +297,7 @@ function performListActions() {
         }, 2000);
     }
 }
-function arenaAndAbyss() {
-  setTimeout(function() {
-    var button = document.querySelector('.qlink.manage_auto_arena');
-    if (button) {
-      button.click();
-    }
-  }, 1500);
 
-  setTimeout(function() {
-    var abyssButton = document.querySelector('.qlink.manage_auto_abyss');
-    if (abyssButton) {
-      abyssButton.click();
-    }
-  }, 2200);
-}
 
 
 
