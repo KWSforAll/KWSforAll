@@ -1,3 +1,19 @@
+const observer = new MutationObserver(function(mutationsList, observer) {
+    for(let mutation of mutationsList) {
+        if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+            for(let node of mutation.addedNodes) {
+                if (node.matches && node.matches('button[data-option="logout"]')) {
+                    observer.disconnect();
+                    setTimeout(runCodeWithDelay, 700);
+                    return;
+                }
+            }
+        }
+    }
+});
+
+observer.observe(document.body, { childList: true, subtree: true });
+
     function runCodeWithDelay() {   
  const logoutButton = document.querySelector('button[data-option="logout"]');
     const startStopButton = document.getElementById('startStopButton');
@@ -126,9 +142,7 @@ startStopButton.addEventListener('click', function() {
     startStopButton.textContent = recordingEnabled ? 'Off' : 'On'; 
 });
 document.body.appendChild(startStopButton);
-setTimeout(function() {
-    runCodeWithDelay();
-}, 1000);
+
 function selectSavedSpawners() {
     const selectedSpawners = JSON.parse(localStorage.getItem('selectedSpawners')) || [];
     let index = 0;
