@@ -126,7 +126,9 @@ startStopButton.addEventListener('click', function() {
     startStopButton.textContent = recordingEnabled ? 'Off' : 'On'; 
 });
 document.body.appendChild(startStopButton);
-setTimeout(runCodeWithDelay, 600);
+setTimeout(function() {
+    runCodeWithDelay();
+}, 1000);
 function selectSavedSpawners() {
     const selectedSpawners = JSON.parse(localStorage.getItem('selectedSpawners')) || [];
     let index = 0;
