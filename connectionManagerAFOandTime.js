@@ -1,33 +1,40 @@
-    const logoutButton = document.querySelector('button[data-option="logout"]');
+const logoutButton = document.querySelector('button[data-option="logout"]');
+const startStopButton = document.getElementById('startStopButton');
+startStopButton.style.display = 'none';
 
+function showStartStopButton() {
+    startStopButton.style.display = 'block';
+    startStopButton.style.zIndex = '9999';
+}
+
+function hideStartStopButton() {
     startStopButton.style.display = 'none';
-    function showstartStopButton() {
-        startStopButton.style.display = 'block';
-        startStopButton.style.zIndex = '9999';
-    }
-    function hidestartStopButton() {
-        startStopButton.style.display = 'none';
-    }
-    logoutButton.addEventListener('mouseenter', function() {
-        showstartStopButton();
-    });
-    logoutButton.addEventListener('mouseleave', function() {
-        hidestartStopButton();
-    });
-    startStopButton.addEventListener('mouseenter', function() {
-        clearTimeout(startStopHideTimer);
-        showstartStopButton();
-    });
-    startStopButton.addEventListener('mouseleave', function() {
-        hidestartStopButton();
-    });
-    let startStopHideTimer;
+}
 
+logoutButton.addEventListener('mouseenter', function() {
+    showStartStopButton();
+});
+
+logoutButton.addEventListener('mouseleave', function() {
+    hideStartStopButton();
+});
+
+startStopButton.addEventListener('mouseenter', function() {
+    clearTimeout(startStopHideTimer);
+    showStartStopButton();
+});
+
+startStopButton.addEventListener('mouseleave', function() {
+    hideStartStopButton();
+});
+
+let startStopHideTimer;
 
 setTimeout(runCodeWithDelay, 4000);
 
 let intervalId;
 let recordingEnabled = JSON.parse(localStorage.getItem('recordingEnabled')) || false;
+
 function replaySavedClicks() {
     console.log('Attempting to replay saved clicks...');
     const savedClicks = JSON.parse(localStorage.getItem('savedClicks')) || {};
@@ -51,6 +58,7 @@ function replaySavedClicks() {
         console.log('No saved clicks found in local storage.');
     }
 }
+
 function startRecording() {
     enableLocalStorage();
     intervalId = setInterval(checkMainPanel, 1000);
@@ -58,8 +66,8 @@ function startRecording() {
     recordingEnabled = true;
     localStorage.setItem('recordingEnabled', true);
     setInterval(saveSelectedSpawners, 2000);
- 
 }
+
 function stopRecording() {
     clearInterval(intervalId);
     localStorage.removeItem('savedClicks'); 
@@ -67,6 +75,7 @@ function stopRecording() {
     recordingEnabled = false; 
     localStorage.setItem('recordingEnabled', false); 
 }
+
 function checkMainPanel() {
     const mainPanel = document.getElementById("main_Panel");
     if (mainPanel) {
@@ -79,6 +88,7 @@ function checkMainPanel() {
         enableLocalStorageWithClass('.resp_button');
      }
 }
+
 function handleButtonClick(event) {
     const buttonClass = event.target.className.replace(/\s+/g, '.');
     let savedClicks = JSON.parse(localStorage.getItem('savedClicks')) || {};
@@ -88,12 +98,14 @@ function handleButtonClick(event) {
         console.log('Click saved:', buttonClass);
     }
 }
+
 function enableLocalStorageWithClass(className) {
     const divs = document.querySelectorAll(className);
     divs.forEach(function(div) {
         div.addEventListener('click', handleButtonClick);
     });
 }
+
 function enableLocalStorage() {
     const buttonClasses = ['.gh_button', '.pvp_button', '.lpvm_button', '.res_button', '.code_button', '.resp_button','.qlink.manage_auto_abyss', '.qlink.manage_auto_arena'];
     buttonClasses.forEach(function(className) {
@@ -104,9 +116,7 @@ function enableLocalStorage() {
     });
 }
 
-const startStopButton = document.createElement('button');
 startStopButton.textContent = recordingEnabled ? 'Off' : 'On'; 
-startStopButton.id = 'startStopButton';
 startStopButton.style.position = 'fixed';
 startStopButton.style.top = '30px'; 
 startStopButton.style.background = '#333';
@@ -125,6 +135,7 @@ startStopButton.addEventListener('click', function() {
     startStopButton.textContent = recordingEnabled ? 'Off' : 'On'; 
 });
 document.body.appendChild(startStopButton);
+
 function selectSavedSpawners() {
     const selectedSpawners = JSON.parse(localStorage.getItem('selectedSpawners')) || [];
     let index = 0;
@@ -141,6 +152,7 @@ function selectSavedSpawners() {
         index++;
     }, 800);
 }
+
 function saveSelectedSpawners() {
     const selectedSpawners = [];
     const spawners = document.querySelectorAll('[id^="kws_spawner_ignore_"]');
@@ -151,6 +163,7 @@ function saveSelectedSpawners() {
     });
     localStorage.setItem('selectedSpawners', JSON.stringify(selectedSpawners));
 }
+
 function performPvmActions() {
     selectSavedSpawners(); 
     const spawners = document.querySelectorAll('[id^="kws_spawner_ignore_"]');
@@ -158,7 +171,9 @@ function performPvmActions() {
         spawner.addEventListener('change', saveSelectedSpawners); 
     });
 }
+
 checkMainPanel();
+
 const savedClicks = JSON.parse(localStorage.getItem('savedClicks')) || {};
 if (Object.keys(savedClicks).length > 0) {
     console.log('Found saved clicks.');
@@ -180,4 +195,4 @@ if (Object.keys(savedClicks).length > 0) {
 } else {
     console.log('No saved clicks found in localStorage.');
 }
-  
+
