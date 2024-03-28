@@ -217,37 +217,12 @@ document.head.appendChild(style);
                 }, 1000);
             }
         }, 1000);
-   
+    })
     
     .catch(error => {
         console.error(error.message);
     });
-
-$('body').on('click', '.load_afo', () => {
-    function przeniesElement() {
-        setTimeout(function () {
-            var mainPanelElement = $('#main_Panel');
-            var respPanelElement = $('#resp_Panel');
-            var pvpPanelElement = $('#pvp_Panel');
-            var lpvmPanelElement = $('#lpvm_Panel');
-            var codePanelElement = $('#code_Panel');
-            var resPanelElement = $('#res_Panel');
-            var kws_spawnElement = $('#kws_spawn');
-            if (mainPanelElement.length && respPanelElement.length && pvpPanelElement.length && lpvmPanelElement.length && codePanelElement.length && resPanelElement.length && kws_spawnElement.length) {
-                mainPanelElement.css({ position: 'absolute', top: '1320px', left: '356px' });
-                respPanelElement.css({ position: 'absolute', top: '1370px', left: '510px' });
-                pvpPanelElement.css({ position: 'absolute', top: '1390px', left: '664px' });
-                lpvmPanelElement.css({ position: 'absolute', top: '1720px', left: '664px' });
-                codePanelElement.css({ position: 'absolute', top: '1480px', left: '304px' });
-                resPanelElement.css({ position: 'absolute', top: '1780px', left: '354px' });
-                kws_spawnElement.css({ position: 'absolute', top: '980px', left: '-140px' });
-            }
-        }, 1000);
-    }
-
-    przeniesElement();
-    
-var ghButtonIntervalId;
+ var ghButtonIntervalId;
 var ghButtonExecuted = false;
 
 function sprawdzIWykonajGHButton() {
@@ -363,4 +338,4 @@ function wykonajKodGHButton(panel) {
 }
 
 // Wywołanie funkcji
-sprawdzIWykonajGHButton();
+sprawdzIWykonajGHButton();   
