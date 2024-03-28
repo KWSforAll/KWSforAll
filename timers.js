@@ -110,63 +110,62 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }, 1000);
     
-    function checkAndExecuteGHButton() {
-        if (!ghButtonExecuted) {
-            var ghButton = document.querySelector('.gh_button.gh_res');
-            if (ghButton) {
-                var onoffDiv1 = document.createElement("div");
-                onoffDiv1.id = "onoff";
-                onoffDiv1.classList.add("ui-draggable");
-                var startTimeInput1 = document.createElement("input");
-                startTimeInput1.type = "text";
-                startTimeInput1.placeholder = "Godzina startu (HH mm)";
-                startTimeInput1.style.width = "120px";
-                startTimeInput1.style.marginLeft = "5px";
-                startTimeInput1.style.background = "grey";
-                startTimeInput1.style.textAlign = "center";
-                startTimeInput1.style.color = "white";
-                var endTimeInput1 = document.createElement("input");
-                endTimeInput1.type = "text";
-                endTimeInput1.placeholder = "Godzina wyłączenia (HH mm)";
-                endTimeInput1.style.width = "120px";
-                endTimeInput1.style.marginLeft = "5px";
-                endTimeInput1.style.background = "grey";
-                endTimeInput1.style.textAlign = "center";
-                endTimeInput1.style.color = "white";
-                var onOffButton1 = document.createElement("button");
-                onOffButton1.textContent = "On";
-                onOffButton1.style.color = "#00ff00";
-                onOffButton1.style.backgroundColor = "black";
-                onOffButton1.style.border = "1px solid white";
-                onOffButton1.onclick = function() {
-                    if (onOffButton1.textContent === "On") {
-                        var startTime = parseTime(startTimeInput1.value);
-                        var endTime = parseTime(endTimeInput1.value);
-                        if (!isNaN(startTime) && !isNaN(endTime)) {
-                            scheduleOnOff(startTime, endTime);
-                            onOffButton1.textContent = "Off"; 
-                            onOffButton1.style.color = "red";
-                        } else {
-                            alert("Wprowadź poprawne godziny (HH mm)!");
-                        }
+function checkAndExecuteGHButton() {
+    if (!ghButtonExecuted) {
+        var ghButton = document.querySelector('.gh_button.gh_res');
+        if (ghButton) {
+            var onoffDiv1 = document.createElement("div");
+            onoffDiv1.id = "onoff";
+            onoffDiv1.classList.add("ui-draggable");
+            var startTimeInput1 = document.createElement("input");
+            startTimeInput1.type = "text";
+            startTimeInput1.placeholder = "Godzina startu (HH mm)";
+            startTimeInput1.style.width = "120px";
+            startTimeInput1.style.marginLeft = "5px";
+            startTimeInput1.style.background = "grey";
+            startTimeInput1.style.textAlign = "center";
+            startTimeInput1.style.color = "white";
+            var endTimeInput1 = document.createElement("input");
+            endTimeInput1.type = "text";
+            endTimeInput1.placeholder = "Godzina wyłączenia (HH mm)";
+            endTimeInput1.style.width = "120px";
+            endTimeInput1.style.marginLeft = "5px";
+            endTimeInput1.style.background = "grey";
+            endTimeInput1.style.textAlign = "center";
+            endTimeInput1.style.color = "white";
+            var onOffButton1 = document.createElement("button");
+            onOffButton1.textContent = "On";
+            onOffButton1.style.color = "#00ff00";
+            onOffButton1.style.backgroundColor = "black";
+            onOffButton1.style.border = "1px solid white";
+            onOffButton1.onclick = function() {
+                if (onOffButton1.textContent === "On") {
+                    var startTime = parseTime(startTimeInput1.value);
+                    var endTime = parseTime(endTimeInput1.value);
+                    if (!isNaN(startTime) && !isNaN(endTime)) {
+                        scheduleOnOff(startTime, endTime);
+                        onOffButton1.textContent = "Off"; 
+                        onOffButton1.style.color = "red";
                     } else {
-                        clearInterval(intervalId);
-                        onOffButton1.textContent = "On"; 
-                        onOffButton1.style.color = "#00ff00";
+                        alert("Wprowadź poprawne godziny (HH mm)!");
                     }
-                };
-                onoffDiv1.appendChild(startTimeInput1);
-                onoffDiv1.appendChild(endTimeInput1);
-                onoffDiv1.appendChild(onOffButton1);
-    
-                var codecode = document.getElementById("code_Panel");
-                codecode.appendChild(onoffDiv1);
-    
-                ghButtonExecuted = true;
-                clearInterval(ghButtonIntervalId);
-            }
+                } else {
+                    clearInterval(intervalId);
+                    onOffButton1.textContent = "On"; 
+                    onOffButton1.style.color = "#00ff00";
+                }
+            };
+            onoffDiv1.appendChild(startTimeInput1);
+            onoffDiv1.appendChild(endTimeInput1);
+            onoffDiv1.appendChild(onOffButton1);
+            var codecode = document.getElementById("code_Panel");
+            codecode.appendChild(onoffDiv1);
+            ghButtonExecuted = true;
+            clearInterval(ghButtonIntervalId);
         }
     }
+}
+
     
     var ghButtonIntervalId = setInterval(checkAndExecuteGHButton, 1000);
     
