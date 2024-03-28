@@ -104,7 +104,7 @@ function enableLocalStorage() {
     });
 }
 
-const startStopButton = document.createElement('button');
+
 startStopButton.textContent = recordingEnabled ? 'Off' : 'On'; 
 startStopButton.id = 'startStopButton';
 startStopButton.style.position = 'fixed';
