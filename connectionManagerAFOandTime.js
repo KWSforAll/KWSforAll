@@ -25,7 +25,7 @@
     let startStopHideTimer;
 
 }
-setTimeout(runCodeWithDelay, 8000);
+
 
 let intervalId;
 let recordingEnabled = JSON.parse(localStorage.getItem('recordingEnabled')) || false;
@@ -126,6 +126,7 @@ startStopButton.addEventListener('click', function() {
     startStopButton.textContent = recordingEnabled ? 'Off' : 'On'; 
 });
 document.body.appendChild(startStopButton);
+setTimeout(runCodeWithDelay, 600);
 function selectSavedSpawners() {
     const selectedSpawners = JSON.parse(localStorage.getItem('selectedSpawners')) || [];
     let index = 0;
