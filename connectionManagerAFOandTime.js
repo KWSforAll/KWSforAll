@@ -23,7 +23,7 @@
     });
     let startStopHideTimer;
 
-}
+
 setTimeout(runCodeWithDelay, 4000);
 
 let intervalId;
