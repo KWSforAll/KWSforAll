@@ -1,18 +1,11 @@
-const observer = new MutationObserver(function(mutationsList, observer) {
-    for(let mutation of mutationsList) {
-        if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
-            for(let node of mutation.addedNodes) {
-                if (node.matches && node.matches('button[data-option="logout"]')) {
-                    observer.disconnect();
-                    setTimeout(runCodeWithDelay, 700);
-                    return;
-                }
-            }
-        }
+document.addEventListener('DOMContentLoaded', function() {
+    const logoutButton = document.querySelector('button[data-option="logout"]');
+    if (logoutButton) {
+        runCodeWithDelay();
+    } else {
+        console.error('Button[data-option="logout"] not found.');
     }
 });
-
-observer.observe(document.body, { childList: true, subtree: true });
 
     function runCodeWithDelay() {   
  const logoutButton = document.querySelector('button[data-option="logout"]');
