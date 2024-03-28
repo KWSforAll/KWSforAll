@@ -1,5 +1,5 @@
     const logoutButton = document.querySelector('button[data-option="logout"]');
-    const startStopButton = document.getElementById('startStopButton');
+
     startStopButton.style.display = 'none';
     function showstartStopButton() {
         startStopButton.style.display = 'block';
@@ -104,7 +104,7 @@ function enableLocalStorage() {
     });
 }
 
-
+const startStopButton = document.createElement('button');
 startStopButton.textContent = recordingEnabled ? 'Off' : 'On'; 
 startStopButton.id = 'startStopButton';
 startStopButton.style.position = 'fixed';
