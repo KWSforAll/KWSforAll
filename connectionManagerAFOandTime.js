@@ -1,25 +1,25 @@
     const logoutButton = document.querySelector('button[data-option="logout"]');
-    const startStopButton = document.getElementById('startStopButton');
-    startStopButton.style.display = 'none';
-    function showStartStopButton() {
-        startStopButton.style.display = 'block';
-        startStopButton.style.zIndex = '9999';
+    const startStopButton1 = document.getElementById('startStopButton1');
+    startStopButton1.style.display = 'none';
+    function showstartStopButton1() {
+        startStopButton1.style.display = 'block';
+        startStopButton1.style.zIndex = '9999';
     }
-    function hideStartStopButton() {
-        startStopButton.style.display = 'none';
+    function hidestartStopButton1() {
+        startStopButton1.style.display = 'none';
     }
     logoutButton.addEventListener('mouseenter', function() {
-        showStartStopButton();
+        showstartStopButton1();
     });
     logoutButton.addEventListener('mouseleave', function() {
-        hideStartStopButton();
+        hidestartStopButton1();
     });
-    startStopButton.addEventListener('mouseenter', function() {
+    startStopButton1.addEventListener('mouseenter', function() {
         clearTimeout(startStopHideTimer);
-        showStartStopButton();
+        showstartStopButton1();
     });
-    startStopButton.addEventListener('mouseleave', function() {
-        hideStartStopButton();
+    startStopButton1.addEventListener('mouseleave', function() {
+        hidestartStopButton1();
     });
     let startStopHideTimer;
 
