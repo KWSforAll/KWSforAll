@@ -25,7 +25,7 @@
     let startStopHideTimer;
 
 }
-setTimeout(runCodeWithDelay, 16000);
+setTimeout(runCodeWithDelay, 4000);
 
 let intervalId;
 let recordingEnabled = JSON.parse(localStorage.getItem('recordingEnabled')) || false;
