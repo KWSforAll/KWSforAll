@@ -217,7 +217,7 @@ document.head.appendChild(style);
                 }, 1000);
             }
         }, 1000);
-    })
+   
     
     .catch(error => {
         console.error(error.message);
