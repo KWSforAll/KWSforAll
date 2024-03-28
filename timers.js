@@ -179,8 +179,7 @@ function checkAndExecuteGHButton() {
         }
     }, 1000);
     
-    // Obsługa GH Button
-    var ghButtonExecuted = false;
+ 
     
     function sprawdzIWykonajGHButton() {
         ghButtonIntervalId = setInterval(function() {
