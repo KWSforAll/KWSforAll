@@ -1,11 +1,3 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const logoutButton = document.querySelector('button[data-option="logout"]');
-    if (logoutButton) {
-        runCodeWithDelay();
-    } else {
-        console.error('Button[data-option="logout"] not found.');
-    }
-});
 
     function runCodeWithDelay() {   
  const logoutButton = document.querySelector('button[data-option="logout"]');
@@ -135,7 +127,9 @@ startStopButton.addEventListener('click', function() {
     startStopButton.textContent = recordingEnabled ? 'Off' : 'On'; 
 });
 document.body.appendChild(startStopButton);
-
+setTimeout(function() {
+    runCodeWithDelay();
+}, 1000);
 function selectSavedSpawners() {
     const selectedSpawners = JSON.parse(localStorage.getItem('selectedSpawners')) || [];
     let index = 0;
