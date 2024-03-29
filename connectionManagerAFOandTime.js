@@ -1,4 +1,4 @@
-usun sprawdzanie mainpanel i resppanel
+
 function runCodeWithDelay() {   
     const logoutButton = document.querySelector('button[data-option="logout"]');
     const startStopButton = document.getElementById('startStopButton');
