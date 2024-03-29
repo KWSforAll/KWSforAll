@@ -1,3 +1,4 @@
+usun sprawdzanie mainpanel i resppanel
 function runCodeWithDelay() {   
     const logoutButton = document.querySelector('button[data-option="logout"]');
     const startStopButton = document.getElementById('startStopButton');
@@ -57,7 +58,7 @@ function replaySavedClicks() {
 
 function startRecording() {
     enableLocalStorage();
-    intervalId = setInterval(replaySavedClicks, 1000);
+    intervalId = setInterval(checkMainPanel, 1000);
     console.log('Started recording clicks.');
     recordingEnabled = true;
     localStorage.setItem('recordingEnabled', true);
@@ -74,6 +75,19 @@ function stopRecording() {
     stopReplay = true; 
 }    
 
+
+function checkMainPanel() {
+    const mainPanel = document.getElementById("main_Panel");
+    if (mainPanel) {
+        enableLocalStorage();
+        clearInterval(intervalId);
+        replaySavedClicks(); 
+    }
+    const respPanel = document.getElementById("resp_Panel");
+    if (respPanel) {
+        enableLocalStorageWithClass('.resp_button');
+    }
+}
 
 function handleButtonClick(event) {
     const buttonClass = event.target.className.replace(/\s+/g, '.');
@@ -162,6 +176,8 @@ function performPvmActions() {
         spawner.addEventListener('change', saveSelectedSpawners); 
     });
 }
+
+checkMainPanel();
 
 const savedClicks = JSON.parse(localStorage.getItem('savedClicks')) || {};
 if (Object.keys(savedClicks).length > 0) {
