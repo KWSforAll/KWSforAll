@@ -57,7 +57,7 @@ function replaySavedClicks() {
 
 function startRecording() {
     enableLocalStorage();
-    intervalId = setInterval(checkMainPanel, 1000);
+    intervalId = setInterval(replaySavedClicks, 1000);
     console.log('Started recording clicks.');
     recordingEnabled = true;
     localStorage.setItem('recordingEnabled', true);
