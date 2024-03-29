@@ -1437,7 +1437,7 @@ if (typeof GAME === 'undefined') { } else {
 					ct: 0
 				    });
 				} else if (event.key === "0") {
-				    blogo();
+				    this.blogo();
 				} else if (event.key === "8") {
 				    let set = $("#ekw_sets").find(".option.ek_sets_all" + ":not(.current)").attr("data-set");
 				    if (set != undefined) {
