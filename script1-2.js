@@ -838,7 +838,7 @@ if (typeof GAME === 'undefined') { } else {
 		            a: 14,
 		            type: 3
 		        });
-		        blogo() {
+		  function  blogo() {
 	    if (JQS.chm.is(":focus") == false) {
 		var label = $('<label for="countInput">Ile :</label>').css({
 		    position: 'absolute',
