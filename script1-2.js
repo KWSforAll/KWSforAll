@@ -833,11 +833,85 @@ if (typeof GAME === 'undefined') { } else {
                     GAME.komunikat("Odebrano wszystkie możliwe nagrody z Vipa!!!");
                 }
             }
-            bless() {
-                GAME.socket.emit('ga', {
-                    a: 14,
-                    type: 3
-                });
+		    bless() {
+		        GAME.socket.emit('ga', {
+		            a: 14,
+		            type: 3
+		        });
+		        blogo() {
+	    if (JQS.chm.is(":focus") == false) {
+		var label = $('<label for="countInput">Ile :</label>').css({
+		    position: 'absolute',
+		    color: '#CE8500',
+		    top: '36px',
+		    right: '300px',
+		});
+
+		label.css('font-weight', 'bold');
+
+		var input = $('<input id="countInput" type="number">').css({
+		    position: 'absolute',
+		    width: '45px',
+		    top: '36px',
+		    right: '250px',
+		    borderRadius: '5px',
+		    border: '2px solid #282E31',
+		    padding: '5px',
+		    backgroundColor: '#040E13',
+		    color: '#206288'
+		});
+
+		var button = $('<button id="startblogo">Rozpocznij</button>').css({
+		    position: 'absolute',
+		    top: '36px',
+		    right: '152px',
+		    backgroundColor: '#000',
+		    color: '#206288',
+		    borderRadius: '5px',
+		    border: '2px solid #282E31',
+		    padding: '5px'
+		});
+
+		var counter = $('<p id="counter">Wykonano: 0</p>').css({
+		    position: 'absolute',
+		    color: '#CE8500',
+		    top: '68px',
+		    right: '260px'
+		});
+
+		counter.css('font-weight', 'bold');
+
+		button.click(function() {
+		    var count = parseInt($("#countInput").val()) || 0;
+		    var clickedCount = 0;
+
+		    bless();
+
+		    clickedCount++;
+		    counter.text("Wykonano: " + clickedCount);
+		    count--;
+
+		    var intervalId = setInterval(function() {
+		        if (count <= 0) {
+		            clearInterval(intervalId);
+		            $("#countInput, #startblogo, #counter, label[for='countInput']").hide();
+		            alert("Klikanie zakończone");
+		            return;
+		        }
+
+		        bless();
+
+		        clickedCount++;
+		        counter.text("Wykonano: " + clickedCount);
+		        count--;
+		    }, 10300);
+		});
+
+		$('body').append(label, input, button, counter);
+	    }
+	    return false;
+	}
+
                 setTimeout(() => {
                     var arr = $.map($('.use_buff:checked'), function (e, i) {
                         return +e.value;
@@ -1315,73 +1389,75 @@ if (typeof GAME === 'undefined') { } else {
                 $("body").on("click", `[data-option="map_alternative_pilot"]`, () => {
                     this.createAlternativePilot();
                 });
-                $(document).keydown((event) => {
-                    if (!$("input, textarea").is(":focus")) {
-                        if (event.key === "x" || event.key === "X") {
-                            this.questProceed();
-                            kom_clear();
-                        } else if (event.key === "b" || event.key === "B") {
-                            this.pvpKill();
-                        } else if (event.key === "n" || event.key === "N") {
-                            this.useCompressor();
-                        } else if (event.key === "2") {
-                            GAME.socket.emit('ga', {
-                                a: 15,
-                                type: 13
-                            });
-                        } else if (event.key === "3") {
-                            GAME.socket.emit('ga', {
-                                a: 39,
-                                type: 32
-                            });
-                        } else if (event.key === "4") {
-                            this.bless();
-                        } else if (event.key === "5") {
-                            setTimeout(() => {
-                                GAME.socket.emit('ga', {
-                                    a: 54,
-                                    type: 0
-                                });
-                            }, 300);
-                            setTimeout(() => {
-                                this.vip();
-                            }, 600);
-                            GAME.socket.emit('ga', {
-                                a: 15,
-                                type: 7
-                            });
-                        } else if (event.key === "6") {
-                            GAME.socket.emit('ga', {
-                                a: 39,
-                                type: 46,
-                                rent: 3
-                            });
-                        } else if (event.key === "7") {
-                            GAME.socket.emit('ga', {
-                                a: 10,
-                                type: 2,
-                                ct: 0
-                            });
-                        } else if (event.key === "8") {
-                            let set = $("#ekw_sets").find(".option.ek_sets_all" + ":not(.current)").attr("data-set");
-                            if (set != undefined) {
-                                GAME.socket.emit('ga', {
-                                    a: 64,
-                                    type: 2,
-                                    set: set
-                                });
-                            }
-                        } else if (event.key === "=") {
-                            this.createAlternativePilot();
-                        } else if (event.key === ",") {
-                            console.log("KWS: clicked comma on keyboard for next character");
-                            this.goToPreviousChar();
-                        } else if (event.key === ".") {
-                            console.log("KWS: clicked dot on keyboard for next character");
-                            this.goToNextChar();
-                        } else if (event.key === "9" && JQS.qcc.is(":visible")) { }
-                    }
-                });
+			$(document).keydown((event) => {
+			    if (!$("input, textarea").is(":focus")) {
+				if (event.key === "x" || event.key === "X") {
+				    questProceed();
+				    kom_clear();
+				} else if (event.key === "b" || event.key === "B") {
+				    pvpKill();
+				} else if (event.key === "n" || event.key === "N") {
+				    useCompressor();
+				} else if (event.key === "2") {
+				    GAME.socket.emit('ga', {
+					a: 15,
+					type: 13
+				    });
+				} else if (event.key === "3") {
+				    GAME.socket.emit('ga', {
+					a: 39,
+					type: 32
+				    });
+				} else if (event.key === "4") {
+				    this.bless();
+				} else if (event.key === "5") {
+				    setTimeout(() => {
+					GAME.socket.emit('ga', {
+					    a: 54,
+					    type: 0
+					});
+				    }, 300);
+				    setTimeout(() => {
+					vip();
+				    }, 600);
+				    GAME.socket.emit('ga', {
+					a: 15,
+					type: 7
+				    });
+				} else if (event.key === "6") {
+				    GAME.socket.emit('ga', {
+					a: 39,
+					type: 46,
+					rent: 3
+				    });
+				} else if (event.key === "7") {
+				    GAME.socket.emit('ga', {
+					a: 10,
+					type: 2,
+					ct: 0
+				    });
+				} else if (event.key === "0") {
+				    blogo();
+				} else if (event.key === "8") {
+				    let set = $("#ekw_sets").find(".option.ek_sets_all" + ":not(.current)").attr("data-set");
+				    if (set != undefined) {
+					GAME.socket.emit('ga', {
+					    a: 64,
+					    type: 2,
+					    set: set
+					});
+				    }
+				} else if (event.key === "=") {
+				    createAlternativePilot();
+				} else if (event.key === ",") {
+				    console.log("KWS: clicked comma on keyboard for next character");
+				    goToPreviousChar();
+				} else if (event.key === ".") {
+				    console.log("KWS: clicked dot on keyboard for next character");
+				    goToNextChar();
+				} else if (event.key === "9" && JQS.qcc.is(":visible")) { }
+			    }
+			});
                 $("body").on("click", ".qlink.load_afo", () => {
                     if (typeof this.afo_is_loaded == 'undefined') {
                         this.afo_is_loaded = true;
