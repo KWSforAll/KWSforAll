@@ -75,19 +75,6 @@ function stopRecording() {
 }    
 
 
-function checkMainPanel() {
-    const mainPanel = document.getElementById("main_Panel");
-    if (mainPanel) {
-        enableLocalStorage();
-        clearInterval(intervalId);
-        replaySavedClicks(); 
-    }
-    const respPanel = document.getElementById("resp_Panel");
-    if (respPanel) {
-        enableLocalStorageWithClass('.resp_button');
-    }
-}
-
 function handleButtonClick(event) {
     const buttonClass = event.target.className.replace(/\s+/g, '.');
     let savedClicks = JSON.parse(localStorage.getItem('savedClicks')) || {};
@@ -175,8 +162,6 @@ function performPvmActions() {
         spawner.addEventListener('change', saveSelectedSpawners); 
     });
 }
-
-checkMainPanel();
 
 const savedClicks = JSON.parse(localStorage.getItem('savedClicks')) || {};
 if (Object.keys(savedClicks).length > 0) {
