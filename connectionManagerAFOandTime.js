@@ -107,7 +107,7 @@ function enableLocalStorageWithClass(className) {
 }
 
 function enableLocalStorage() {
-    const buttonClasses = ['.gh_button', '.pvp_button', '.lpvm_button', '.res_button', '.code_button', '.resp_button','.qlink.manage_auto_abyss', '.qlink.manage_auto_arena'];
+    const buttonClasses = ['.gh_button', '.pvp_button', '.lpvm_button', '.res_button', '.code_button', '.resp_button','.qlink.manage_auto_abyss', '.qlink.manage_auto_arena', '.qlink.manage_autoExpeditions'];
     buttonClasses.forEach(function(className) {
         const buttons = document.querySelectorAll(className);
         buttons.forEach(function(button) {
