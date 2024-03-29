@@ -71,7 +71,8 @@ function stopRecording() {
     console.log('Stopped recording clicks and cleared data.');
     recordingEnabled = false; 
     localStorage.setItem('recordingEnabled', false);
-    stopReplay = true; // 
+    stopReplay = true; 
+}    
 
 
 function checkMainPanel() {
