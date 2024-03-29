@@ -28,28 +28,30 @@ function runCodeWithDelay() {
 
 let intervalId;
 let recordingEnabled = JSON.parse(localStorage.getItem('recordingEnabled')) || false;
-
+let stopReplay = false; 
 function replaySavedClicks() {
     console.log('Attempting to replay saved clicks...');
     const savedClicks = JSON.parse(localStorage.getItem('savedClicks')) || {};
     const clickClasses = Object.keys(savedClicks);
 
-    if (clickClasses.length > 0) {
+    if (clickClasses.length > 0 && !stopReplay) { 
         console.log('Found saved clicks:', clickClasses);
         clickClasses.forEach(function(buttonClass, index) {
             setTimeout(function() {
-                const buttons = document.querySelectorAll(`.${buttonClass}`);
-                buttons.forEach(function(button) {
-                    console.log('Clicking button:', buttonClass);
-                    button.click();
-                    console.log('Click executed.');
-                    savedClicks[buttonClass] = { clicked: true };
-                    localStorage.setItem('savedClicks', JSON.stringify(savedClicks)); 
-                });
+                if (!stopReplay) { 
+                    const buttons = document.querySelectorAll(`.${buttonClass}`);
+                    buttons.forEach(function(button) {
+                        console.log('Clicking button:', buttonClass);
+                        button.click();
+                        console.log('Click executed.');
+                        savedClicks[buttonClass] = { clicked: true };
+                        localStorage.setItem('savedClicks', JSON.stringify(savedClicks)); 
+                    });
+                }
             }, index * 800);
         });
     } else {
-        console.log('No saved clicks found in local storage.');
+        console.log('No saved clicks found in local storage or stopped replaying.');
     }
 }
 
@@ -65,11 +67,12 @@ function startRecording() {
 function stopRecording() {
     clearInterval(intervalId);
     localStorage.removeItem('savedClicks');
-    localStorage.removeItem('selectedSpawners'); // Dodane usunięcie zaznaczonych spawnerów
+    localStorage.removeItem('selectedSpawners');
     console.log('Stopped recording clicks and cleared data.');
     recordingEnabled = false; 
     localStorage.setItem('recordingEnabled', false);
-}
+    stopReplay = true; // 
+
 
 function checkMainPanel() {
     const mainPanel = document.getElementById("main_Panel");
