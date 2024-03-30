@@ -1398,7 +1398,9 @@ if (typeof GAME === 'undefined') { } else {
                 $("body").on("click", ".qlink.server", () => {
 			GAME.page_switch('game_intro');
                 });
-
+                $("body").on("click", ".kws_top_bar_section.arena", () => {
+			GAME.page_switch('game_arena');
+                });
                 $("body").on("click", ".qlink.go_to_emp", (el) => {
                     let emp = parseInt($(el.target).attr("emp"));
                     GAME.socket.emit('ga', {
