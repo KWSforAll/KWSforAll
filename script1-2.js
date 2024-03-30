@@ -1335,6 +1335,7 @@ if (typeof GAME === 'undefined') { } else {
                                 a: 39,
                                 type: 32
                             });
+                            
                         } else if (event.key === "4") {
                             this.bless();
                         } else if (event.key === "5") {
@@ -1383,6 +1384,15 @@ if (typeof GAME === 'undefined') { } else {
                         } else if (event.key === "9" && JQS.qcc.is(":visible")) { }
                     }
                 });
+		    	$(document).bind('keydown', '`', function(){
+		if(JQS.chm.is(":focus") == false){
+		   GAME.emitOrder({a:39,type:32});
+		               setTimeout(function() {
+		        $('.close_kom').click();
+		    }, 880);
+		}
+		return false;
+	  		  });		                
                 $("body").on("click", ".qlink.load_afo", () => {
                     if (typeof this.afo_is_loaded == 'undefined') {
                         this.afo_is_loaded = true;
