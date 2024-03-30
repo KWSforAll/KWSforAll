@@ -2019,7 +2019,7 @@ if (typeof GAME === 'undefined') { } else {
                 if (GAME.char_data.klan_rent == 0) {
                     opts += `<div class="qlink get_titles_list" style="filter:hue-rotate(168deg);background-image: url('https://i.imgur.com/0eQCqBl.png');" data-toggle="tooltip" data-original-title="<div class=tt>Zmień tytuł</div>"></div>`;
                 }
-                opts += `<div class="qlink server" style='width: 25px; height: 25px; border-radius: 5px; border: 2px solid white; padding: 5px; background-color: black; color: white; cursor: pointer; font-size: 15px; text-align: center;' data-toggle="tooltip" data-original-title="<div class=tt>Server</div>">S</div>`;
+                opts += `<div class="qlink server" style='width: 33px; height: 33px; border-radius: 5px; border: 2px solid white; padding: 5px; background-color: black; color: white; cursor: pointer; font-size: 15px; text-align: center;' data-toggle="tooltip" data-original-title="<div class=tt>Server</div>">S</div>`;
                 opts += `<div class="qlink load_afo" style="filter:hue-rotate(168deg);background-image: url('https://i.imgur.com/P8sJgQz.png');" data-toggle="tooltip" data-original-title="<div class=tt>Załaduj AFO</div>"></div>`;
             
                 opts += `<div class="qlink sideIcons manage_auto_abyss${kws.auto_abyss ? ' kws_active_icon' : ''}" style="filter:hue-rotate(168deg);background-image: url('https://i.imgur.com/j5eQv2B.png');display:block;top:-136px;position:absolute;" data-toggle="tooltip" data-original-title="<div class=tt>[Włącz / Wyłącz] Atakowanie Otchłani</div>"></div>`;
