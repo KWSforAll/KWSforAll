@@ -1,6 +1,6 @@
 ### Hi there 👋
 
-Darmowe narzedzie do gry kosmiczniwojownicy.pl
+Darmowe narzedzie do gry kosmiczniwojownicy.pl!
 
 Po aktualizacje, instrukcje, porady, spolecznosc jak i wklad w to w jakim kierunku zmierza bot, zapraszam tutaj:
 
