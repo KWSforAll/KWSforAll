@@ -1398,19 +1398,20 @@ $("body").on("click", ".qlink.load_afo", () => {
         this.afo_is_loaded = true;
 
         const promises = [];
+
         const firstScriptPromise = $.getScript("https://raw.githubusercontent.com/KWSforAll/KWSforAll/Koles/uncodedeeee.js")
             .fail(() => {
                 GAME.komunikat("Wystąpił błąd w ładowaniu pierwszego skryptu, odśwież stronę i spróbuj ponownie!");
             });
         promises.push(firstScriptPromise);
+
         const secondScriptPromise = $.getScript("https://raw.githubusercontent.com/KWSforAll/KWSforAll/Koles/timers.js")
             .fail(() => {
                 GAME.komunikat("Wystąpił błąd w ładowaniu drugiego skryptu, odśwież stronę i spróbuj ponownie!");
             });
         promises.push(secondScriptPromise);
-        Promise.all(promises)
-            .then(() => {
-            });
+
+        Promise.all(promises);
     } else {
         GAME.komunikat("Wystąpił błąd w ładowaniu skryptu, odśwież stronę i spróbuj ponownie!");
     }
