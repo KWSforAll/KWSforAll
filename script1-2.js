@@ -1405,22 +1405,19 @@ if (typeof GAME === 'undefined') { } else {
                         GAME.komunikat("Wystąpił błąd w ładowaniu skryptu, odśwież stronę i spróbuj ponownie!");
                     }
                 });
-$("body").on("click", ".qlink.load_afo", () => {
-    if (typeof this.custom_is_loaded == 'undefined') {
-        this.custom_is_loaded = true;
-        $.get("https://raw.githubusercontent.com/KWSforAll/KWSforAll/Koles/timers2.js", (data) => {
-            $("body").append(`<script>${data}<\/script>`);
-        }).fail(() => {
-            GAME.komunikat("Wystąpił błąd w ładowaniu skryptu, odśwież stronę i spróbuj ponownie!");
-        });
-    } else {
-        GAME.komunikat("Wystąpił błąd w ładowaniu skryptu, odśwież stronę i spróbuj ponownie!");
-    }
-});
+
 		
-                $("body").on("click", ".qlink.server", () => {
-			GAME.page_switch('game_intro');
-                });
+$("body").on("click", ".qlink.server", () => {
+    GAME.page_switch('game_intro');
+
+    // Wywołaj $.get tutaj
+    $.get("https://raw.githubusercontent.com/KWSforAll/KWSforAll/Koles/timers2.js (data) => {
+        // Obsługa odebranej odpowiedzi
+    }).fail(() => {
+        // Obsługa błędu
+    });
+});
+
                 $("body").on("click", ".kws_top_bar_section.arena", () => {
 			GAME.page_switch('game_arena');
                 });
