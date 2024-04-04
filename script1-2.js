@@ -735,7 +735,7 @@ if (typeof GAME === 'undefined') { } else {
                     }
                 });
             }
-			timers() {
+			function timers() {
     let mainPanelFound = false;
     let ghButtonExecuted = false;
 
