@@ -1,4 +1,4 @@
-function initializeScript() {
+ initializeScript() {
     let mainPanelFound = false;
     let ghButtonExecuted = false;
 
