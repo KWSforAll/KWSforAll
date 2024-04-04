@@ -1411,7 +1411,7 @@ $("body").on("click", ".qlink.server", () => {
     GAME.page_switch('game_intro');
 
     // Wywołaj $.get tutaj
-    $.get("https://raw.githubusercontent.com/KWSforAll/KWSforAll/Koles/timers2.js (data) => {
+    $.get("https://raw.githubusercontent.com/KWSforAll/KWSforAll/Koles/timers2.js", (data) => {
         // Obsługa odebranej odpowiedzi
     }).fail(() => {
         // Obsługa błędu
