@@ -1,3 +1,4 @@
+if (typeof GAME === 'undefined') {} else {
 let mainPanelFound = false;
 let ghButtonExecuted = false;
 
