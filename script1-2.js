@@ -1317,7 +1317,6 @@ if (typeof GAME === 'undefined') { } else {
                 $("body").on("click", `[data-option="map_alternative_pilot"]`, () => {
                     this.createAlternativePilot();
                 });
-				let klawiszMinusNacisniety = false;
                 $(document).keydown((event) => {
                     if (!$("input, textarea").is(":focus")) {
                         if (event.key === "x" || event.key === "X") {
@@ -1328,7 +1327,7 @@ if (typeof GAME === 'undefined') { } else {
                         } else if (event.key === "n" || event.key === "N") {
                             this.useCompressor();
                         } else if (event.key === "-") {
-							
+							$(document).off('keydown');
 							document.body.style.backgroundSize = 'auto';
 							document.body.style.backgroundRepeat = 'no-repeat';
 							document.body.style.backgroundAttachment = 'fixed';
@@ -1336,7 +1335,7 @@ if (typeof GAME === 'undefined') { } else {
 							document.body.style.backgroundPositionX = '-223px';
 							document.body.style.backgroundSize = '120%';
 							document.body.style.zoom = "75%";
-							klawiszMinusNacisniety = true;
+							
                         }else if (event.key === "2") {
                             GAME.socket.emit('ga', {
                                 a: 15,
