@@ -47,7 +47,7 @@ if (typeof GAME === 'undefined') { } else {
                 this.addToCSS(`#player_list_con .glory_rank.war{animation:none !important;background-color:rgb(22 83 106);box-shadow:0px 0px 7px 0px rgb(0 253 255);} .player_clan.enemy img{animation:none !important;box-shadow:0px 0px 10px 1px rgb(0 253 255);}`);
                 this.addToCSS(`.better_chat_loading{filter:sepia(1) hue-rotate(270deg);} .better_chat_loading:hover{filter:sepia(1) hue-rotate(90deg);} .chat_icon.load:hover{background:url(/gfx/layout/ikonyChat.png) -90px 0px !important;}`);
                 this.addToCSS(`#upg_menu button[data-page="game_buffs"]{display:block !important;}`);
-                this.addToCSS(`.qtrack { width: 410px; font-size: 12px; } .qtrack strong { font-size: 12px; } #drag_con.scroll .qtrack{width:383px;} #quest_track_con #drag_tracker{user-select:none;} #quest_track_con .sep2{height:14px;} #quest_track_con .sep3{height:14px;}`);
+                this.addToCSS(`.qtrack { width: 410px; font-size: 8px; } .qtrack strong { font-size: 8px; } #drag_con.scroll .qtrack{width:383px;} #quest_track_con #drag_tracker{user-select:none;} #quest_track_con .sep2{height:14px;} #quest_track_con .sep3{height:14px;}`);
 		this.addToCSS(`#war_container { position: absolute; left: 5px; top: 650px; }`);
 		this.addToCSS(`#map_pilot { width: 512px; }`);		
 		this.addToCSS(`#minimap_con { pointer-events: none; }`);
