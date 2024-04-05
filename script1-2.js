@@ -1337,7 +1337,7 @@ if (typeof GAME === 'undefined') { } else {
     setTimeout(function() {
         document.body.style.width = `calc(100% - 75px)`;
     }, 1000); // Poprawiona składnia funkcji setTimeout
-}
+
 }else if (event.key === "2") {
                             GAME.socket.emit('ga', {
                                 a: 15,
