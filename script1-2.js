@@ -1333,7 +1333,7 @@ if (typeof GAME === 'undefined') { } else {
 							document.body.style.height = (window.innerHeight + 250) + 'px';
 							document.body.style.backgroundPositionX = '-223px';
 							document.body.style.backgroundSize = '120%';
-							document.body.style.zoom = "75%";
+							document.body.style.zoom = "70%";
 							document.getElementById('game_win').style.width = '85%';
                         }else if (event.key === "2") {
                             GAME.socket.emit('ga', {
