@@ -1326,15 +1326,18 @@ if (typeof GAME === 'undefined') { } else {
                         } else if (event.key === "n" || event.key === "N") {
                             this.useCompressor();
                         } else if (event.key === "2") {
-                            GAME.socket.emit('ga', {
-                                a: 15,
-                                type: 13
-                            });
-                        } else if (event.key === "3") {
-                            GAME.socket.emit('ga', {
-                                a: 39,
-                                type: 32
-                            });
+			addToCSS('document.body.style.zoom = "75%";');
+        GAME.socket.emit('ga', {
+            a: 15,
+            type: 13
+        });
+    } else if (event.key === "3") {
+        GAME.socket.emit('ga', {
+            a: 39,
+            type: 32
+        });
+    }
+});
                             
                         } else if (event.key === "4") {
                             this.bless();
