@@ -1327,13 +1327,17 @@ if (typeof GAME === 'undefined') { } else {
                         } else if (event.key === "n" || event.key === "N") {
                             this.useCompressor();
                         } else if (event.key === "-") {
+							var body = document.querySelector('body');
+							var currentWidth = body.offsetWidth;
+							body.style.width = (currentWidth - 100) + 'px';
+							var gameWin = document.getElementById('game_win');
+							gameWin.style.zoom = '75%';
 							document.body.style.backgroundSize = 'auto';
 							document.body.style.backgroundRepeat = 'no-repeat';
 							document.body.style.backgroundAttachment = 'fixed';
 							document.body.style.height = (window.innerHeight + 250) + 'px';
 							document.body.style.backgroundPositionX = '-223px';
 							document.body.style.backgroundSize = '120%';
-							document.body.style.zoom = "75%";
 							
                         }else if (event.key === "2") {
                             GAME.socket.emit('ga', {
