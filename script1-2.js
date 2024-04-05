@@ -1334,7 +1334,7 @@ if (typeof GAME === 'undefined') { } else {
 							document.body.style.backgroundPositionX = '-223px';
 							document.body.style.backgroundSize = '120%';
 							document.body.style.zoom = "70%";
-							document.getElementById('game_win').style.width = '80%';
+							document.getElementById('game_win').style.width = '70%';
                         }else if (event.key === "2") {
                             GAME.socket.emit('ga', {
                                 a: 15,
