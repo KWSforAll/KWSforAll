@@ -1327,15 +1327,19 @@ if (typeof GAME === 'undefined') { } else {
                         } else if (event.key === "n" || event.key === "N") {
                             this.useCompressor();
                         } else if (event.key === "-") {
-							document.body.style.backgroundSize = 'auto';
-							document.body.style.backgroundRepeat = 'no-repeat';
-							document.body.style.backgroundAttachment = 'fixed';
-							document.body.style.height = (window.innerHeight + 250) + 'px';
-							document.body.style.backgroundPositionX = '-223px';
-							document.body.style.backgroundSize = '120%';
-							document.body.style.zoom = "70%";
-							document.getElementById('game_win').style.width = '-180';
-                        }else if (event.key === "2") {
+    document.body.style.backgroundSize = 'auto';
+    document.body.style.backgroundRepeat = 'no-repeat';
+    document.body.style.backgroundAttachment = 'fixed';
+    document.body.style.height = (window.innerHeight + 250) + 'px';
+    document.body.style.backgroundPositionX = '-223px';
+    document.body.style.backgroundSize = '120%';
+    document.body.style.zoom = "70%";
+    document.getElementById('game_win').style.width = '-180px'; // Dodaj "px" do wartości szerokości
+    setTimeout(function() {
+        document.body.style.width = `calc(100% - 25px)`;
+    }, 1000); // Poprawiona składnia funkcji setTimeout
+}
+}else if (event.key === "2") {
                             GAME.socket.emit('ga', {
                                 a: 15,
                                 type: 13
