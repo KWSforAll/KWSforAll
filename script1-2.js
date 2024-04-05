@@ -49,7 +49,7 @@ if (typeof GAME === 'undefined') { } else {
                 this.addToCSS(`#upg_menu button[data-page="game_buffs"]{display:block !important;}`);
                 this.addToCSS(`.qtrack { width: 410px; font-size: 12px; } .qtrack strong { font-size: 12px; } #drag_con.scroll .qtrack{width:383px;} #quest_track_con #drag_tracker{user-select:none;} #quest_track_con .sep2{height:14px;} #quest_track_con .sep3{height:14px;}`);
 				//this.addToCSS(`#war_container { position: absolute; left: 5px; top: 650px; }`);
-				this.addToCSS(`#war_container { position: absolute; left: 25px; top: 680px; }`);
+				this.addToCSS(`#war_container { position: absolute; left: 45px; top: 730px; }`);
 				this.addToCSS(`#map_pilot { width: 512px; }`);		
 				this.addToCSS(`#minimap_con { pointer-events: none; }`);
                 this.addToCSS(`.option.ls.spawner{ position:absolute; top:60px; right:40px; background-size: 100% 100%; border: solid #6f6f6f 1px; }`);
