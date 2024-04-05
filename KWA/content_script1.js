@@ -11,7 +11,8 @@
     "link3":"https://raw.githubusercontent.com/KWSforAll/KWSforAll/Koles/ballReset.js",
     "link4":"https://raw.githubusercontent.com/KWSforAll/KWSforAll/Koles/ballManager.js",
     "link5":"https://raw.githubusercontent.com/KWSforAll/KWSforAll/Koles/script1-2.js",
-    "link6":"https://raw.githubusercontent.com/KWSforAll/KWSforAll/Koles/connectionManagerAFOandTime.js",    
+    "link6":"https://raw.githubusercontent.com/KWSforAll/KWSforAll/Koles/connectionManagerAFOandTime.js",   
+    "link7":"https://raw.githubusercontent.com/KWSforAll/KWSforAll/Koles/tlo.js",	
  };
  
  const fetchPromises = Object.values(links).map(link => {
