@@ -1,20 +1,14 @@
-let klawiszMinusNacisniety = false;
+document.addEventListener('wheel', function(event) {
+    if (event.ctrlKey) { 
+        event.preventDefault(); 
 
-document.addEventListener('keydown', function(event) {
-    if (!$("input, textarea").is(":focus")) {
-        if (event.key === "-" && !klawiszMinusNacisniety) {
-            addToCSS.innerHTML += `
-                body {
-                    background-size: auto;
-                    background-repeat: no-repeat;
-                    background-attachment: fixed;
-                    height: ${(window.innerHeight + 250)}px;
-                    background-position-x: -223px;
-                    background-size: 120%;
-                    zoom: 75%;
-                }
-            `;
-            klawiszMinusNacisniety = true;
-        }
+        let scaleChange = event.deltaY > 0 ? -0.1 : 0.1; 
+
+        let currentScale = parseFloat(document.body.style.zoom || 1);
+        let newScale = currentScale + scaleChange; 
+
+        newScale = Math.min(Math.max(newScale, 0.1), 10);
+
+        document.body.style.zoom = newScale; 
     }
 });
