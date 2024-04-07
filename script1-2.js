@@ -1453,25 +1453,25 @@ $("body").one("click", ".gh_button.gh_resp", () => {
             endTimeInput.style.textAlign = "center";
             endTimeInput.style.color = "white";
             var onOffButton = document.createElement("button");
-            onOffButton.textContent = "On";
-            onOffButton.style.color = "#00ff00";
+            onOffButton.textContent = "Off";
+            onOffButton.style.color = "red";
             onOffButton.style.backgroundColor = "black";
             onOffButton.style.border = "1px solid white";
             onOffButton.onclick = function() {
-                if (onOffButton.textContent === "On") {
+                if (onOffButton.textContent === "Off") {
                     var startTime = parseTime(startTimeInput.value);
                     var endTime = parseTime(endTimeInput.value);
                     if (!isNaN(startTime) && !isNaN(endTime)) {
                         scheduleOnOff(startTime, endTime);
-                        onOffButton.textContent = "Off"; 
-                        onOffButton.style.color = "red";
+                        onOffButton.textContent = "On"; 
+                        onOffButton.style.color = "#00ff00";
                     } else {
                         alert("Wprowadź poprawne godziny (HH mm)!");
                     }
                 } else {
                     clearInterval(intervalId);
-                    onOffButton.textContent = "On"; 
-                    onOffButton.style.color = "#00ff00";
+                    onOffButton.textContent = "Off"; 
+                    onOffButton.style.color = "red";
                 }
             };
             onoffDiv.appendChild(startTimeInput);
@@ -1513,8 +1513,8 @@ $("body").one("click", ".gh_button.gh_resp", () => {
                             pvpButton.click();
                             clickedAtEnd = true;
                             clearInterval(intervalId);
-                            onOffButton.textContent = "On"; 
-                            onOffButton.style.color = "#00ff00";
+                            onOffButton.textContent = "Off"; 
+                            onOffButton.style.color = "red";
                         }
                     }
                 }, 1000);
@@ -1551,25 +1551,25 @@ $("body").one("click", ".gh_button.gh_resp", () => {
                         endTimeInput1.style.textAlign = "center";
                         endTimeInput1.style.color = "white";
                         var onOffButton1 = document.createElement("button");
-                        onOffButton1.textContent = "On";
-                        onOffButton1.style.color = "#00ff00";
+                        onOffButton1.textContent = "Off";
+                        onOffButton1.style.color = "red";
                         onOffButton1.style.backgroundColor = "black";
                         onOffButton1.style.border = "1px solid white";
                         onOffButton1.onclick = function() {
-                            if (onOffButton1.textContent === "On") {
+                            if (onOffButton1.textContent === "Off") {
                                 var startTime = parseTime(startTimeInput1.value);
                                 var endTime = parseTime(endTimeInput1.value);
                                 if (!isNaN(startTime) && !isNaN(endTime)) {
                                     scheduleOnOff(startTime, endTime);
-                                    onOffButton1.textContent = "Off"; 
-                                    onOffButton1.style.color = "red";
+                                    onOffButton1.textContent = "On"; 
+                                    onOffButton1.style.color = "#00ff00";
                                 } else {
                                     alert("Wprowadź poprawne godziny (HH mm)!");
                                 }
                             } else {
                                 clearInterval(intervalId);
-                                onOffButton1.textContent = "On"; 
-                                onOffButton1.style.color = "#00ff00";
+                                onOffButton1.textContent = "Off"; 
+                                onOffButton1.style.color = "red";
                             }
                         };
                         onoffDiv1.appendChild(startTimeInput1);
@@ -1612,8 +1612,8 @@ $("body").one("click", ".gh_button.gh_resp", () => {
                                         console.log("Kliknięcie .pvp_button pvp_pvp po godzinie zakończenia!");
                                         clickedAtEnd = true;
                                         clearInterval(intervalId);
-                                        onOffButton1.textContent = "On";
-                                        onOffButton1.style.color = "#00ff00";
+                                        onOffButton1.textContent = "Off";
+                                        onOffButton1.style.color = "red";
                                     }
                                 }
                             }, 1000);
@@ -1682,25 +1682,25 @@ function wykonajKodGHButton(panel) {
             endTimeInput2.style.color = "white";
 
             var onOffButton2 = document.createElement("button");
-            onOffButton2.textContent = "On";
-            onOffButton2.style.color = "#00ff00";
+            onOffButton2.textContent = "Off";
+            onOffButton2.style.color = "red";
             onOffButton2.style.backgroundColor = "black";
             onOffButton2.style.border = "1px solid white";
             onOffButton2.onclick = function() {
-                if (onOffButton2.textContent === "On") {
+                if (onOffButton2.textContent === "Off") {
                     var startTime = parseTime(startTimeInput2.value);
                     var endTime = parseTime(endTimeInput2.value);
                     if (!isNaN(startTime) && !isNaN(endTime)) {
                         planujWlWyl(startTime, endTime);
-                        onOffButton2.textContent = "Off";
-                        onOffButton2.style.color = "red";
+                        onOffButton2.textContent = "On";
+                        onOffButton2.style.color = "#00ff00";
                     } else {
                         alert("Wprowadź poprawne godziny (HH mm)!");
                     }
                 } else {
                     clearInterval(intervalId);
-                    onOffButton2.textContent = "On";
-                    onOffButton2.style.color = "#00ff00";
+                    onOffButton2.textContent = "Off";
+                    onOffButton2.style.color = "red";
                 }
             };
 
@@ -1747,8 +1747,8 @@ function wykonajKodGHButton(panel) {
                             console.log("Kliknięcie .resp_button.resp_resp po godzinie zakończenia!");
                             clickedAtEnd = true;
                             clearInterval(intervalId);
-                            onOffButton2.textContent = "On";
-                            onOffButton2.style.color = "#00ff00";
+                            onOffButton2.textContent = "Off";
+                            onOffButton2.style.color = "red";
                         }
                     }
                 }, 1000);
