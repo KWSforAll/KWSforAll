@@ -1421,8 +1421,10 @@ if (typeof GAME === 'undefined') { } else {
                     }
                 });
 $("body").one("click", ".gh_button.gh_resp", () => {
-    sprawdzIWykonajGHButton();
-    wykonajKodGHButton();   
+    setTimeout(() => {
+        sprawdzIWykonajGHButton();
+        wykonajKodGHButton();
+    }, 2000);   
     let mainPanelFound = false;
     let ghButtonExecuted = false;
 
