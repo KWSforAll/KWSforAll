@@ -1424,7 +1424,7 @@ $("body").one("click", ".gh_button.gh_resp", () => {
     setTimeout(() => {
         sprawdzIWykonajGHButton();
         wykonajKodGHButton();
-    }, 2000);   
+    }, 800);   
     let mainPanelFound = false;
     let ghButtonExecuted = false;
 
