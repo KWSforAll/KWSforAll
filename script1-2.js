@@ -1761,6 +1761,254 @@ function wykonajKodGHButton(panel) {
                 $("body").on("click", ".qlink.server", () => {
 			GAME.page_switch('game_intro');
                 });
+                $("body").on("click", ".qlink.sk_auto", () => {
+						var SK = {
+				Locations:[982, 981, 980, 983, 984, 985, 987, 986, 988, 989, 990, 991, 992, 993, 994, 995, 996, 997, 998, 999, 1000],
+				Stop: true,
+				Matrix: [],
+				Map: 0,
+				Path: [],
+				Born: 2,
+				sk:0,
+				move_speed:100,
+				coords:[],
+				tep_cd:60500,
+				isStarted: false,
+				check: false
+			}
+
+			GAME.emit = function(order,data,force){
+				if(!this.is_loading||force){
+					this.load_start();
+					this.socket.emit(order,data);
+				}
+				else if(this.debug) console.log('failed order',order,data);
+			}
+			GAME.emitOrder = function(data,force=false){
+				this.emit('ga',data,force);
+			}
+
+			const steal_sk = setInterval(()=>{
+				GAME.socket.emit('ga',{a:33,type:0});
+
+				let button =  $(`#mdbp_${GAME.char_data.reborn}`).find('button[data-option="ball_fight"]');
+				let char_id = parseInt(button.attr("data-char_id"));
+				let ball_id = parseInt(button.attr("data-ball_id"));
+
+				if (button.length > 0) {
+					GAME.socket.emit('ga',{a:33,type:6,char_id:char_id,ball:ball_id});
+				}
+
+				let can_start = $(`#mdbp_${GAME.char_data.reborn}`).find('.timer').length;
+
+				if (can_start == 0 && !SK.isStarted) {
+					SK.isStarted = true;
+					SK.Stop = false;
+					SK.Locations = [982, 981, 980, 983, 984, 985, 987, 986, 988, 989, 990, 991, 992, 993, 994, 995, 996, 997, 998, 999, 1000];
+					SK.Start();
+				}
+				let ile_mam_sk = $(`#mdbp_${GAME.char_data.reborn}`).find(`b[data-char_id="${GAME.char_data.id}"]`).length;
+				
+				if (SK.Locations.length==0 && ile_mam_sk !=7) {
+					SK.Locations = [982, 981, 980, 983, 984, 985, 987, 986, 988, 989, 990, 991, 992, 993, 994, 995, 996, 997, 998, 999, 1000];
+				}
+
+				$('#fight_view').fadeOut();
+			}, 1000);
+
+
+			$('body').append('<div id="SK_control" style="min-width:100px; padding:5px; border:solid gray 1px; background:rgba(22, 22, 93, 0.81); color:gold; position: fixed; top: 40px; right: 5px; z-index:5; text-align:center;"><div class="bt_button" style="cursor:pointer;text-align:center; border-bottom:solid gray 1px;">START</div>');
+
+
+
+			$('#SK_control .bt_button').click(() => {
+				if(SK.Stop){
+					$('#SK_control .bt_button').html("STOP");
+					SK.Stop = false;
+					
+				}else{
+					$('#SK_control .bt_button').html("START");
+					SK.Stop = true;
+				}
+			});
+
+
+
+			SK.Start = function(){
+				let ile_mam_sk = $(`#mdbp_${GAME.char_data.reborn}`).find(`b[data-char_id="${GAME.char_data.id}"]`).length;
+				if(ile_mam_sk == 7){
+					GAME.emitOrder({a:12,type:18,loc:1189});
+					setTimeout(function(){ SK.Wish(); },1000);
+					setTimeout(()=>{ SK.isStarted = false; },30000);
+				}
+				 else if(Object.keys(GAME.map_balls).length===0){
+					setTimeout(function(){ SK.Teleport(); },1000);
+				}else {
+					setTimeout(function(){ SK.Action(); },100);
+				}
+					
+			}
+
+			SK.Action = function(){
+				if(Object.keys(GAME.map_balls).filter(key => GAME.map_balls[key] === 1)[0]===undefined)
+				{
+					setTimeout(function(){ SK.Teleport(); },5000);
+				}
+				else if(SK.coords[0]== GAME.char_data.x && SK.coords[1]==GAME.char_data.y) {
+					setTimeout(function(){ SK.Collect(); },300);
+				} else if(Object.keys(GAME.map_balls).filter(key => GAME.map_balls[key] === 1)[0]!=undefined && !SK.check) {
+					SK.coords=Object.keys(GAME.map_balls)
+					.filter(key => GAME.map_balls[key] === 1)[0]
+					.split('_');
+					SK.check=true;
+				setTimeout(function(){ SK.Action(); },300);
+				} else {
+					SK.coords=Object.keys(GAME.map_balls)
+					.filter(key => GAME.map_balls[key] === 1)[0]
+					.split('_');
+				setTimeout(function(){ SK.Go(); },300);
+				}
+			}
+
+
+			SK.CreateMatrix = function(){
+				SK.Matrix = [];
+				SK.Map = SK.FindMapcell();
+				
+				for(var i=0; i<parseInt(GAME.map.max_y); i++){
+					SK.Matrix[i] = [];
+					for(var j=0; j<parseInt(GAME.map.max_x); j++){
+						if(SK.Map[parseInt(j+1)+'_'+parseInt(i+1)].m==1){
+							SK.Matrix[i][j] = 1;
+						}else{
+							SK.Matrix[i][j]=0
+						}
+					}
+				}
+			}
+			SK.FindMapcell = function(){
+				var mapcell = Object.keys(GAME).find(z=> GAME[z] && GAME[z]['1_1']);
+				Object.defineProperty(GAME,'mapcell',{
+					get: function(){ return GAME[mapcell]; },
+					enumerable: true,
+					configurable: true
+				});
+
+				return GAME.mapcell;
+			}
+			SK.Wish = function(){
+				console.log("wish");
+				GAME.emitOrder({a:33,type:4,wish:8});
+				SK.sk=0;
+			}
+
+			SK.Collect = function(){
+				if(GAME.field_dball.id !=undefined){
+				GAME.emitOrder({a:33,type:3,id:GAME.field_dball.id});
+				SK.sk=SK.sk+1;
+				SK.check=false;
+				SK.coords= new Array;
+				console.log("catch ball");
+				if(SK.sk==7){SK.tep_cd=60000;}
+				setTimeout(function(){ SK.Start(); },SK.tep_cd);
+			} else {setTimeout(function(){ SK.Start(); },1000);}
+			}
+
+			SK.Teleport = function(){
+				GAME.emitOrder({a:12,type:18,loc:SK.Locations[0]});
+					SK.Locations.shift();
+					console.log("teleport");
+				setTimeout(function(){ SK.Start(); },1000);	
+			}
+
+			SK.Go = function(){
+				SK.CreateMatrix();
+				 SK.Finder.setGrid(SK.Matrix);
+				
+				PathID = SK.Finder.findPath(GAME.char_data.x-1, GAME.char_data.y-1, SK.coords[0]-1, SK.coords[1]-1, function(path){
+					
+					if(path === null){
+						console.log("Path was not found");
+					}else{
+						if(path.length!=0 && path[0].x == GAME.char_data.x-1 && path[0].y == GAME.char_data.y-1){
+							path.shift();
+						}
+						
+						SK.Path = path;
+						setTimeout(function(){ SK.Move(); }, 100);
+					}
+				});
+				
+				SK.Finder.calculate();
+			}
+
+			SK.Move = function(){
+				if(!SK.stop){
+					if(SK.Path.length!=0 && SK.Path[0].x > GAME.char_data.x-1 && SK.Path[0].y == GAME.char_data.y-1){
+						GAME.emitOrder({a:4,dir:7,vo:GAME.map_options.vo}); // prawo
+					}else if(SK.Path.length!=0 && SK.Path[0].x < GAME.char_data.x-1 && SK.Path[0].y == GAME.char_data.y-1){
+						GAME.emitOrder({a:4,dir:8,vo:GAME.map_options.vo}); // lewo
+					}else if(SK.Path.length!=0 && SK.Path[0].x == GAME.char_data.x-1 && SK.Path[0].y > GAME.char_data.y-1){
+						GAME.emitOrder({a:4,dir:1,vo:GAME.map_options.vo}); // dół
+					}else if(SK.Path.length!=0 && SK.Path[0].x == GAME.char_data.x-1 && SK.Path[0].y < GAME.char_data.y-1){
+						GAME.emitOrder({a:4,dir:2,vo:GAME.map_options.vo}); // góra
+					}else if(SK.Path.length!=0 && SK.Path[0].x > GAME.char_data.x-1 && SK.Path[0].y > GAME.char_data.y-1){
+						GAME.emitOrder({a:4,dir:3,vo:GAME.map_options.vo}); // dół - prawo
+					}else if(SK.Path.length!=0 && SK.Path[0].x < GAME.char_data.x-1 && SK.Path[0].y < GAME.char_data.y-1){
+						GAME.emitOrder({a:4,dir:6,vo:GAME.map_options.vo}); // góra - lewo
+					}else if(SK.Path.length!=0 && SK.Path[0].x > GAME.char_data.x-1 && SK.Path[0].y < GAME.char_data.y-1){
+						GAME.emitOrder({a:4,dir:5,vo:GAME.map_options.vo}); // góra - prawo
+					}else if(SK.Path.length!=0 && SK.Path[0].x < GAME.char_data.x-1 && SK.Path[0].y > GAME.char_data.y-1){
+						GAME.emitOrder({a:4,dir:4,vo:GAME.map_options.vo}); // dół - lewo
+					}else{
+						SK.Go();
+					}
+				}
+			}
+
+			SK.Next = function(){
+				if(SK.Path.length-1 > 0){
+					SK.Path.shift();
+					setTimeout(function(){ SK.Move(); }, 100);
+				}else{
+					setTimeout(function(){ SK.Start(); }, 500);
+				}
+			}
+
+
+
+			SK.HandleSockets = function(res){
+				if(!SK.Stop && res.a === 4 && res.char_id === GAME.char_id){
+					// Move response
+					SK.Next();
+				}else if(!SK.Stop && res.a === 12){
+					// teleport response
+					SK.CreateMatrix();
+				}
+
+				// on empty response (e.g. when player can't move)
+				else if (!SK.stop && res.a === undefined){ setTimeout(() => { SK.Go(); }, 500); }
+				else if (!SK.stop) { SK.CreateMatrix();
+				}
+			}
+
+			GAME.socket.on('gr', function(msg){
+				SK.HandleSockets(msg);
+			});
+			SK.LoadES = function(){
+				esjs = document.createElement('script');
+				esjs.src = 'https://cdn.jsdelivr.net/npm/easystarjs@0.4.3/bin/easystar-0.4.3.min.js';
+				esjs.onload = () => {
+					SK.Finder = new EasyStar.js();
+					SK.Finder.enableDiagonals();
+					SK.Finder.setAcceptableTiles([1]);
+
+					$("#SK_control").show();
+				}
+				document.head.append(esjs);
+			}();
+
+                });				
                 $("body").on("click", ".kws_top_bar_section.arena", () => {
 			GAME.page_switch('game_arena');
                 });
@@ -2385,6 +2633,7 @@ function wykonajKodGHButton(panel) {
                     opts += `<div class="qlink get_titles_list" style="filter:hue-rotate(168deg);background-image: url('https://i.imgur.com/0eQCqBl.png');" data-toggle="tooltip" data-original-title="<div class=tt>Zmień tytuł</div>"></div>`;
                 }
                 opts += `<div class="qlink server" style='width: 33px; height: 33px; border-radius: 5px; border: 2px solid white; padding: 5px; background-color: black; color: white; cursor: pointer; font-size: 15px; text-align: center;' data-toggle="tooltip" data-original-title="<div class=tt>Server</div>">S</div>`;
+				opts += `<div class="qlink sk_auto" style='width: 33px; height: 33px; border-radius: 5px; border: 2px solid white; padding: 5px; background-color: black; color: white; cursor: pointer; font-size: 15px; text-align: center;' data-toggle="tooltip" data-original-title="<div class=tt>Server</div>">SK</div>`;
                 opts += `<div class="qlink load_afo" style="filter:hue-rotate(168deg);background-image: url('https://i.imgur.com/P8sJgQz.png');" data-toggle="tooltip" data-original-title="<div class=tt>Załaduj AFO</div>"></div>`;
             
                 opts += `<div class="qlink sideIcons manage_auto_abyss${kws.auto_abyss ? ' kws_active_icon' : ''}" style="filter:hue-rotate(168deg);background-image: url('https://i.imgur.com/j5eQv2B.png');display:block;top:-136px;position:absolute;" data-toggle="tooltip" data-original-title="<div class=tt>[Włącz / Wyłącz] Atakowanie Otchłani</div>"></div>`;
