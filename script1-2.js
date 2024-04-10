@@ -1335,6 +1335,15 @@ if (typeof GAME === 'undefined') { } else {
 									element.style.zoom = '100%';
 								}
 							});
+								var elementsToScale = ['.item_desc'];
+
+elementsToScale.forEach(function(elementId) {
+    var element = document.querySelector(elementId);
+    if (element) {
+        element.style.zoom = '100%';
+        element.style.transform = 'translateX(1150px)'; // Przesunięcie o 50px w prawo
+    }
+});
 
 							var body = document.querySelector('body');
 							body.style.zoom = '75%';
