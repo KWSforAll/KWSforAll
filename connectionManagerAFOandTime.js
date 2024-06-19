@@ -47,7 +47,7 @@ function replaySavedClicks() {
                         if (buttonClass === 'bt_button') {
                             GAME.emitOrder({a:16});
                             setTimeout(() => {
-                                button.click();
+                            //    button.click();
                             }, 3000);
                         }
                         savedClicks[buttonClass] = { clicked: true };
