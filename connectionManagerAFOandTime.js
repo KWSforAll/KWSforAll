@@ -42,7 +42,7 @@ function replaySavedClicks() {
                     const buttons = document.querySelectorAll(`.${buttonClass}`);
                     buttons.forEach(function(button) {
                         console.log('Clicking button:', buttonClass);
-                        //button.click();
+                        button.click();
                         console.log('Click executed.');
                         if (buttonClass === 'bt_button') {
                             GAME.emitOrder({a:16});
