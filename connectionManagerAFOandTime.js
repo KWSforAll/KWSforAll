@@ -1,35 +1,34 @@
-
 function runCodeWithDelay() {   
     const logoutButton = document.querySelector('button[data-option="logout"]');
     const startStopButton = document.getElementById('startStopButton');
     startStopButton.style.display = 'none';
+
     function showStartStopButton() {
         startStopButton.style.display = 'block';
         startStopButton.style.zIndex = '9999';
     }
+
     function hideStartStopButton() {
         startStopButton.style.display = 'none';
     }
-    logoutButton.addEventListener('mouseenter', function() {
-        showStartStopButton();
-    });
-    logoutButton.addEventListener('mouseleave', function() {
-        hideStartStopButton();
-    });
+
+    // Event listeners for hover interactions on logout button and start/stop button
+    logoutButton.addEventListener('mouseenter', showStartStopButton);
+    logoutButton.addEventListener('mouseleave', hideStartStopButton);
+
     startStopButton.addEventListener('mouseenter', function() {
         clearTimeout(startStopHideTimer);
         showStartStopButton();
     });
-    startStopButton.addEventListener('mouseleave', function() {
-        hideStartStopButton();
-    });
-    let startStopHideTimer;
+    startStopButton.addEventListener('mouseleave', hideStartStopButton);
 
+    let startStopHideTimer;
 }
 
 let intervalId;
 let recordingEnabled = JSON.parse(localStorage.getItem('recordingEnabled')) || false;
 let stopReplay = false; 
+
 function replaySavedClicks() {
     console.log('Attempting to replay saved clicks...');
     const savedClicks = JSON.parse(localStorage.getItem('savedClicks')) || {};
@@ -45,6 +44,12 @@ function replaySavedClicks() {
                         console.log('Clicking button:', buttonClass);
                         button.click();
                         console.log('Click executed.');
+                        if (buttonClass === 'bt_button') {
+                            GAME.emitOrder({a:16});
+                            setTimeout(() => {
+                                button.click();
+                            }, 3000);
+                        }
                         savedClicks[buttonClass] = { clicked: true };
                         localStorage.setItem('savedClicks', JSON.stringify(savedClicks)); 
                     });
@@ -74,7 +79,6 @@ function stopRecording() {
     localStorage.setItem('recordingEnabled', false);
     stopReplay = true; 
 }    
-
 
 function checkMainPanel() {
     const mainPanel = document.getElementById("main_Panel");
@@ -107,7 +111,7 @@ function enableLocalStorageWithClass(className) {
 }
 
 function enableLocalStorage() {
-    const buttonClasses = ['.gh_button', '.pvp_button', '.lpvm_button', '.res_button', '.code_button', '.resp_button','.qlink.manage_auto_abyss', '.qlink.manage_auto_arena', '.qlink.manage_autoExpeditions'];
+    const buttonClasses = ['.gh_button', '.pvp_button', '.lpvm_button', '.res_button', '.code_button', '.resp_button', '.qlink.manage_auto_abyss', '.qlink.manage_auto_arena', '.qlink.manage_autoExpeditions', '.bt_button'];
     buttonClasses.forEach(function(className) {
         const buttons = document.querySelectorAll(className);
         buttons.forEach(function(button) {
@@ -200,4 +204,3 @@ if (Object.keys(savedClicks).length > 0) {
 } else {
     console.log('No saved clicks found in localStorage.');
 }
-
