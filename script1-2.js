@@ -1,6 +1,6 @@
 var checked = false;
 
-if (typeof GAME === 'undefined' && extrapremium) { } else {
+if (typeof GAME === 'undefined') { } else {
     let Pog = setInterval(() => {
         if (!GAME.pid) { } else {
             clearInterval(Pog);
