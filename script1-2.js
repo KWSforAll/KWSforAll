@@ -5,7 +5,7 @@ if (typeof GAME === 'undefined') { } else {
         }
     }, 50);
 
-    var modalStyle = document.createElement()
+    var modalStyle = document.createElement('style')
     modalStyle.textContent = `
      /* The Modal (background) */
 .kwaModal {
