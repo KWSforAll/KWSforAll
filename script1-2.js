@@ -46,6 +46,6 @@ if (typeof GAME === 'undefined') { } else {
 } 
     `;
     document.head.appendChild(modalStyle);
-    $("body").append(`<div id="kwaModalUpdate" class="kwaModal"> <div class="kwaModalContent"> <span class="closeModalUpdate">&times;</span> <p>Korzystasz ze starej wersji rozszerzenia. Pobierz aktualizacje tutaj:
-        https://discord.com/channels/1208090189910515744/1279894824958427278/1279894824958427278</p> </div>`);
+    $("body").append(`<div id="kwaModalUpdate" class="kwaModal"> <div class="kwaModalContent"> <span class="closeModalUpdate">&times;</span> <p>Korzystasz ze starej wersji rozszerzenia. Pobierz aktualizacje z działu aktualizacje:
+        https://discord.com/invite/FCsgB6EQw9</p> </div>`);
 }
