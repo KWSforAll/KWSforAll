@@ -64,6 +64,36 @@ async function getStackFromPages(itemId) {
 
     return 0;
 }
+	    function updatePA(finalNumber) {
+    const pageGameEkwDiv = document.getElementById('page_game_ekw');
+    const titleDiv = pageGameEkwDiv.querySelector('.title');
+
+    if (!titleDiv) return;
+
+    let paDiv = document.getElementById('pa_display');
+
+    if (paDiv) {
+        paDiv.innerText = `POSIADANE PA: ${finalNumber}`;
+    } else {
+        paDiv = document.createElement('div');
+        paDiv.id = 'pa_display';
+        paDiv.innerText = `POSIADANE PA: ${finalNumber}`;
+
+        paDiv.style.position = 'absolute';
+        paDiv.style.color = 'lightblue';
+        paDiv.style.fontSize = '16px';
+        paDiv.style.padding = '5px';
+        paDiv.style.borderRadius = '5px';
+        paDiv.style.fontWeight = 'bold';
+
+        paDiv.style.top = `${titleDiv.offsetTop + titleDiv.offsetHeight + 30}px`;
+        paDiv.style.left = '50%';
+        paDiv.style.transform = 'translateX(-50%)'; 
+        paDiv.style.textAlign = 'center';
+
+        pageGameEkwDiv.appendChild(paDiv);
+    }
+}
         class kwsv3 {
             constructor(charactersManager) {
                 this.charactersManager = charactersManager;
