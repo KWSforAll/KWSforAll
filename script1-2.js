@@ -1186,8 +1186,6 @@ if (typeof GAME === 'undefined') { } else {
                             if (GAME.char_tables.timed_actions[0] == undefined || GAME.char_tables.timed_actions[1] == undefined && GAME.char_data.bonus16 > GAME.getTime()) {
                                 GAME.socket.emit('ga', {a: 9, type: 3, nid:382});
                                 kom_clear();
-                            } else{
-                                console.log("Yasoen: wiedza trwa.")
                             }
                         }
                     }
@@ -1201,8 +1199,6 @@ if (typeof GAME === 'undefined') { } else {
                             if (GAME.char_tables.timed_actions[0] == undefined || GAME.char_tables.timed_actions[1] == undefined && GAME.char_data.bonus16 > GAME.getTime()) {
                                 GAME.socket.emit('ga', {a: 9, type: 3, nid:288});
                                 kom_clear();
-                            } else{
-                                console.log("Yasoen: wiedza trwa.")
                             }
                         }
                     }
